@@ -29,6 +29,31 @@ tuya.appSecret=TWOJ_APP_SECRET
 Plik bezpieczeństwa SDK pobrany z panelu Tuya (np. `t_s.bmp`) umieść w `app/src/main/assets/` –
 również jest ignorowany przez git. **Nigdy** nie umieszczaj w aplikacji `client_secret` z Cloud OpenAPI.
 
+## Sekrety w GitHub Actions
+
+W repozytorium: **Settings → Secrets and variables → Actions → New repository secret**:
+
+| Nazwa | Wartość |
+|---|---|
+| `TUYA_APP_KEY` | AppKey z panelu Tuya |
+| `TUYA_APP_SECRET` | AppSecret z panelu Tuya |
+| `SIGNING_KEYSTORE_BASE64` | plik `myvideofonlite.jks` zakodowany w base64 |
+| `SIGNING_STORE_PASSWORD` | hasło do keystore |
+| `SIGNING_KEY_ALIAS` | `myvideofonlite` |
+| `SIGNING_KEY_PASSWORD` | hasło klucza (zwykle to samo co keystore) |
+
+Base64 pliku: Windows PowerShell `[Convert]::ToBase64String([IO.File]::ReadAllBytes("myvideofonlite.jks")) | Set-Clipboard`,
+macOS/Linux `base64 -i myvideofonlite.jks | pbcopy` (lub `base64 -w0 myvideofonlite.jks`).
+
+Lokalnie (Android Studio) te same wartości w `local.properties`:
+
+```
+signing.storeFile=C:/sciezka/do/myvideofonlite.jks
+signing.storePassword=...
+signing.keyAlias=myvideofonlite
+signing.keyPassword=...
+```
+
 ## Podłączenie SDK
 
 1. Odkomentuj repozytorium Maven Tuya w `settings.gradle.kts`.

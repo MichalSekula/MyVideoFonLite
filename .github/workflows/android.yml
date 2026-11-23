@@ -19,6 +19,27 @@ jobs:
 
       - uses: gradle/actions/setup-gradle@v5
 
+      # Klucze Tuya i klucz podpisu pochodzą z sekretów repozytorium (Settings → Secrets and variables → Actions).
+      # Nic z tego nie trafia do kodu. Gdy sekretów brak, budowa działa dalej (tryb demo, klucz debug).
+      - name: Konfiguracja z sekretów
+        env:
+          TUYA_APP_KEY: ${{ secrets.TUYA_APP_KEY }}
+          TUYA_APP_SECRET: ${{ secrets.TUYA_APP_SECRET }}
+          SIGNING_KEYSTORE_BASE64: ${{ secrets.SIGNING_KEYSTORE_BASE64 }}
+          SIGNING_STORE_PASSWORD: ${{ secrets.SIGNING_STORE_PASSWORD }}
+          SIGNING_KEY_ALIAS: ${{ secrets.SIGNING_KEY_ALIAS }}
+          SIGNING_KEY_PASSWORD: ${{ secrets.SIGNING_KEY_PASSWORD }}
+        run: |
+          printf 'tuya.appKey=%s\ntuya.appSecret=%s\n' "$TUYA_APP_KEY" "$TUYA_APP_SECRET" > local.properties
+          if [ -n "$SIGNING_KEYSTORE_BASE64" ]; then
+            echo "$SIGNING_KEYSTORE_BASE64" | base64 -d > signing.jks
+            printf 'signing.storeFile=signing.jks\nsigning.storePassword=%s\nsigning.keyAlias=%s\nsigning.keyPassword=%s\n' \
+              "$SIGNING_STORE_PASSWORD" "$SIGNING_KEY_ALIAS" "$SIGNING_KEY_PASSWORD" >> local.properties
+            echo "APK podpisane stałym kluczem."
+          else
+            echo "Brak SIGNING_KEYSTORE_BASE64 – APK podpisane tymczasowym kluczem debug."
+          fi
+
       - name: Testy jednostkowe
         run: ./gradlew :domain:test :app:testDebugUnitTest --stacktrace
 

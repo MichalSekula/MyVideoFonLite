@@ -13,6 +13,9 @@ val localProps = Properties().apply {
     if (f.exists()) f.inputStream().use { load(it) }
 }
 
+// Stały klucz podpisu (Tuya wiąże aplikację z SHA-256 certyfikatu). Bez niego – domyślny klucz debug.
+val signingStoreFile: String? = localProps.getProperty("signing.storeFile")?.takeIf { it.isNotBlank() }
+
 android {
     namespace = "pl.sekula.myvideofonlite"
     compileSdk = 35
@@ -29,8 +32,23 @@ android {
         buildConfigField("String", "TUYA_APP_SECRET", "\"${localProps.getProperty("tuya.appSecret", "")}\"")
     }
 
+    signingConfigs {
+        if (signingStoreFile != null) {
+            create("stable") {
+                storeFile = rootProject.file(signingStoreFile)
+                storePassword = localProps.getProperty("signing.storePassword")
+                keyAlias = localProps.getProperty("signing.keyAlias")
+                keyPassword = localProps.getProperty("signing.keyPassword")
+            }
+        }
+    }
+
     buildTypes {
+        debug {
+            if (signingStoreFile != null) signingConfig = signingConfigs.getByName("stable")
+        }
         release {
+            if (signingStoreFile != null) signingConfig = signingConfigs.getByName("stable")
             isMinifyEnabled = false
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
