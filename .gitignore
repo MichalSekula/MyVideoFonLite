@@ -1,0 +1,13 @@
+*.iml
+.gradle/
+/local.properties
+.idea/
+.DS_Store
+build/
+/captures
+.externalNativeBuild
+.cxx
+*.keystore
+*.jks
+# Tuya – pliki bezpieczeństwa SDK nie trafiają do repozytorium
+app/src/main/assets/t_s.bmp
