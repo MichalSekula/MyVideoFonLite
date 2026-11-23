@@ -7,6 +7,11 @@ import androidx.biometric.BiometricManager.Authenticators.BIOMETRIC_WEAK
 import androidx.biometric.BiometricManager.Authenticators.DEVICE_CREDENTIAL
 import androidx.biometric.BiometricPrompt
 import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.ui.unit.dp
+import pl.sekula.myvideofonlite.R
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -41,11 +46,23 @@ fun GateConfirmationDialog(
     }
     AlertDialog(
         onDismissRequest = onDismiss,
+        icon = {
+            IconBadge(
+                R.drawable.ic_lock_open,
+                container = MaterialTheme.colorScheme.secondaryContainer,
+                content = MaterialTheme.colorScheme.onSecondaryContainer,
+                size = 56.dp,
+            )
+        },
         title = { Text("Otworzyć furtkę?") },
         text = { Text("Urządzenie: $deviceName\nTa akcja otworzy wejście.") },
         confirmButton = {
-            TextButton(
+            Button(
                 enabled = armed,
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = MaterialTheme.colorScheme.secondary,
+                    contentColor = MaterialTheme.colorScheme.onSecondary,
+                ),
                 onClick = {
                     onDismiss()
                     val activity = context.findFragmentActivity()
