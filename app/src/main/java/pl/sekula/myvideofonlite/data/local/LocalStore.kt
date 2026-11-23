@@ -20,6 +20,7 @@ import pl.sekula.myvideofonlite.domain.model.DeviceStatus
 import pl.sekula.myvideofonlite.domain.model.DoorbellDevice
 import pl.sekula.myvideofonlite.domain.model.DoorbellEvent
 import pl.sekula.myvideofonlite.domain.model.EventType
+import pl.sekula.myvideofonlite.domain.model.ThemeMode
 import pl.sekula.myvideofonlite.domain.repository.SettingsRepository
 import java.io.IOException
 
@@ -47,6 +48,7 @@ class LocalStore(context: Context) : SettingsRepository {
         val MODE = stringPreferencesKey("backend_mode")
         val SELECTED = stringPreferencesKey("selected_device")
         val BIOMETRIC = booleanPreferencesKey("biometric_gate")
+        val THEME = stringPreferencesKey("theme_mode")
         val SNAP_ID = stringPreferencesKey("snap_id")
         val SNAP_NAME = stringPreferencesKey("snap_name")
         val SNAP_STATUS = stringPreferencesKey("snap_status")
@@ -66,6 +68,7 @@ class LocalStore(context: Context) : SettingsRepository {
                 ?: BackendMode.DEMO,
             selectedDeviceId = p[Keys.SELECTED],
             requireBiometricForGate = p[Keys.BIOMETRIC] ?: true,
+            themeMode = p[Keys.THEME]?.let { runCatching { ThemeMode.valueOf(it) }.getOrNull() } ?: ThemeMode.SYSTEM,
         )
     }.distinctUntilChanged()
 
@@ -100,6 +103,10 @@ class LocalStore(context: Context) : SettingsRepository {
 
     override suspend fun setRequireBiometricForGate(required: Boolean) {
         dataStore.edit { it[Keys.BIOMETRIC] = required }
+    }
+
+    override suspend fun setThemeMode(mode: ThemeMode) {
+        dataStore.edit { it[Keys.THEME] = mode.name }
     }
 
     suspend fun saveSnapshot(device: DoorbellDevice) {

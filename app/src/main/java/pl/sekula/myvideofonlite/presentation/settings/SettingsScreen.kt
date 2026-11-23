@@ -44,6 +44,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import org.koin.androidx.compose.koinViewModel
 import pl.sekula.myvideofonlite.domain.model.AuthState
 import pl.sekula.myvideofonlite.domain.model.BackendMode
+import pl.sekula.myvideofonlite.domain.model.ThemeMode
 import pl.sekula.myvideofonlite.presentation.common.AppTopBar
 
 @Composable
@@ -117,6 +118,12 @@ fun SettingsScreen(onBack: () -> Unit, viewModel: SettingsViewModel = koinViewMo
                     checked = settings.requireBiometricForGate,
                     onChange = viewModel::setRequireBiometric,
                 )
+            }
+
+            SectionCard("Wygląd") {
+                RadioRow("Jak w systemie", settings.themeMode == ThemeMode.SYSTEM) { viewModel.setThemeMode(ThemeMode.SYSTEM) }
+                RadioRow("Jasny", settings.themeMode == ThemeMode.LIGHT) { viewModel.setThemeMode(ThemeMode.LIGHT) }
+                RadioRow("Ciemny", settings.themeMode == ThemeMode.DARK) { viewModel.setThemeMode(ThemeMode.DARK) }
             }
 
             if (settings.backendMode == BackendMode.DEMO) {

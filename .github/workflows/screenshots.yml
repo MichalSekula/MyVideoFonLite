@@ -43,7 +43,6 @@ jobs:
             adb shell am instrument -w -e prefix jasny_ -e class pl.sekula.myvideofonlite.ScreenshotTour pl.sekula.myvideofonlite.test/androidx.test.runner.AndroidJUnitRunner | tee instrument.log
             mkdir -p screenshots && adb pull /sdcard/Android/data/pl.sekula.myvideofonlite/files/screenshots/. screenshots/ || true
             adb shell pm clear pl.sekula.myvideofonlite
-            adb shell cmd uimode night yes
             adb shell am instrument -w -e prefix ciemny_ -e class pl.sekula.myvideofonlite.ScreenshotTour pl.sekula.myvideofonlite.test/androidx.test.runner.AndroidJUnitRunner | tee -a instrument.log
             adb pull /sdcard/Android/data/pl.sekula.myvideofonlite/files/screenshots/. screenshots/ || true
             test "$(grep -c 'OK (1 test)' instrument.log)" = "2"
