@@ -60,42 +60,44 @@ class ScreenshotTour {
 
         click(By.text("Przejdź do ustawień"))
         click(By.textContains("wejście (demo)"))
-        click(By.text("Symuluj dzwonek"))
         waitFor(By.textContains("Wybrano"), 5_000)
+        Thread.sleep(5_000) // snackbar znika
         shot("02_ustawienia")
 
-        device.openNotification()
-        waitFor(By.textContains("Ktoś dzwoni do drzwi"))
-        shot("03_powiadomienie_dzwonek")
-        device.pressBack()
-        if (!device.wait(Until.hasObject(By.text("Ustawienia")), 3_000)) device.pressBack()
-
+        click(By.text("Symuluj dzwonek"))
         click(By.desc("Wstecz"))
         waitFor(By.textContains("Ostatni dzwonek"))
-        shot("04_ekran_glowny")
+        Thread.sleep(8_000) // powiadomienie heads-up znika
+        shot("03_ekran_glowny")
 
         click(By.text("Podgląd na żywo"))
         waitFor(By.textContains("Połączono"))
-        shot("05_podglad_na_zywo")
+        shot("04_podglad_na_zywo")
 
         click(By.text("Rozpocznij rozmowę"))
         waitFor(By.text("Zakończ rozmowę"))
-        shot("06_rozmowa")
+        shot("05_rozmowa")
 
         click(By.text("Otwórz furtkę"))
         waitFor(By.text("Otworzyć furtkę?"))
-        shot("07_potwierdzenie_furtki")
+        Thread.sleep(1_200)
+        shot("06_potwierdzenie_furtki")
         click(By.text("Anuluj"))
 
         click(By.text("Pełny ekran"))
         waitFor(By.text("Zamknij pełny ekran"))
-        Thread.sleep(1500)
-        shot("08_pelny_ekran")
+        Thread.sleep(1_500)
+        shot("07_pelny_ekran")
         click(By.text("Zamknij pełny ekran"))
 
         click(By.desc("Wstecz"))
         click(By.desc("Historia zdarzeń"))
         waitFor(By.text("Dzwonek"))
-        shot("09_historia_zdarzen")
+        shot("08_historia_zdarzen")
+
+        device.openNotification()
+        waitFor(By.textContains("Ktoś dzwoni do drzwi"))
+        shot("09_powiadomienie_dzwonek")
+        device.pressBack()
     }
 }
