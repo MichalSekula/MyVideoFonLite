@@ -41,6 +41,19 @@ jobs:
             echo "Brak SIGNING_KEYSTORE_BASE64 – APK podpisane tymczasowym kluczem debug."
           fi
 
+      - name: Plik bezpieczeństwa Tuya (odszyfrowanie)
+        env:
+          TUYA_SECURITY_PASSPHRASE: ${{ secrets.TUYA_SECURITY_PASSPHRASE }}
+        run: |
+          if [ -n "$TUYA_SECURITY_PASSPHRASE" ]; then
+            mkdir -p app/libs
+            gpg --batch --yes --pinentry-mode loopback --passphrase "$TUYA_SECURITY_PASSPHRASE" \
+              -o app/libs/security-algorithm.aar -d app/libs-encrypted/security-algorithm.aar.gpg
+            echo "Plik bezpieczeństwa Tuya: odszyfrowany"
+          else
+            echo "Plik bezpieczeństwa Tuya: BRAK sekretu TUYA_SECURITY_PASSPHRASE"
+          fi
+
       - name: Testy jednostkowe
         run: ./gradlew :domain:test :app:testDebugUnitTest --stacktrace
 

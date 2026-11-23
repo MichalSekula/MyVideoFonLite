@@ -11,8 +11,10 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
-        // Tuya SDK (Etap 0): po weryfikacji urządzenia odkomentuj repozytorium Tuya
-        // maven { url = uri("https://maven-other.tuya.com/repository/maven-releases/") }
+        // Tuya SmartLife App SDK + IPC SDK
+        maven { url = uri("https://maven-other.tuya.com/repository/maven-releases/") }
+        maven { url = uri("https://maven-other.tuya.com/repository/maven-commercial-releases/") }
+        maven { url = uri("https://jitpack.io") }
     }
 }
 

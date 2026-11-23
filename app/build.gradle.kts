@@ -64,6 +64,15 @@ android {
         compose = true
         buildConfig = true
     }
+    packaging {
+        jniLibs {
+            useLegacyPackaging = true
+            pickFirsts += setOf("lib/*/libc++_shared.so", "lib/*/libyuv.so", "lib/*/libopenh264.so")
+        }
+        resources {
+            excludes += setOf("META-INF/DEPENDENCIES", "META-INF/LICENSE*", "META-INF/NOTICE*", "META-INF/*.kotlin_module")
+        }
+    }
     testOptions {
         unitTests.isReturnDefaultValues = true
     }
@@ -93,7 +102,13 @@ dependencies {
     implementation(libs.koin.androidx.compose)
     implementation(libs.kotlinx.coroutines.android)
 
-    // Tuya SmartLife App SDK + IPC SDK – dodać po pozytywnym Etapie 0 (docs/TUYA_INTEGRATION.md)
+    // Tuya SmartLife App SDK 7.11 + IPC SDK (pakiet z panelu Tuya)
+    implementation(libs.tuya.thingsmart)
+    implementation(libs.tuya.ipcsdk)
+    implementation(libs.fastjson.android)
+    implementation(libs.okhttp.urlconnection)
+    // Plik bezpieczeństwa Tuya (security-algorithm-*.aar) – odszyfrowywany w CI do app/libs, poza repozytorium.
+    implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.aar"))))
 
     testImplementation(libs.junit)
     testImplementation(libs.mockk)
@@ -105,4 +120,20 @@ dependencies {
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
+}
+
+// Narzędzie: wypakowuje klasy Tuya SDK do build/tuyajars (inspekcja API w CI).
+tasks.register("dumpTuyaJars") {
+    doLast {
+        val out = layout.buildDirectory.dir("tuyajars").get().asFile.apply { deleteRecursively(); mkdirs() }
+        val view = configurations.getByName("debugRuntimeClasspath").incoming.artifactView {
+            attributes { attribute(Attribute.of("artifactType", String::class.java), "android-classes-jar") }
+        }
+        view.artifacts.forEach { a ->
+            val id = a.id.componentIdentifier
+            if (id is org.gradle.api.artifacts.component.ModuleComponentIdentifier && id.group.startsWith("com.thingclips")) {
+                a.file.copyTo(File(out, "${id.module}-${id.version}.jar"), overwrite = true)
+            }
+        }
+    }
 }

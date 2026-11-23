@@ -11,3 +11,5 @@ build/
 *.jks
 # Tuya – pliki bezpieczeństwa SDK nie trafiają do repozytorium
 app/src/main/assets/t_s.bmp
+# Plik bezpieczeństwa Tuya – w repo tylko wersja zaszyfrowana (app/libs-encrypted)
+app/libs/
