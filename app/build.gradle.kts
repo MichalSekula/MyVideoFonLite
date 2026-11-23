@@ -127,6 +127,7 @@ tasks.register("dumpTuyaJars") {
     doLast {
         val out = layout.buildDirectory.dir("tuyajars").get().asFile.apply { deleteRecursively(); mkdirs() }
         val view = configurations.getByName("debugRuntimeClasspath").incoming.artifactView {
+            isLenient = true
             attributes { attribute(Attribute.of("artifactType", String::class.java), "android-classes-jar") }
         }
         view.artifacts.forEach { a ->
