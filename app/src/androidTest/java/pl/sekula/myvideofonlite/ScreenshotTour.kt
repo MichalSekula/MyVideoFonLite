@@ -65,9 +65,10 @@ class ScreenshotTour {
         shot("02_ustawienia")
 
         click(By.text("Symuluj dzwonek"))
-        click(By.desc("Wstecz"))
+        // Powiadomienie heads-up zasłania górę ekranu (w tym strzałkę "Wstecz") – czekamy aż zniknie.
+        Thread.sleep(8_000)
+        device.pressBack()
         waitFor(By.textContains("Ostatni dzwonek"))
-        Thread.sleep(8_000) // powiadomienie heads-up znika
         shot("03_ekran_glowny")
 
         click(By.text("Podgląd na żywo"))
