@@ -137,3 +137,8 @@ tasks.register("dumpTuyaJars") {
         }
     }
 }
+
+// Wymagane przez Tuya SDK (artefakt adnotacji nie jest publikowany).
+configurations.all {
+    exclude(group = "com.thingclips.smart", module = "thingsmart-modularCampAnno")
+}

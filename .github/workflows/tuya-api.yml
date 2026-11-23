@@ -3,7 +3,7 @@ name: Inspekcja API Tuya SDK
 on:
   push:
     branches: [ feature/tuya-sdk ]
-    paths: [ '.github/workflows/tuya-api.yml', 'gradle/libs.versions.toml' ]
+    paths: [ '.github/workflows/tuya-api.yml', 'gradle/libs.versions.toml', 'app/build.gradle.kts' ]
   workflow_dispatch:
 
 permissions:
