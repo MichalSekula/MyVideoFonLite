@@ -31,6 +31,7 @@ jobs:
           SIGNING_KEY_PASSWORD: ${{ secrets.SIGNING_KEY_PASSWORD }}
         run: |
           printf 'tuya.appKey=%s\ntuya.appSecret=%s\n' "$TUYA_APP_KEY" "$TUYA_APP_SECRET" > local.properties
+          if [ -n "$TUYA_APP_KEY" ] && [ -n "$TUYA_APP_SECRET" ]; then echo "Klucze Tuya: ustawione"; else echo "Klucze Tuya: BRAK"; fi
           if [ -n "$SIGNING_KEYSTORE_BASE64" ]; then
             echo "$SIGNING_KEYSTORE_BASE64" | base64 -d > signing.jks
             printf 'signing.storeFile=signing.jks\nsigning.storePassword=%s\nsigning.keyAlias=%s\nsigning.keyPassword=%s\n' \
