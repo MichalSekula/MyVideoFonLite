@@ -42,6 +42,16 @@ class ScreenshotTour {
 
     @Test
     fun tour() {
+        try {
+            runTour()
+        } catch (t: Throwable) {
+            device.takeScreenshot(File(outDir, "zz_blad.png"))
+            device.dumpWindowHierarchy(File(outDir, "zz_blad_hierarchia.xml"))
+            throw t
+        }
+    }
+
+    private fun runTour() {
         context.startActivity(
             Intent(context, MainActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK),
         )
@@ -58,9 +68,10 @@ class ScreenshotTour {
         waitFor(By.textContains("Ktoś dzwoni do drzwi"))
         shot("03_powiadomienie_dzwonek")
         device.pressBack()
+        if (!device.wait(Until.hasObject(By.text("Ustawienia")), 3_000)) device.pressBack()
 
         click(By.desc("Wstecz"))
-        waitFor(By.text("Online"))
+        waitFor(By.textContains("Ostatni dzwonek"))
         shot("04_ekran_glowny")
 
         click(By.text("Podgląd na żywo"))
