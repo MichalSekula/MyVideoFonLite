@@ -23,12 +23,13 @@ class ScreenshotTour {
     private val instrumentation = InstrumentationRegistry.getInstrumentation()
     private val device = UiDevice.getInstance(instrumentation)
     private val context = instrumentation.targetContext
+    private val prefix = InstrumentationRegistry.getArguments().getString("prefix", "")
     private val outDir = File(context.getExternalFilesDir(null), "screenshots").apply { mkdirs() }
 
     private fun shot(name: String) {
         device.waitForIdle()
         Thread.sleep(800)
-        device.takeScreenshot(File(outDir, "$name.png"))
+        device.takeScreenshot(File(outDir, "$prefix$name.png"))
     }
 
     private fun waitFor(selector: BySelector, timeoutMs: Long = 10_000) {
