@@ -30,7 +30,9 @@ jobs:
           SIGNING_KEY_ALIAS: ${{ secrets.SIGNING_KEY_ALIAS }}
           SIGNING_KEY_PASSWORD: ${{ secrets.SIGNING_KEY_PASSWORD }}
         run: |
-          printf 'tuya.appKey=%s\ntuya.appSecret=%s\n' "$TUYA_APP_KEY" "$TUYA_APP_SECRET" > local.properties
+          # Usuwamy przypadkowe spacje / końce linii z wklejonych sekretów.
+          printf 'tuya.appKey=%s\ntuya.appSecret=%s\n' \
+            "$(printf '%s' "$TUYA_APP_KEY" | tr -d ' \r\n\t')" "$(printf '%s' "$TUYA_APP_SECRET" | tr -d ' \r\n\t')" > local.properties
           if [ -n "$TUYA_APP_KEY" ] && [ -n "$TUYA_APP_SECRET" ]; then echo "Klucze Tuya: ustawione"; else echo "Klucze Tuya: BRAK"; fi
           if [ -n "$SIGNING_KEYSTORE_BASE64" ]; then
             # Tekst wklejony z PowerShell bywa z odstępami lub znakami końca linii – pomijamy je.
