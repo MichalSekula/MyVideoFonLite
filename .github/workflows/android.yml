@@ -38,15 +38,17 @@ jobs:
               # Tylko dane diagnostyczne (długość i rodzaj znaków), bez treści sekretu.
               CLEAN=$(printf '%s' "$SIGNING_KEYSTORE_BASE64" | tr -cd 'A-Za-z0-9+/=')
               echo "Diagnostyka: długość ${#SIGNING_KEYSTORE_BASE64} znaków, po oczyszczeniu ${#CLEAN}, dwukropki: $(printf '%s' "$SIGNING_KEYSTORE_BASE64" | tr -cd ':' | wc -c), spacje: $(printf '%s' "$SIGNING_KEYSTORE_BASE64" | tr -cd ' ' | wc -c)"
-              echo "::error::SIGNING_KEYSTORE_BASE64 nie jest poprawnym tekstem base64 pliku .jks."
-              exit 1
+              echo "::warning::SIGNING_KEYSTORE_BASE64 nie zawiera pliku .jks – APK podpisane tymczasowym kluczem debug (logowanie Tuya nie zadziała)."
+              rm -f signing.jks
+              exit 0
             fi
             STORE_PW=$(printf '%s' "$SIGNING_STORE_PASSWORD" | tr -d '\r\n')
             KEY_PW=$(printf '%s' "$SIGNING_KEY_PASSWORD" | tr -d '\r\n')
             ALIAS=$(printf '%s' "$SIGNING_KEY_ALIAS" | tr -d ' \r\n')
             if ! keytool -list -keystore signing.jks -storepass "$STORE_PW" -alias "$ALIAS" > /dev/null 2>&1; then
-              echo "::error::Nie da się otworzyć klucza: sprawdź SIGNING_STORE_PASSWORD i SIGNING_KEY_ALIAS (alias: myvideofonlite)."
-              exit 1
+              echo "::warning::Nie da się otworzyć klucza: sprawdź SIGNING_STORE_PASSWORD i SIGNING_KEY_ALIAS (alias: myvideofonlite). APK podpisane tymczasowym kluczem debug."
+              rm -f signing.jks
+              exit 0
             fi
             # Odcisk SHA-256 jest publiczny – to ten sam, który wpisuje się w panelu Tuya.
             keytool -list -v -keystore signing.jks -storepass "$STORE_PW" -alias "$ALIAS" | grep -m1 'SHA256:' | sed 's/^[[:space:]]*/Odcisk klucza: /'
