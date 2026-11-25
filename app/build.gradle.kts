@@ -21,13 +21,15 @@ android {
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "pl.sekula.myvideofonlite"
+        applicationId = "pl.gbc.myvideofonlite" // zgodnie z rejestracją aplikacji w panelu Tuya
         minSdk = 26
         targetSdk = 35
         versionCode = 1
         versionName = "0.1.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
+        // Numer builda z GitHub Actions – widoczny w Ustawieniach, żeby odróżnić wersje APK.
+        buildConfigField("String", "BUILD_ID", "\"${System.getenv("GITHUB_RUN_NUMBER") ?: "lokalny"}\"")
         buildConfigField("String", "TUYA_APP_KEY", "\"${localProps.getProperty("tuya.appKey", "")}\"")
         buildConfigField("String", "TUYA_APP_SECRET", "\"${localProps.getProperty("tuya.appSecret", "")}\"")
     }
@@ -64,6 +66,15 @@ android {
         compose = true
         buildConfig = true
     }
+    packaging {
+        jniLibs {
+            useLegacyPackaging = true
+            pickFirsts += setOf("lib/*/libc++_shared.so", "lib/*/libyuv.so", "lib/*/libopenh264.so")
+        }
+        resources {
+            excludes += setOf("META-INF/DEPENDENCIES", "META-INF/LICENSE*", "META-INF/NOTICE*", "META-INF/*.kotlin_module")
+        }
+    }
     testOptions {
         unitTests.isReturnDefaultValues = true
     }
@@ -93,7 +104,14 @@ dependencies {
     implementation(libs.koin.androidx.compose)
     implementation(libs.kotlinx.coroutines.android)
 
-    // Tuya SmartLife App SDK + IPC SDK – dodać po pozytywnym Etapie 0 (docs/TUYA_INTEGRATION.md)
+    // Tuya SmartLife App SDK 7.11 + IPC SDK (pakiet z panelu Tuya)
+    implementation(libs.play.services.code.scanner)
+    implementation(libs.tuya.thingsmart)
+    implementation(libs.tuya.ipcsdk)
+    implementation(libs.fastjson.android)
+    implementation(libs.okhttp.urlconnection)
+    // Plik bezpieczeństwa Tuya (security-algorithm-*.aar) – odszyfrowywany w CI do app/libs, poza repozytorium.
+    implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.aar"))))
 
     testImplementation(libs.junit)
     testImplementation(libs.mockk)
@@ -105,4 +123,26 @@ dependencies {
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
+}
+
+// Narzędzie: wypakowuje klasy Tuya SDK do build/tuyajars (inspekcja API w CI).
+tasks.register("dumpTuyaJars") {
+    doLast {
+        val out = layout.buildDirectory.dir("tuyajars").get().asFile.apply { deleteRecursively(); mkdirs() }
+        val view = configurations.getByName("debugRuntimeClasspath").incoming.artifactView {
+            isLenient = true
+            attributes { attribute(Attribute.of("artifactType", String::class.java), "android-classes-jar") }
+        }
+        view.artifacts.forEach { a ->
+            val id = a.id.componentIdentifier
+            if (id is org.gradle.api.artifacts.component.ModuleComponentIdentifier && id.group.startsWith("com.thingclips")) {
+                a.file.copyTo(File(out, "${id.module}-${id.version}.jar"), overwrite = true)
+            }
+        }
+    }
+}
+
+// Wymagane przez Tuya SDK (artefakt adnotacji nie jest publikowany).
+configurations.all {
+    exclude(group = "com.thingclips.smart", module = "thingsmart-modularCampAnno")
 }

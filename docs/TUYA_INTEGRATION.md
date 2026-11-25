@@ -1,16 +1,21 @@
 # Integracja z Tuya – instrukcja (Etap 0 → Etap 2)
 
-Aplikacja ma gotową architekturę i tryb demo. Prawdziwe połączenie z wideodomofonem
-podłącza się w **jednym miejscu**: `app/src/main/java/pl/sekula/myvideofonlite/data/tuya/TuyaBackend.kt`
-(metody oznaczone `TODO(TUYA)`). Reszta aplikacji (ekrany, powiadomienia, widget, furtka)
-działa na interfejsach domenowych i nie wymaga zmian.
+**Stan:** integracja podłączona (Tuya Smart Life App SDK 7.11 + IPC SDK 7.11.1).
+Kod: `app/src/main/java/pl/sekula/myvideofonlite/data/tuya/`:
+- `TuyaSdk` – leniwa inicjalizacja SDK (tylko w trybie Tuya i tylko z kluczami),
+- `TuyaBackend` – logowanie e-mailem, domy i urządzenia, status, nasłuch DP (dzwonek, ruch), furtka,
+- `TuyaLiveSession` – P2P, obraz w `ThingCameraView`, dźwięk i rozmowa,
+- `DpMap` – wyszukiwanie DP po kodzie/nazwie (furtka: `accessory_lock` / „Lock Switch”, awaryjnie DP 148).
+
+Ograniczenie: powiadomienie o dzwonku przychodzi, gdy aplikacja działa (nasłuch DP przez MQTT SDK).
+Powiadomienia przy zamkniętej aplikacji wymagają push Tuya (Firebase) – osobny etap.
 
 ## Etap 0 – weryfikacja (obowiązkowa przed pisaniem kodu SDK)
 
 - [ ] Ustal producenta i dokładny model wideodomofonu (naklejka / aplikacja Smart Life → urządzenie → informacje).
 - [ ] Sprawdź, w której aplikacji jest dodany (Smart Life czy Tuya Smart) i region konta (Europa).
 - [ ] Załóż konto na https://platform.tuya.com i utwórz projekt aplikacji **SmartLife App SDK**.
-- [ ] Wygeneruj klucze AppKey/AppSecret dla nazwy pakietu `pl.sekula.myvideofonlite` i odcisku SHA-256 certyfikatu podpisu.
+- [ ] Wygeneruj klucze AppKey/AppSecret dla nazwy pakietu `pl.gbc.myvideofonlite` i odcisku SHA-256 certyfikatu podpisu.
 - [ ] Sprawdź warunki (ewentualne opłaty) i dostępność **IPC SDK** dla Twojego modelu.
 - [ ] Odczytaj w panelu Tuya listę DP urządzenia: czy jest zdarzenie dzwonka i DP otwarcia elektrozaczepu.
 - [ ] Zbuduj proof of concept: logowanie → lista urządzeń → obraz z kamery.

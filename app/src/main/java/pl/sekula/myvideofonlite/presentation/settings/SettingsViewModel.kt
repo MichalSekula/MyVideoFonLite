@@ -1,5 +1,6 @@
 package pl.sekula.myvideofonlite.presentation.settings
 
+import pl.sekula.myvideofonlite.BuildConfig
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -80,6 +81,30 @@ class SettingsViewModel(
         _message.value = when (val r = repository.signIn(countryCode, email, password)) {
             is Outcome.Success -> "Zalogowano."
             is Outcome.Failure -> r.message ?: r.error.defaultMessage()
+        }
+        if (authState.value is AuthState.SignedIn) loadDevicesNow()
+    }
+
+    /** Okno z wynikiem operacji na koncie (wysłanie kodu, rejestracja). */
+    private val _dialog = MutableStateFlow<String?>(null)
+    val dialog: StateFlow<String?> = _dialog.asStateFlow()
+
+    fun dialogShown() {
+        _dialog.value = null
+    }
+
+    fun requestRegistrationCode(countryCode: String, email: String) = launchBusy {
+        _dialog.value = when (val r = repository.requestRegistrationCode(countryCode, email)) {
+            is Outcome.Success -> "Tuya przyjęła prośbę i wysyła kod na $email. Mail może przyjść po kilku minutach – sprawdź też Spam i Oferty."
+            is Outcome.Failure -> "Nie wysłano kodu.\n\n" + (r.message ?: r.error.defaultMessage()) +
+                "\n\n(build ${BuildConfig.BUILD_ID})"
+        }
+    }
+
+    fun register(countryCode: String, email: String, password: String, code: String) = launchBusy {
+        _dialog.value = when (val r = repository.register(countryCode, email, password, code)) {
+            is Outcome.Success -> "Konto założone i zalogowano. Teraz w sekcji „Urządzenie” kliknij „Dodaj domofon”."
+            is Outcome.Failure -> "Nie udało się założyć konta.\n\n" + (r.message ?: r.error.defaultMessage())
         }
         if (authState.value is AuthState.SignedIn) loadDevicesNow()
     }

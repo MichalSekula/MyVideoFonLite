@@ -6,6 +6,7 @@ import pl.sekula.myvideofonlite.domain.model.AuthState
 import pl.sekula.myvideofonlite.domain.model.DeviceSummary
 import pl.sekula.myvideofonlite.domain.model.DoorbellDevice
 import pl.sekula.myvideofonlite.domain.model.DoorbellEvent
+import pl.sekula.myvideofonlite.domain.model.DomainError
 import pl.sekula.myvideofonlite.domain.model.Outcome
 import pl.sekula.myvideofonlite.domain.repository.LiveViewSession
 
@@ -21,6 +22,10 @@ interface DoorbellBackend {
 
     suspend fun signIn(countryCode: String, email: String, password: String): Outcome<Unit>
     suspend fun signOut()
+    suspend fun requestRegistrationCode(countryCode: String, email: String): Outcome<Unit> =
+        Outcome.Failure(DomainError.UNSUPPORTED, "Zakładanie konta jest dostępne tylko w trybie Tuya.")
+    suspend fun register(countryCode: String, email: String, password: String, code: String): Outcome<Unit> =
+        Outcome.Failure(DomainError.UNSUPPORTED, "Zakładanie konta jest dostępne tylko w trybie Tuya.")
     suspend fun listDevices(): Outcome<List<DeviceSummary>>
     suspend fun fetchDevice(deviceId: String): Outcome<DoorbellDevice>
     suspend fun openGate(deviceId: String): Outcome<Unit>

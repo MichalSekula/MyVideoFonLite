@@ -14,6 +14,7 @@ import kotlinx.coroutines.flow.StateFlow
 import pl.sekula.myvideofonlite.presentation.events.EventsScreen
 import pl.sekula.myvideofonlite.presentation.home.HomeScreen
 import pl.sekula.myvideofonlite.presentation.liveview.LiveViewScreen
+import pl.sekula.myvideofonlite.presentation.pairing.PairingScreen
 import pl.sekula.myvideofonlite.presentation.settings.SettingsScreen
 
 object Routes {
@@ -21,6 +22,7 @@ object Routes {
     const val LIVE_VIEW = "liveview"
     const val SETTINGS = "settings"
     const val EVENTS = "events"
+    const val PAIRING = "pairing"
 }
 
 @Composable
@@ -57,7 +59,10 @@ fun AppNavHost(pendingAction: StateFlow<String?>, onActionConsumed: () -> Unit) 
             )
         }
         composable(Routes.LIVE_VIEW) { LiveViewScreen(onBack = { nav.popBackStack() }) }
-        composable(Routes.SETTINGS) { SettingsScreen(onBack = { nav.popBackStack() }) }
+        composable(Routes.SETTINGS) {
+            SettingsScreen(onBack = { nav.popBackStack() }, onOpenPairing = { nav.navigate(Routes.PAIRING) })
+        }
+        composable(Routes.PAIRING) { PairingScreen(onDone = { nav.popBackStack() }) }
         composable(Routes.EVENTS) { EventsScreen(onBack = { nav.popBackStack() }) }
     }
 }

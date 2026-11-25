@@ -10,6 +10,8 @@ import pl.sekula.myvideofonlite.data.DoorbellRepositoryImpl
 import pl.sekula.myvideofonlite.data.demo.DemoBackend
 import pl.sekula.myvideofonlite.data.local.LocalStore
 import pl.sekula.myvideofonlite.data.tuya.TuyaBackend
+import pl.sekula.myvideofonlite.data.tuya.TuyaPairing
+import pl.sekula.myvideofonlite.presentation.pairing.PairingViewModel
 import pl.sekula.myvideofonlite.domain.repository.DoorbellRepository
 import pl.sekula.myvideofonlite.domain.repository.SettingsRepository
 import pl.sekula.myvideofonlite.domain.usecase.ConnectToDoorbell
@@ -32,6 +34,7 @@ val appModule = module {
     single<SettingsRepository> { get<LocalStore>() }
     single { DemoBackend() }
     single { TuyaBackend(androidContext()) }
+    single { TuyaPairing(androidContext(), get()) }
     single { DoorbellRepositoryImpl(get(), get(), get(), get()) }
     single<DoorbellRepository> { get<DoorbellRepositoryImpl>() }
 
@@ -49,4 +52,5 @@ val appModule = module {
     viewModel { LiveViewViewModel(get(), get(), get(), get(), get()) }
     viewModel { SettingsViewModel(get(), get(), get(), get()) }
     viewModel { EventsViewModel(get()) }
+    viewModel { PairingViewModel(get(), get(), get()) }
 }

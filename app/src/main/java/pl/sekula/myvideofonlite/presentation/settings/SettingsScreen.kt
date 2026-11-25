@@ -12,6 +12,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.LinearProgressIndicator
@@ -38,6 +39,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import pl.sekula.myvideofonlite.BuildConfig
 import pl.sekula.myvideofonlite.R
 import pl.sekula.myvideofonlite.presentation.common.SectionCard
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -48,7 +50,11 @@ import pl.sekula.myvideofonlite.domain.model.ThemeMode
 import pl.sekula.myvideofonlite.presentation.common.AppTopBar
 
 @Composable
-fun SettingsScreen(onBack: () -> Unit, viewModel: SettingsViewModel = koinViewModel()) {
+fun SettingsScreen(
+    onBack: () -> Unit,
+    onOpenPairing: () -> Unit = {},
+    viewModel: SettingsViewModel = koinViewModel(),
+) {
     val settings by viewModel.settings.collectAsStateWithLifecycle()
     val auth by viewModel.authState.collectAsStateWithLifecycle()
     val devices by viewModel.devices.collectAsStateWithLifecycle()
@@ -56,6 +62,16 @@ fun SettingsScreen(onBack: () -> Unit, viewModel: SettingsViewModel = koinViewMo
     val message by viewModel.message.collectAsStateWithLifecycle()
     val demoOffline by viewModel.demoOffline.collectAsStateWithLifecycle()
     val snackbar = remember { SnackbarHostState() }
+
+    val dialog by viewModel.dialog.collectAsStateWithLifecycle()
+    dialog?.let { text ->
+        AlertDialog(
+            onDismissRequest = viewModel::dialogShown,
+            confirmButton = { Button(onClick = viewModel::dialogShown) { Text("OK") } },
+            title = { Text("Konto Tuya") },
+            text = { Text(text) },
+        )
+    }
 
     LaunchedEffect(message) {
         message?.let {
@@ -93,6 +109,8 @@ fun SettingsScreen(onBack: () -> Unit, viewModel: SettingsViewModel = koinViewMo
                     TuyaAccountSection(
                         auth = auth,
                         onSignIn = viewModel::signIn,
+                        onRequestCode = viewModel::requestRegistrationCode,
+                        onRegister = viewModel::register,
                         onSignOut = viewModel::signOut,
                     )
                 }
@@ -110,6 +128,9 @@ fun SettingsScreen(onBack: () -> Unit, viewModel: SettingsViewModel = koinViewMo
                     RadioRow(d.name, settings.selectedDeviceId == d.id) { viewModel.selectDevice(d.id) }
                 }
                 OutlinedButton(onClick = viewModel::loadDevices) { Text("Pobierz listę urządzeń") }
+                if (settings.backendMode == BackendMode.TUYA && auth is AuthState.SignedIn) {
+                    Button(onClick = onOpenPairing) { Text("Dodaj domofon") }
+                }
             }
 
             SectionCard("Bezpieczeństwo") {
@@ -119,6 +140,12 @@ fun SettingsScreen(onBack: () -> Unit, viewModel: SettingsViewModel = koinViewMo
                     onChange = viewModel::setRequireBiometric,
                 )
             }
+
+            Text(
+                "Wersja: build ${BuildConfig.BUILD_ID}",
+                style = MaterialTheme.typography.labelSmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
 
             SectionCard("Wygląd") {
                 RadioRow("Jak w systemie", settings.themeMode == ThemeMode.SYSTEM) { viewModel.setThemeMode(ThemeMode.SYSTEM) }
@@ -148,16 +175,20 @@ fun SettingsScreen(onBack: () -> Unit, viewModel: SettingsViewModel = koinViewMo
 private fun TuyaAccountSection(
     auth: AuthState,
     onSignIn: (String, String, String) -> Unit,
+    onRequestCode: (String, String) -> Unit,
+    onRegister: (String, String, String, String) -> Unit,
     onSignOut: () -> Unit,
 ) {
+    var registering by rememberSaveable { mutableStateOf(false) }
+    var code by rememberSaveable { mutableStateOf("") }
     var country by rememberSaveable { mutableStateOf("48") }
     var email by rememberSaveable { mutableStateOf("") }
     // Hasło nie jest zapisywane ani logowane.
     var password by remember { mutableStateOf("") }
 
     Text(
-        "Integracja Tuya wymaga wcześniejszej weryfikacji urządzenia i kluczy SDK (Etap 0). " +
-            "Szczegóły: docs/TUYA_INTEGRATION.md w repozytorium.",
+        "MyVideoFonLite ma własne konta Tuya: konto z aplikacji Tuya Smart / Smart Life tu nie działa. " +
+            "Załóż nowe konto poniżej albo zaloguj się kontem założonym wcześniej w tej aplikacji.",
         style = MaterialTheme.typography.bodySmall,
     )
     when (auth) {
@@ -168,6 +199,16 @@ private fun TuyaAccountSection(
         else -> {
             if (auth is AuthState.Expired) {
                 Text("Sesja wygasła. Zaloguj się ponownie.", color = MaterialTheme.colorScheme.error)
+            }
+            // Wyraźny wybór: logowanie albo zakładanie nowego konta.
+            Row(horizontalArrangement = Arrangement.spacedBy(8.dp), modifier = Modifier.fillMaxWidth()) {
+                if (registering) {
+                    OutlinedButton(onClick = { registering = false }, modifier = Modifier.weight(1f)) { Text("Mam konto") }
+                    Button(onClick = {}, modifier = Modifier.weight(1f)) { Text("Nowe konto") }
+                } else {
+                    Button(onClick = {}, modifier = Modifier.weight(1f)) { Text("Mam konto") }
+                    OutlinedButton(onClick = { registering = true }, modifier = Modifier.weight(1f)) { Text("Nowe konto") }
+                }
             }
             OutlinedTextField(
                 value = country,
@@ -180,7 +221,7 @@ private fun TuyaAccountSection(
             OutlinedTextField(
                 value = email,
                 onValueChange = { email = it.trim() },
-                label = { Text("E-mail konta Smart Life") },
+                label = { Text("E-mail") },
                 singleLine = true,
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
                 modifier = Modifier.fillMaxWidth(),
@@ -188,19 +229,43 @@ private fun TuyaAccountSection(
             OutlinedTextField(
                 value = password,
                 onValueChange = { password = it },
-                label = { Text("Hasło") },
+                label = { Text(if (registering) "Nowe hasło (min. 6 znaków)" else "Hasło") },
                 singleLine = true,
                 visualTransformation = PasswordVisualTransformation(),
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
                 modifier = Modifier.fillMaxWidth(),
             )
-            Button(
-                onClick = {
-                    onSignIn(country, email, password)
-                    password = ""
-                },
-                enabled = email.isNotBlank() && password.isNotBlank(),
-            ) { Text("Zaloguj") }
+            if (registering) {
+                OutlinedTextField(
+                    value = code,
+                    onValueChange = { code = it.filter(Char::isDigit) },
+                    label = { Text("Kod z e-maila") },
+                    singleLine = true,
+                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+                    modifier = Modifier.fillMaxWidth(),
+                )
+                Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                    OutlinedButton(
+                        onClick = { onRequestCode(country, email) },
+                        enabled = email.isNotBlank(),
+                    ) { Text("Wyślij kod") }
+                    Button(
+                        onClick = {
+                            onRegister(country, email, password, code)
+                            password = ""
+                        },
+                        enabled = email.isNotBlank() && password.length >= 6 && code.isNotBlank(),
+                    ) { Text("Załóż konto") }
+                }
+            } else {
+                Button(
+                    onClick = {
+                        onSignIn(country, email, password)
+                        password = ""
+                    },
+                    enabled = email.isNotBlank() && password.isNotBlank(),
+                ) { Text("Zaloguj") }
+            }
         }
     }
 }
