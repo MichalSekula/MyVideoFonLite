@@ -35,6 +35,9 @@ jobs:
           if [ -n "$SIGNING_KEYSTORE_BASE64" ]; then
             # Tekst wklejony z PowerShell bywa z odstępami lub znakami końca linii – pomijamy je.
             if ! printf '%s' "$SIGNING_KEYSTORE_BASE64" | base64 --decode --ignore-garbage > signing.jks || [ ! -s signing.jks ]; then
+              # Tylko dane diagnostyczne (długość i rodzaj znaków), bez treści sekretu.
+              CLEAN=$(printf '%s' "$SIGNING_KEYSTORE_BASE64" | tr -cd 'A-Za-z0-9+/=')
+              echo "Diagnostyka: długość ${#SIGNING_KEYSTORE_BASE64} znaków, po oczyszczeniu ${#CLEAN}, dwukropki: $(printf '%s' "$SIGNING_KEYSTORE_BASE64" | tr -cd ':' | wc -c), spacje: $(printf '%s' "$SIGNING_KEYSTORE_BASE64" | tr -cd ' ' | wc -c)"
               echo "::error::SIGNING_KEYSTORE_BASE64 nie jest poprawnym tekstem base64 pliku .jks."
               exit 1
             fi
