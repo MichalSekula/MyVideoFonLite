@@ -12,6 +12,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.LinearProgressIndicator
@@ -60,6 +61,16 @@ fun SettingsScreen(
     val message by viewModel.message.collectAsStateWithLifecycle()
     val demoOffline by viewModel.demoOffline.collectAsStateWithLifecycle()
     val snackbar = remember { SnackbarHostState() }
+
+    val dialog by viewModel.dialog.collectAsStateWithLifecycle()
+    dialog?.let { text ->
+        AlertDialog(
+            onDismissRequest = viewModel::dialogShown,
+            confirmButton = { Button(onClick = viewModel::dialogShown) { Text("OK") } },
+            title = { Text("Konto Tuya") },
+            text = { Text(text) },
+        )
+    }
 
     LaunchedEffect(message) {
         message?.let {
