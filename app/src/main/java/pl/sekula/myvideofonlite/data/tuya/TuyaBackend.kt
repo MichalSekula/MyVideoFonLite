@@ -191,7 +191,21 @@ class TuyaBackend(context: Context) : DoorbellBackend {
         }
     }
 
-    override fun createLiveSession(deviceId: String): LiveViewSession = TuyaLiveSession(deviceId) { ready() }
+    override fun createLiveSession(deviceId: String): LiveViewSession =
+        TuyaLiveSession(deviceId, ready = { ready() }, prepare = { prepareCamera(deviceId) })
+
+    /**
+     * Przed połączeniem P2P SDK musi mieć urządzenie w swojej pamięci (dane z getHomeDetail),
+     * inaczej kamera nie zna konfiguracji P2P. Zwraca stan online albo null, gdy urządzenia brak.
+     */
+    private suspend fun prepareCamera(deviceId: String): Boolean? {
+        val cached = runCatching { ThingHomeSdk.getDataInstance().getDeviceBean(deviceId) }.getOrNull()
+        if (cached == null) loadAllDevices()
+        val bean = runCatching { ThingHomeSdk.getDataInstance().getDeviceBean(deviceId) }.getOrNull()
+            ?: deviceCache[deviceId]
+            ?: return null
+        return bean.isOnline == true
+    }
 
     /** null, gdy SDK gotowe i użytkownik zalogowany; w przeciwnym razie komunikat. */
     fun ensureReady(): String? {

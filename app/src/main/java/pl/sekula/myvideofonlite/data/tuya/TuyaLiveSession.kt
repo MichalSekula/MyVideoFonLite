@@ -1,5 +1,6 @@
 package pl.sekula.myvideofonlite.data.tuya
 
+import android.util.Log
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import com.thingclips.smart.android.camera.sdk.ThingIPCSdk
@@ -8,6 +9,7 @@ import com.thingclips.smart.camera.ipccamerasdk.p2p.ICameraP2P
 import com.thingclips.smart.camera.middleware.p2p.IThingSmartCameraP2P
 import com.thingclips.smart.camera.middleware.widget.AbsVideoViewCallback
 import com.thingclips.smart.camera.middleware.widget.ThingCameraView
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -27,6 +29,8 @@ import kotlin.coroutines.resume
 internal class TuyaLiveSession(
     private val deviceId: String,
     private val ready: () -> Outcome.Failure?,
+    /** Ładuje urządzenie do pamięci SDK; zwraca online (true/false) albo null, gdy go brak. */
+    private val prepare: suspend () -> Boolean?,
 ) : LiveViewSession {
 
     private val _state = MutableStateFlow<LiveViewState>(LiveViewState.Idle)
@@ -42,25 +46,52 @@ internal class TuyaLiveSession(
             _state.value = LiveViewState.Error(it.error, it.message)
             return
         }
+        _state.value = LiveViewState.Connecting
+        val online = prepare()
+        if (online == null) {
+            _state.value = LiveViewState.Error(DomainError.CONNECTION, "Nie znaleziono domofonu na koncie. Odśwież listę urządzeń.")
+            return
+        }
+        if (!online) {
+            _state.value = LiveViewState.Error(DomainError.DEVICE_OFFLINE, "Domofon jest offline. Sprawdź, czy ma zasilanie i Wi-Fi.")
+            return
+        }
         val core = ThingIPCSdk.getCameraInstance()
         if (core == null || !core.isIPCDevice(deviceId)) {
             _state.value = LiveViewState.Error(DomainError.UNSUPPORTED, "To urządzenie nie obsługuje podglądu przez Tuya IPC SDK.")
             return
         }
-        _state.value = LiveViewState.Connecting
+        val p2pType = runCatching { core.getP2PType(deviceId) }.getOrDefault(-1)
+        val lowPower = runCatching { core.isLowPowerDevice(deviceId) }.getOrDefault(false)
         @Suppress("UNCHECKED_CAST")
         val cam = core.createCameraP2P(deviceId) as IThingSmartCameraP2P<Any?>?
         if (cam == null) {
-            _state.value = LiveViewState.Error(DomainError.CONNECTION, "Nie udało się utworzyć sesji kamery.")
+            _state.value = LiveViewState.Error(DomainError.CONNECTION, "Nie udało się utworzyć sesji kamery (P2P typ $p2pType).")
             return
         }
         camera = cam
-        val error = call { cb -> cam.connect(deviceId, cb) }
-        _state.value = if (error == null) {
-            LiveViewState.Connected(audioEnabled = audioEnabled, talking = false)
-        } else {
-            LiveViewState.Error(DomainError.CONNECTION, "Nie udało się połączyć z domofonem (kod $error).")
+        // Kilka prób: tryb automatyczny, potem przez internet (urządzenie może spać albo budzić się po dzwonku).
+        val attempts = listOf(
+            IThingSmartCameraP2P.CONNECT_MODE_AUTO,
+            IThingSmartCameraP2P.CONNECT_MODE_AUTO,
+            IThingSmartCameraP2P.CONNECT_MODE_FROM_INTERNET,
+        )
+        val codes = mutableListOf<Int>()
+        for ((index, mode) in attempts.withIndex()) {
+            if (camera !== cam) return
+            if (index > 0) delay(RETRY_DELAY_MS)
+            val error = call { cb -> cam.connect(deviceId, mode, cb) } ?: run {
+                _state.value = LiveViewState.Connected(audioEnabled = audioEnabled, talking = false)
+                return
+            }
+            codes += error
+            Log.w(TAG, "P2P connect nieudany: kod $error, tryb $mode, typ P2P $p2pType, lowPower $lowPower")
         }
+        _state.value = LiveViewState.Error(
+            DomainError.CONNECTION,
+            "Nie udało się połączyć z domofonem (kody ${codes.joinToString()}; P2P typ $p2pType" +
+                (if (lowPower) ", niskie zużycie energii" else "") + ").",
+        )
     }
 
     override fun attachRenderTarget(target: Any?) {
@@ -158,6 +189,11 @@ internal class TuyaLiveSession(
                 }
             })
         }
+
+    private companion object {
+        const val TAG = "TuyaLiveSession"
+        const val RETRY_DELAY_MS = 1_500L
+    }
 
     private object NoOp : OperationDelegateCallBack {
         override fun onSuccess(sessionId: Int, requestId: Int, data: String?) = Unit
