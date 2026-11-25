@@ -17,7 +17,6 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
-import androidx.compose.material3.TextButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Scaffold
@@ -183,6 +182,16 @@ private fun TuyaAccountSection(
             if (auth is AuthState.Expired) {
                 Text("Sesja wygasła. Zaloguj się ponownie.", color = MaterialTheme.colorScheme.error)
             }
+            // Wyraźny wybór: logowanie albo zakładanie nowego konta.
+            Row(horizontalArrangement = Arrangement.spacedBy(8.dp), modifier = Modifier.fillMaxWidth()) {
+                if (registering) {
+                    OutlinedButton(onClick = { registering = false }, modifier = Modifier.weight(1f)) { Text("Mam konto") }
+                    Button(onClick = {}, modifier = Modifier.weight(1f)) { Text("Nowe konto") }
+                } else {
+                    Button(onClick = {}, modifier = Modifier.weight(1f)) { Text("Mam konto") }
+                    OutlinedButton(onClick = { registering = true }, modifier = Modifier.weight(1f)) { Text("Nowe konto") }
+                }
+            }
             OutlinedTextField(
                 value = country,
                 onValueChange = { country = it.filter(Char::isDigit) },
@@ -194,7 +203,7 @@ private fun TuyaAccountSection(
             OutlinedTextField(
                 value = email,
                 onValueChange = { email = it.trim() },
-                label = { Text("E-mail konta Smart Life") },
+                label = { Text("E-mail") },
                 singleLine = true,
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
                 modifier = Modifier.fillMaxWidth(),
@@ -202,7 +211,7 @@ private fun TuyaAccountSection(
             OutlinedTextField(
                 value = password,
                 onValueChange = { password = it },
-                label = { Text("Hasło") },
+                label = { Text(if (registering) "Nowe hasło (min. 6 znaków)" else "Hasło") },
                 singleLine = true,
                 visualTransformation = PasswordVisualTransformation(),
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
@@ -230,7 +239,6 @@ private fun TuyaAccountSection(
                         enabled = email.isNotBlank() && password.length >= 6 && code.isNotBlank(),
                     ) { Text("Załóż konto") }
                 }
-                TextButton(onClick = { registering = false }) { Text("Mam już konto – zaloguj") }
             } else {
                 Button(
                     onClick = {
@@ -239,7 +247,6 @@ private fun TuyaAccountSection(
                     },
                     enabled = email.isNotBlank() && password.isNotBlank(),
                 ) { Text("Zaloguj") }
-                TextButton(onClick = { registering = true }) { Text("Nie masz konta? Załóż je") }
             }
         }
     }
