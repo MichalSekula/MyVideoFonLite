@@ -175,7 +175,8 @@ fun LiveViewScreen(onBack: () -> Unit, viewModel: LiveViewViewModel = koinViewMo
                 onTalk = { talk ->
                     val granted = ContextCompat.checkSelfPermission(context, Manifest.permission.RECORD_AUDIO) ==
                         PackageManager.PERMISSION_GRANTED
-                    if (!talk || granted) viewModel.setTalking(talk) else micPermission.launch(Manifest.permission.RECORD_AUDIO)
+                    // Tryb demo nie używa mikrofonu, więc nie pyta o uprawnienie.
+                    if (!talk || granted || isDemo) viewModel.setTalking(talk) else micPermission.launch(Manifest.permission.RECORD_AUDIO)
                 },
                 onGate = { showGateDialog = true },
                 onReconnect = viewModel::connect,
