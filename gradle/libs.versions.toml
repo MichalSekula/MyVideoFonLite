@@ -20,8 +20,10 @@ mockk = "1.13.13"
 testRunner = "1.6.2"
 testExtJunit = "1.2.1"
 uiautomator = "2.3.0"
+codeScanner = "16.1.0"
 
 [libraries]
+play-services-code-scanner = { group = "com.google.android.gms", name = "play-services-code-scanner", version.ref = "codeScanner" }
 tuya-thingsmart = { group = "com.thingclips.smart", name = "thingsmart", version.ref = "tuyaSdk" }
 tuya-ipcsdk = { group = "com.thingclips.smart", name = "thingsmart-ipcsdk", version.ref = "tuyaIpcSdk" }
 fastjson-android = { group = "com.alibaba", name = "fastjson", version = "1.1.67.android" }

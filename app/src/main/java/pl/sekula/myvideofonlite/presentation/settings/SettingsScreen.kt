@@ -49,7 +49,11 @@ import pl.sekula.myvideofonlite.domain.model.ThemeMode
 import pl.sekula.myvideofonlite.presentation.common.AppTopBar
 
 @Composable
-fun SettingsScreen(onBack: () -> Unit, viewModel: SettingsViewModel = koinViewModel()) {
+fun SettingsScreen(
+    onBack: () -> Unit,
+    onOpenPairing: () -> Unit = {},
+    viewModel: SettingsViewModel = koinViewModel(),
+) {
     val settings by viewModel.settings.collectAsStateWithLifecycle()
     val auth by viewModel.authState.collectAsStateWithLifecycle()
     val devices by viewModel.devices.collectAsStateWithLifecycle()
@@ -113,6 +117,9 @@ fun SettingsScreen(onBack: () -> Unit, viewModel: SettingsViewModel = koinViewMo
                     RadioRow(d.name, settings.selectedDeviceId == d.id) { viewModel.selectDevice(d.id) }
                 }
                 OutlinedButton(onClick = viewModel::loadDevices) { Text("Pobierz listę urządzeń") }
+                if (settings.backendMode == BackendMode.TUYA && auth is AuthState.SignedIn) {
+                    Button(onClick = onOpenPairing) { Text("Dodaj domofon") }
+                }
             }
 
             SectionCard("Bezpieczeństwo") {

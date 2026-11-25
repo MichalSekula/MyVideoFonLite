@@ -103,6 +103,7 @@ dependencies {
     implementation(libs.kotlinx.coroutines.android)
 
     // Tuya SmartLife App SDK 7.11 + IPC SDK (pakiet z panelu Tuya)
+    implementation(libs.play.services.code.scanner)
     implementation(libs.tuya.thingsmart)
     implementation(libs.tuya.ipcsdk)
     implementation(libs.fastjson.android)

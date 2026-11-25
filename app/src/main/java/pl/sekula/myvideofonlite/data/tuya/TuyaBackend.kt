@@ -189,6 +189,14 @@ class TuyaBackend(context: Context) : DoorbellBackend {
 
     override fun createLiveSession(deviceId: String): LiveViewSession = TuyaLiveSession(deviceId) { ready() }
 
+    /** null, gdy SDK gotowe i użytkownik zalogowany; w przeciwnym razie komunikat. */
+    fun ensureReady(): String? {
+        ready()?.let { return it.message ?: "Tuya SDK nie jest gotowe." }
+        return if (_authState.value is AuthState.SignedIn) null else "Najpierw zaloguj się lub załóż konto w ustawieniach."
+    }
+
+    fun invalidateCache() = deviceCache.clear()
+
     // --- Pomocnicze ---
 
     private suspend fun findDevice(deviceId: String): DeviceBean? {
