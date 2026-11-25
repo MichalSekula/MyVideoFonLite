@@ -74,7 +74,10 @@ class TuyaBackend(context: Context) : DoorbellBackend {
 
     private fun ready(): Outcome.Failure? = when {
         !hasSdkKeys -> Outcome.Failure(DomainError.NOT_CONFIGURED, NO_KEYS_MESSAGE)
-        !start() -> Outcome.Failure(DomainError.NOT_CONFIGURED, INIT_FAILED_MESSAGE)
+        !start() -> Outcome.Failure(
+            DomainError.NOT_CONFIGURED,
+            INIT_FAILED_MESSAGE + (TuyaSdk.lastError?.let { "\n\nSzczegóły: $it" } ?: ""),
+        )
         else -> null
     }
 

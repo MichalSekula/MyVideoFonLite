@@ -18,6 +18,11 @@ object TuyaSdk {
     @Volatile
     private var initialized = false
 
+    /** Opis ostatniego błędu inicjalizacji (klasa i komunikat wyjątku, bez kluczy). */
+    @Volatile
+    var lastError: String? = null
+        private set
+
     val hasKeys: Boolean
         get() = BuildConfig.TUYA_APP_KEY.isNotBlank() && BuildConfig.TUYA_APP_SECRET.isNotBlank()
 
@@ -30,10 +35,13 @@ object TuyaSdk {
             ThingHomeSdk.init(app, BuildConfig.TUYA_APP_KEY, BuildConfig.TUYA_APP_SECRET)
             ThingHomeSdk.setDebugMode(BuildConfig.DEBUG)
             initialized = true
+            lastError = null
             true
         } catch (t: Throwable) {
-            // Np. brak bibliotek natywnych dla architektury emulatora. Nie logujemy kluczy.
-            Log.e(TAG, "Nie udało się zainicjalizować Tuya SDK: ${t.javaClass.simpleName}")
+            // Np. brak bibliotek natywnych dla architektury urządzenia. Nie logujemy kluczy.
+            val root = generateSequence(t) { it.cause }.last()
+            lastError = "${root.javaClass.simpleName}: ${root.message ?: "-"}".take(300)
+            Log.e(TAG, "Nie udało się zainicjalizować Tuya SDK", t)
             false
         }
     }
