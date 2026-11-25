@@ -33,9 +33,22 @@ jobs:
           printf 'tuya.appKey=%s\ntuya.appSecret=%s\n' "$TUYA_APP_KEY" "$TUYA_APP_SECRET" > local.properties
           if [ -n "$TUYA_APP_KEY" ] && [ -n "$TUYA_APP_SECRET" ]; then echo "Klucze Tuya: ustawione"; else echo "Klucze Tuya: BRAK"; fi
           if [ -n "$SIGNING_KEYSTORE_BASE64" ]; then
-            echo "$SIGNING_KEYSTORE_BASE64" | base64 -d > signing.jks
+            # Tekst wklejony z PowerShell bywa z odstępami lub znakami końca linii – pomijamy je.
+            if ! printf '%s' "$SIGNING_KEYSTORE_BASE64" | base64 --decode --ignore-garbage > signing.jks || [ ! -s signing.jks ]; then
+              echo "::error::SIGNING_KEYSTORE_BASE64 nie jest poprawnym tekstem base64 pliku .jks."
+              exit 1
+            fi
+            STORE_PW=$(printf '%s' "$SIGNING_STORE_PASSWORD" | tr -d '\r\n')
+            KEY_PW=$(printf '%s' "$SIGNING_KEY_PASSWORD" | tr -d '\r\n')
+            ALIAS=$(printf '%s' "$SIGNING_KEY_ALIAS" | tr -d ' \r\n')
+            if ! keytool -list -keystore signing.jks -storepass "$STORE_PW" -alias "$ALIAS" > /dev/null 2>&1; then
+              echo "::error::Nie da się otworzyć klucza: sprawdź SIGNING_STORE_PASSWORD i SIGNING_KEY_ALIAS (alias: myvideofonlite)."
+              exit 1
+            fi
+            # Odcisk SHA-256 jest publiczny – to ten sam, który wpisuje się w panelu Tuya.
+            keytool -list -v -keystore signing.jks -storepass "$STORE_PW" -alias "$ALIAS" | grep -m1 'SHA256:' | sed 's/^[[:space:]]*/Odcisk klucza: /'
             printf 'signing.storeFile=signing.jks\nsigning.storePassword=%s\nsigning.keyAlias=%s\nsigning.keyPassword=%s\n' \
-              "$SIGNING_STORE_PASSWORD" "$SIGNING_KEY_ALIAS" "$SIGNING_KEY_PASSWORD" >> local.properties
+              "$STORE_PW" "$ALIAS" "$KEY_PW" >> local.properties
             echo "APK podpisane stałym kluczem."
           else
             echo "Brak SIGNING_KEYSTORE_BASE64 – APK podpisane tymczasowym kluczem debug."
