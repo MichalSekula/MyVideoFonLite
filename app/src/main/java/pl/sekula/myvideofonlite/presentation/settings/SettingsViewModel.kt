@@ -84,6 +84,21 @@ class SettingsViewModel(
         if (authState.value is AuthState.SignedIn) loadDevicesNow()
     }
 
+    fun requestRegistrationCode(countryCode: String, email: String) = launchBusy {
+        _message.value = when (val r = repository.requestRegistrationCode(countryCode, email)) {
+            is Outcome.Success -> "Wysłano kod na $email. Sprawdź skrzynkę (także spam)."
+            is Outcome.Failure -> r.message ?: r.error.defaultMessage()
+        }
+    }
+
+    fun register(countryCode: String, email: String, password: String, code: String) = launchBusy {
+        _message.value = when (val r = repository.register(countryCode, email, password, code)) {
+            is Outcome.Success -> "Konto założone i zalogowano."
+            is Outcome.Failure -> r.message ?: r.error.defaultMessage()
+        }
+        if (authState.value is AuthState.SignedIn) loadDevicesNow()
+    }
+
     fun signOut() = launchBusy {
         repository.signOut()
         _devices.value = emptyList()

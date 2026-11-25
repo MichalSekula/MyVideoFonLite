@@ -8,6 +8,7 @@ import pl.sekula.myvideofonlite.domain.model.BackendMode
 import pl.sekula.myvideofonlite.domain.model.DeviceSummary
 import pl.sekula.myvideofonlite.domain.model.DoorbellDevice
 import pl.sekula.myvideofonlite.domain.model.DoorbellEvent
+import pl.sekula.myvideofonlite.domain.model.DomainError
 import pl.sekula.myvideofonlite.domain.model.LiveViewState
 import pl.sekula.myvideofonlite.domain.model.Outcome
 import pl.sekula.myvideofonlite.domain.model.ThemeMode
@@ -27,6 +28,14 @@ interface DoorbellRepository {
 
     suspend fun signIn(countryCode: String, email: String, password: String): Outcome<Unit>
     suspend fun signOut()
+
+    /** Wysyła kod weryfikacyjny na e-mail przy zakładaniu konta. */
+    suspend fun requestRegistrationCode(countryCode: String, email: String): Outcome<Unit> =
+        Outcome.Failure(DomainError.UNSUPPORTED)
+
+    /** Zakłada konto i loguje do niego. */
+    suspend fun register(countryCode: String, email: String, password: String, code: String): Outcome<Unit> =
+        Outcome.Failure(DomainError.UNSUPPORTED)
     suspend fun listDevices(): Outcome<List<DeviceSummary>>
     suspend fun refreshStatus(): Outcome<DoorbellDevice>
     suspend fun openGate(deviceId: String): Outcome<Unit>

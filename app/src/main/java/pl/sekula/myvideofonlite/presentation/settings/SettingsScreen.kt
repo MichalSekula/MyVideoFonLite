@@ -17,6 +17,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.TextButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Scaffold
@@ -93,6 +94,8 @@ fun SettingsScreen(onBack: () -> Unit, viewModel: SettingsViewModel = koinViewMo
                     TuyaAccountSection(
                         auth = auth,
                         onSignIn = viewModel::signIn,
+                        onRequestCode = viewModel::requestRegistrationCode,
+                        onRegister = viewModel::register,
                         onSignOut = viewModel::signOut,
                     )
                 }
@@ -148,15 +151,20 @@ fun SettingsScreen(onBack: () -> Unit, viewModel: SettingsViewModel = koinViewMo
 private fun TuyaAccountSection(
     auth: AuthState,
     onSignIn: (String, String, String) -> Unit,
+    onRequestCode: (String, String) -> Unit,
+    onRegister: (String, String, String, String) -> Unit,
     onSignOut: () -> Unit,
 ) {
+    var registering by rememberSaveable { mutableStateOf(false) }
+    var code by rememberSaveable { mutableStateOf("") }
     var country by rememberSaveable { mutableStateOf("48") }
     var email by rememberSaveable { mutableStateOf("") }
     // Hasło nie jest zapisywane ani logowane.
     var password by remember { mutableStateOf("") }
 
     Text(
-        "Zaloguj się tym samym kontem, którego używasz w aplikacji Tuya Smart / Smart Life.",
+        "MyVideoFonLite ma własne konta Tuya: konto z aplikacji Tuya Smart / Smart Life tu nie działa. " +
+            "Załóż nowe konto poniżej albo zaloguj się kontem założonym wcześniej w tej aplikacji.",
         style = MaterialTheme.typography.bodySmall,
     )
     when (auth) {
@@ -193,13 +201,39 @@ private fun TuyaAccountSection(
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
                 modifier = Modifier.fillMaxWidth(),
             )
-            Button(
-                onClick = {
-                    onSignIn(country, email, password)
-                    password = ""
-                },
-                enabled = email.isNotBlank() && password.isNotBlank(),
-            ) { Text("Zaloguj") }
+            if (registering) {
+                OutlinedTextField(
+                    value = code,
+                    onValueChange = { code = it.filter(Char::isDigit) },
+                    label = { Text("Kod z e-maila") },
+                    singleLine = true,
+                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+                    modifier = Modifier.fillMaxWidth(),
+                )
+                Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                    OutlinedButton(
+                        onClick = { onRequestCode(country, email) },
+                        enabled = email.isNotBlank(),
+                    ) { Text("Wyślij kod") }
+                    Button(
+                        onClick = {
+                            onRegister(country, email, password, code)
+                            password = ""
+                        },
+                        enabled = email.isNotBlank() && password.length >= 6 && code.isNotBlank(),
+                    ) { Text("Załóż konto") }
+                }
+                TextButton(onClick = { registering = false }) { Text("Mam już konto – zaloguj") }
+            } else {
+                Button(
+                    onClick = {
+                        onSignIn(country, email, password)
+                        password = ""
+                    },
+                    enabled = email.isNotBlank() && password.isNotBlank(),
+                ) { Text("Zaloguj") }
+                TextButton(onClick = { registering = true }) { Text("Nie masz konta? Załóż je") }
+            }
         }
     }
 }

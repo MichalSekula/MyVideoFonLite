@@ -66,6 +66,12 @@ class DoorbellRepositoryImpl(
         store.clearSnapshot()
     }
 
+    override suspend fun requestRegistrationCode(countryCode: String, email: String): Outcome<Unit> =
+        backend().requestRegistrationCode(countryCode, email)
+
+    override suspend fun register(countryCode: String, email: String, password: String, code: String): Outcome<Unit> =
+        backend().register(countryCode, email, password, code)
+
     override suspend fun listDevices(): Outcome<List<DeviceSummary>> = backend().listDevices()
 
     override suspend fun refreshStatus(): Outcome<DoorbellDevice> {

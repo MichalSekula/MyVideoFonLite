@@ -5,6 +5,7 @@ import android.content.Context
 import com.thingclips.smart.android.camera.sdk.ThingIPCSdk
 import com.thingclips.smart.android.user.api.ILoginCallback
 import com.thingclips.smart.android.user.api.ILogoutCallback
+import com.thingclips.smart.android.user.api.IRegisterCallback
 import com.thingclips.smart.android.user.bean.User
 import com.thingclips.smart.home.sdk.ThingHomeSdk
 import com.thingclips.smart.home.sdk.bean.HomeBean
@@ -93,6 +94,40 @@ class TuyaBackend(context: Context) : DoorbellBackend {
             })
         }
     }
+
+    override suspend fun requestRegistrationCode(countryCode: String, email: String): Outcome<Unit> {
+        ready()?.let { return it }
+        return suspendCancellableCoroutine { cont ->
+            ThingHomeSdk.getUserInstance().getRegisterEmailValidateCode(country(countryCode), email.trim(), object : IResultCallback {
+                override fun onSuccess() { if (cont.isActive) cont.resume(Outcome.Success(Unit)) }
+                override fun onError(code: String?, error: String?) {
+                    if (cont.isActive) cont.resume(
+                        Outcome.Failure(DomainError.CONNECTION, "Nie udało się wysłać kodu: ${error ?: "nieznany błąd"} (${code ?: "?"}).")
+                    )
+                }
+            })
+        }
+    }
+
+    override suspend fun register(countryCode: String, email: String, password: String, code: String): Outcome<Unit> {
+        ready()?.let { return it }
+        return suspendCancellableCoroutine { cont ->
+            ThingHomeSdk.getUserInstance().registerAccountWithEmail(
+                country(countryCode), email.trim(), password, code.trim(),
+                object : IRegisterCallback {
+                    override fun onSuccess(user: User?) {
+                        _authState.value = AuthState.SignedIn(user?.email?.takeIf { it.isNotBlank() } ?: email.trim())
+                        if (cont.isActive) cont.resume(Outcome.Success(Unit))
+                    }
+                    override fun onError(errorCode: String?, errorMsg: String?) {
+                        if (cont.isActive) cont.resume(Outcome.Failure(DomainError.AUTH, loginErrorMessage(errorCode, errorMsg)))
+                    }
+                },
+            )
+        }
+    }
+
+    private fun country(code: String) = code.trim().removePrefix("+").ifBlank { "48" }
 
     override suspend fun signOut() {
         stopListening()
