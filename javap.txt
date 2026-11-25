@@ -1,0 +1,2166 @@
+=== com.thingclips.smart.home.sdk.ThingHomeSdk (thingsmart-7.11.0.jar)
+Compiled from "ThingHomeSdk.java"
+public class com.thingclips.smart.home.sdk.ThingHomeSdk {
+  public com.thingclips.smart.home.sdk.ThingHomeSdk();
+  public static void init(android.app.Application);
+  public static void init(android.app.Application, java.lang.String, java.lang.String);
+  public static void setDebugMode(boolean);
+  public static void setLogInterception(int, com.thingclips.smart.android.common.utils.log.ILogInterception);
+  public static void setOnNeedLoginListener(com.thingclips.smart.sdk.api.INeedLoginListener);
+  public static void setOnNeedLoginWithTypeListener(com.thingclips.smart.android.user.api.INeedLoginWithTypeListener);
+  public static com.thingclips.smart.android.user.api.INeedLoginWithTypeListener getNeedLoginWithTypeListener();
+  public static com.thingclips.smart.home.sdk.api.IThingHome newHomeInstance(long);
+  public static com.thingclips.smart.home.sdk.api.IThingHomeManager getHomeManagerInstance();
+  public static com.thingclips.smart.home.sdk.api.IThingRoom newRoomInstance(long);
+  public static com.thingclips.smart.home.sdk.api.IThingHomeMember getMemberInstance();
+  public static com.thingclips.smart.sdk.api.IThingDevice newDeviceInstance(java.lang.String);
+  public static com.thingclips.smart.home.sdk.api.IThingHomeDeviceShare getDeviceShareInstance();
+  public static com.thingclips.smart.sdk.api.IThingGroup newGroupInstance(long);
+  public static com.thingclips.smart.android.blemesh.api.IThingBlueMeshDevice newBlueMeshDeviceInstance(java.lang.String);
+  public static com.thingclips.smart.android.blemesh.api.IThingBlueMeshDevice newSigMeshDeviceInstance(java.lang.String);
+  public static com.thingclips.smart.android.blemesh.IThingMeshService getThingMeshService();
+  public static com.thingclips.smart.android.blemesh.api.IThingBlueMeshGroup newBlueMeshGroupInstance(long);
+  public static com.thingclips.smart.android.blemesh.api.IThingBlueMeshGroup newSigMeshGroupInstance(long);
+  public static com.thingclips.smart.android.blemesh.api.IThingBlueMeshGroup newBlueMeshLocalGroupInstance(java.lang.String, java.lang.String, java.lang.String);
+  public static com.thingclips.smart.android.blemesh.api.IThingBlueMeshConfig getThingBlueMeshConfig();
+  public static com.thingclips.smart.sdk.api.bluemesh.IBlueMeshManager getMeshInstance();
+  public static com.thingclips.smart.sdk.api.bluemesh.ISigMeshManager getSigMeshInstance();
+  public static com.thingclips.smart.android.blemesh.api.IThingBlueMeshClient getThingBlueMeshClient();
+  public static com.thingclips.smart.android.blemesh.api.IThingSigMeshClient getThingSigMeshClient();
+  public static com.thingclips.smart.android.blemesh.api.IThingBlueMeshOta newMeshOtaManagerInstance(com.thingclips.smart.android.blemesh.builder.ThingBlueMeshOtaBuilder);
+  public static com.thingclips.smart.sdk.api.IThingWifiGroup newWifiGroupInstance(long);
+  public static com.thingclips.smart.sdk.api.IThingWifiGroup newWifiGroupInstance();
+  public static com.thingclips.smart.sdk.api.IThingZigbeeGroup newZigbeeGroupInstance(long);
+  public static com.thingclips.smart.sdk.api.IThingZigbeeGroup newZigbeeGroupInstance();
+  public static com.thingclips.smart.sdk.api.IThingUser getUserInstance();
+  public static com.thingclips.smart.home.sdk.api.IThingDeviceActivator getActivatorInstance();
+  public static com.thingclips.smart.home.sdk.api.IActivator getActivator();
+  public static com.thingclips.smart.sdk.api.IThingMessage getMessageInstance();
+  public static com.thingclips.smart.android.mqtt.IThingMqttChannel getMqttChannelInstance();
+  public static com.thingclips.smart.sdk.api.IThingPush getPushInstance();
+  public static com.thingclips.smart.sdk.api.IThingOta newOTAInstance(java.lang.String);
+  public static com.thingclips.smart.sdk.api.IThingOta newOTAInstance(java.lang.String, java.lang.String, java.lang.String);
+  public static com.thingclips.smart.sdk.api.IThingOTAService newOTAServiceInstance(java.lang.String);
+  public static com.thingclips.smart.home.sdk.callback.IThingSingleTransfer getTransferInstance();
+  public static com.thingclips.smart.home.sdk.api.IThingHomeSceneManager getSceneManagerInstance();
+  public static com.thingclips.smart.home.sdk.api.IThingHomeScene newSceneInstance(java.lang.String);
+  public static com.thingclips.smart.scene.api.ISceneService getSceneServiceInstance();
+  public static com.thingclips.smart.home.sdk.api.IThingHomeSpeech getSpeechInstance();
+  public static com.thingclips.smart.home.sdk.callback.IThingVoiceTransfer getVoiceTransferInstance();
+  public static com.thingclips.smart.home.sdk.api.IThingHomeDataManager getDataInstance();
+  public static com.thingclips.smart.home.sdk.api.IThingServer getServerInstance();
+  public static com.thingclips.smart.sdk.api.IThingGateway newGatewayInstance(java.lang.String);
+  public static com.thingclips.smart.sdk.api.IThingSmartRequest getRequestInstance();
+  public static com.thingclips.smart.android.camera.api.IThingHomeCamera getCameraInstance();
+  public static com.thingclips.smart.sdk.api.IThingTimer getTimerManagerInstance();
+  public static com.thingclips.smart.sdk.api.IThingCommonTimer getTimerInstance();
+  public static com.thingclips.smart.sdk.api.IThingSmartTimer getThingTimerManagerInstance();
+  public static com.thingclips.smart.android.device.api.IThingDeviceMultiControl getDeviceMultiControlInstance();
+  public static com.thingclips.smart.sdk.api.IThingFeedback getThingFeekback();
+  public static com.thingclips.smart.android.sweeper.IThingSweeper getSweeperInstance();
+  public static com.thingclips.smart.sdk.api.IThingGeoFence getGeoFenceInstance();
+  public static com.thingclips.smart.sdk.api.IThingGeoFenceOperate getGeoFenceOperateInstance();
+  public static void closeService();
+  public static com.thingclips.smart.sdk.api.wifibackup.api.IThingWifiBackup getWifiBackupManager(java.lang.String);
+  public static com.thingclips.smart.sdk.api.wifibackup.api.IThingWifiSwitch getWifiSwitchManager(java.lang.String);
+  public static void enableMqttBackgroundConnect();
+  public static void enableBackgroundConnect();
+  public static com.thingclips.smart.android.ble.IThingBleManager getBleManager();
+  public static com.thingclips.smart.android.ble.IThingBleOperator getBleOperator();
+  public static com.thingclips.smart.android.ble.IThingBeaconManager getBeaconManager();
+  public static com.thingclips.sdk.matter.activator.IMatterDiscoveryActivator getDiscoveryActivatorInstance();
+  public static com.thingclips.sdk.matter.activator.IMatterActivator getMatterDevActivatorInstance();
+  public static com.thingclips.smart.sdk.api.IThingMatterFabricManager getFabricManager();
+  public static com.thingclips.smart.sdk.api.IThingMatterMultipleFabricDevice newMatterMultipleFabricDeviceInstance(java.lang.String);
+  public static void onDestroy();
+}
+=== com.thingclips.smart.android.user.api.IBaseUser (thingsmart-base-api-7.11.0.jar)
+Compiled from "IBaseUser.java"
+public interface com.thingclips.smart.android.user.api.IBaseUser {
+  public abstract java.lang.String getEcode();
+  public abstract java.lang.String getSid();
+  public abstract java.lang.String getUid();
+  public abstract com.thingclips.smart.android.user.bean.Domain getDomain();
+  public abstract java.lang.String getPartnerIdentity();
+  public abstract java.lang.String phoneCode();
+  public abstract boolean isLogin();
+  public abstract boolean removeUser();
+}
+=== com.thingclips.smart.sdk.api.IResultCallback (thingsmart-base-api-7.11.0.jar)
+Compiled from "IResultCallback.java"
+public interface com.thingclips.smart.sdk.api.IResultCallback {
+  public abstract void onError(java.lang.String, java.lang.String);
+  public abstract void onSuccess();
+}
+=== com.thingclips.smart.android.base.ThingSmartSdk (thingsmart-baselib-7.11.0.jar)
+Compiled from "ThingSmartSdk.java"
+public class com.thingclips.smart.android.base.ThingSmartSdk {
+  public static java.lang.String appkey;
+  public static java.lang.String appSecret;
+  public static java.lang.String ttid;
+  public static boolean isDebug();
+  public static void init(android.app.Application);
+  public static void prepare(android.app.Application);
+  public static void registerInitializer(com.thingclips.smart.android.base.ThingSmartSdk$Initializer);
+  public static void markFullInited();
+  public static void ensureInit(android.app.Application);
+  public static boolean isFullInited();
+  public static void setDebugMode(boolean);
+  public static com.thingclips.smart.android.base.event.ThingEventBus getEventBus();
+  public static synchronized java.lang.String getAppkey();
+  public static void setAppkey(java.lang.String);
+  public static synchronized java.lang.String getAppSecret();
+  public static void setAppSecret(java.lang.String);
+  public static android.app.Application getApplication();
+  public static void destroy();
+  public static java.lang.String getTtid();
+  public static void setTtid(java.lang.String);
+  public static java.lang.String getLatitude();
+  public static java.lang.String getLongitude();
+  public static void setLocationSwitch(boolean);
+  public static void setSharedPreferences(android.content.SharedPreferences);
+}
+=== com.thingclips.sdk.ble.core.connect.bean.TargetDeviceBean (thingsmart-bluetooth-7.11.0.jar)
+Compiled from "SourceFile"
+public class com.thingclips.sdk.ble.core.connect.bean.TargetDeviceBean {
+  public java.lang.String devId;
+  public boolean isBind;
+  public boolean isShare;
+  public java.lang.String localKey;
+  public java.lang.String secretKey;
+  public java.lang.String uuid;
+  public java.lang.String productId;
+  public java.lang.String deviceName;
+  public int deviceType;
+  public long updateTime;
+  public java.util.Map<java.lang.String, java.lang.Object> params;
+  public boolean isDirectly;
+  public int scanTimeout;
+  public java.lang.String address;
+  public com.thingclips.smart.android.ble.builder.BleConnectBuilder$Level level;
+  public boolean autoConnect;
+  public java.lang.String mac;
+  public int flag;
+  public com.thingclips.sdk.ble.core.connect.bean.TargetDeviceBean();
+  public boolean equals(java.lang.Object);
+  public java.lang.String toString();
+}
+=== com.thingclips.smart.android.blemesh.bean.SigMeshSearchDeviceBean (thingsmart-bluetooth-7.11.0.jar)
+Compiled from "SourceFile"
+public class com.thingclips.smart.android.blemesh.bean.SigMeshSearchDeviceBean extends com.thingclips.smart.android.blemesh.bean.SearchDeviceBean implements android.os.Parcelable {
+  public static final android.os.Parcelable$Creator<com.thingclips.smart.android.blemesh.bean.SigMeshSearchDeviceBean> CREATOR;
+  public com.thingclips.smart.android.blemesh.bean.SigMeshSearchDeviceBean(android.os.Parcel);
+  public com.thingclips.smart.android.blemesh.bean.SigMeshSearchDeviceBean();
+  public com.thingclips.smart.android.blemesh.bean.MeshBeacon getMeshBeacon();
+  public void setMeshBeacon(com.thingclips.smart.android.blemesh.bean.MeshBeacon);
+  public com.thingclips.sdk.sigmesh.bean.ScanRecord getScanRecordBean();
+  public void setScanRecordBean(com.thingclips.sdk.sigmesh.bean.ScanRecord);
+  public com.thingclips.sdk.sigmesh.bean.UnprovisionedMeshNode getUnprovisionedMeshNode();
+  public void setUnprovisionedMeshNode(com.thingclips.sdk.sigmesh.bean.UnprovisionedMeshNode);
+  public com.thingclips.sdk.sigmesh.bean.ProvisioningCapabilities getCapabilities();
+  public void setCapabilities(com.thingclips.sdk.sigmesh.bean.ProvisioningCapabilities);
+  public com.thingclips.sdk.sigmesh.bean.ProvisionedMeshNode getProvisionedMeshNode();
+  public void setProvisionedMeshNode(com.thingclips.sdk.sigmesh.bean.ProvisionedMeshNode);
+  public int getVersionIdentifier();
+  public void setVersionIdentifier(int);
+  public java.util.Map<java.lang.Integer, com.thingclips.smart.android.blemesh.bean.Element> getElement();
+  public void setElement(java.util.Map<java.lang.Integer, com.thingclips.smart.android.blemesh.bean.Element>);
+  public int describeContents();
+  public int getProductIdentifier();
+  public void setProductIdentifier(int);
+  public int getCompanyIdentifier();
+  public void setCompanyIdentifier(int);
+  public java.lang.String getCategory();
+  public void setCategory(java.lang.String);
+  public void writeToParcel(android.os.Parcel, int);
+  public int getMeshCategoryExt();
+  public void setMeshCategoryExt(int);
+  public java.lang.String getMcuVersion();
+  public void setMcuVersion(java.lang.String);
+}
+=== com.thingclips.smart.android.ble.api.BleWiFiDeviceBean (thingsmart-bluetooth-business-api-7.11.0.jar)
+Compiled from "BleWiFiDeviceBean.java"
+public class com.thingclips.smart.android.ble.api.BleWiFiDeviceBean {
+  public java.lang.String encryptedAuthKey;
+  public java.lang.String protocolVer;
+  public int devAttribute;
+  public java.lang.String baselineVer;
+  public java.lang.String softVer;
+  public java.lang.String cadVer;
+  public java.lang.String cdVer;
+  public java.lang.String modulesSoftVer;
+  public int modulesOtaChannel;
+  public boolean modulesOnline;
+  public boolean optionsIsFK;
+  public int optionsOtaChannel;
+  public boolean needSchema;
+  public int packetMaxSize;
+  public java.lang.String productKey;
+  public java.lang.String productKeyStr;
+  public java.lang.String devId;
+  public java.lang.String hid;
+  public java.lang.String uuid;
+  public java.lang.String optionsUdf;
+  public java.util.List<java.lang.Object> optionsCommunicatePriority;
+  public boolean needBeaconKey;
+  public com.thingclips.smart.android.ble.api.BleWiFiDeviceBean();
+}
+=== com.thingclips.smart.android.ble.api.ScanDeviceBean (thingsmart-bluetooth-business-api-7.11.0.jar)
+Compiled from "ScanDeviceBean.java"
+public class com.thingclips.smart.android.ble.api.ScanDeviceBean {
+  public com.thingclips.smart.android.ble.api.ScanDeviceBean();
+  public boolean isRoam();
+  public void setRoam(boolean);
+  public boolean getIsbind();
+  public void setIsbind(boolean);
+  public java.lang.String getName();
+  public void setName(java.lang.String);
+  public java.lang.String getId();
+  public void setId(java.lang.String);
+  public java.lang.String getProviderName();
+  public void setProviderName(java.lang.String);
+  public java.lang.String getData();
+  public void setData(java.lang.String);
+  public java.lang.String getConfigType();
+  public void setConfigType(java.lang.String);
+  public java.lang.String getProductId();
+  public void setProductId(java.lang.String);
+  public java.lang.String getUuid();
+  public void setUuid(java.lang.String);
+  public java.lang.String getMac();
+  public void setMac(java.lang.String);
+  public java.lang.String getAddress();
+  public void setAddress(java.lang.String);
+  public int getDeviceType();
+  public void setDeviceType(int);
+  public int getFlag();
+  public void setFlag(int);
+  public boolean isBeaconWiFi();
+  public boolean isEffectiveBeaconWiFi();
+  public void setEffectiveBeaconWiFi(boolean);
+  public void setRaw(byte[]);
+  public byte[] getRaw();
+  public void setShare(boolean);
+  public boolean isShare();
+  public java.lang.String toString();
+  public boolean capabilityEnable(int);
+  public int getRssi();
+  public void setRssi(int);
+  public byte[] getPidRaw();
+  public void setPidRaw(byte[]);
+}
+=== com.thingclips.smart.android.blemesh.bean.SearchDeviceBean (thingsmart-bluetooth-business-api-7.11.0.jar)
+Compiled from "SearchDeviceBean.java"
+public class com.thingclips.smart.android.blemesh.bean.SearchDeviceBean implements android.os.Parcelable {
+  public java.lang.String meshName;
+  public int meshAddress;
+  public int status;
+  public java.lang.String macAdress;
+  public byte[] productId;
+  public int vendorId;
+  public android.bluetooth.BluetoothDevice device;
+  public byte[] scanRecord;
+  public int rssi;
+  public byte[] sessionKey;
+  public java.lang.String version;
+  public int type;
+  public java.lang.String deviceRand;
+  public java.lang.String auth;
+  public byte beaconMeshCategory;
+  public static final android.os.Parcelable$Creator<com.thingclips.smart.android.blemesh.bean.SearchDeviceBean> CREATOR;
+  public com.thingclips.smart.android.blemesh.bean.SearchDeviceBean();
+  public java.lang.String getMeshName();
+  public void setMeshName(java.lang.String);
+  public int getMeshAddress();
+  public void setMeshAddress(int);
+  public int getStatus();
+  public void setStatus(int);
+  public java.lang.String getMacAdress();
+  public void setMacAdress(java.lang.String);
+  public byte[] getProductId();
+  public void setProductId(byte[]);
+  public void setVendorId(int);
+  public int getVendorId();
+  public android.bluetooth.BluetoothDevice getDevice();
+  public void setDevice(android.bluetooth.BluetoothDevice);
+  public byte[] getScanRecord();
+  public void setScanRecord(byte[]);
+  public int getRssi();
+  public void setRssi(int);
+  public java.lang.String getVersion();
+  public void setVersion(java.lang.String);
+  public byte[] getSessionKey();
+  public void setSessionKey(byte[]);
+  public int getType();
+  public void setType(int);
+  public java.lang.String getDeviceRand();
+  public void setDeviceRand(java.lang.String);
+  public java.lang.String getAuth();
+  public void setAuth(java.lang.String);
+  public byte getBeaconMeshCategory();
+  public void setBeaconMeshCategory(byte);
+  public int describeContents();
+  public void writeToParcel(android.os.Parcel, int);
+}
+=== com.thingclips.smart.android.blemesh.builder.ThingBlueMeshActivatorBuilder (thingsmart-bluetooth-business-api-7.11.0.jar)
+Compiled from "ThingBlueMeshActivatorBuilder.java"
+public class com.thingclips.smart.android.blemesh.builder.ThingBlueMeshActivatorBuilder {
+  public com.thingclips.smart.android.blemesh.builder.ThingBlueMeshActivatorBuilder();
+  public java.lang.String getMeshName();
+  public com.thingclips.smart.android.blemesh.builder.ThingBlueMeshActivatorBuilder setMeshName(java.lang.String);
+  public com.thingclips.smart.sdk.bean.BlueMeshBean getBlueMeshBean();
+  public com.thingclips.smart.android.blemesh.builder.ThingBlueMeshActivatorBuilder setBlueMeshBean(com.thingclips.smart.sdk.bean.BlueMeshBean);
+  public long getHomeId();
+  public com.thingclips.smart.android.blemesh.builder.ThingBlueMeshActivatorBuilder setHomeId(long);
+  public java.lang.String getMeshPassword();
+  public int getTimeOut();
+  public com.thingclips.smart.android.blemesh.builder.ThingBlueMeshActivatorBuilder setTimeOut(int);
+  public com.thingclips.smart.android.blemesh.api.IThingBlueMeshActivatorListener getThingBlueMeshActivatorListener();
+  public com.thingclips.smart.android.blemesh.builder.ThingBlueMeshActivatorBuilder setThingBlueMeshActivatorListener(com.thingclips.smart.android.blemesh.api.IThingBlueMeshActivatorListener);
+  public java.lang.String getMeshId();
+  public java.util.List<com.thingclips.smart.android.blemesh.bean.SearchDeviceBean> getSearchDeviceBeans();
+  public com.thingclips.smart.android.blemesh.builder.ThingBlueMeshActivatorBuilder setSearchDeviceBeans(java.util.List<com.thingclips.smart.android.blemesh.bean.SearchDeviceBean>);
+  public java.lang.String getProductKey();
+  public com.thingclips.smart.android.blemesh.builder.ThingBlueMeshActivatorBuilder setProductKey(java.lang.String);
+  public java.lang.String getVersion();
+  public com.thingclips.smart.android.blemesh.builder.ThingBlueMeshActivatorBuilder setVersion(java.lang.String);
+  public java.lang.String getUuid();
+  public com.thingclips.smart.android.blemesh.builder.ThingBlueMeshActivatorBuilder setUuid(java.lang.String);
+  public java.lang.String getWifiSsid();
+  public com.thingclips.smart.android.blemesh.builder.ThingBlueMeshActivatorBuilder setWifiSsid(java.lang.String);
+  public java.lang.String getWifiPassword();
+  public com.thingclips.smart.android.blemesh.builder.ThingBlueMeshActivatorBuilder setWifiPassword(java.lang.String);
+  public java.lang.String getMeshOriginName();
+  public com.thingclips.smart.android.blemesh.builder.ThingBlueMeshActivatorBuilder setMeshOriginName(java.lang.String);
+  public java.lang.String getMeshOriginPassword();
+  public com.thingclips.smart.android.blemesh.builder.ThingBlueMeshActivatorBuilder setMeshOriginPassword(java.lang.String);
+}
+=== com.thingclips.smart.android.blemesh.builder.ThingSigMeshActivatorBuilder (thingsmart-bluetooth-business-api-7.11.0.jar)
+Compiled from "ThingSigMeshActivatorBuilder.java"
+public class com.thingclips.smart.android.blemesh.builder.ThingSigMeshActivatorBuilder {
+  public com.thingclips.smart.android.blemesh.builder.ThingSigMeshActivatorBuilder();
+  public com.thingclips.smart.sdk.bean.SigMeshBean getSigMeshBean();
+  public com.thingclips.smart.android.blemesh.builder.ThingSigMeshActivatorBuilder setSigMeshBean(com.thingclips.smart.sdk.bean.SigMeshBean);
+  public long getHomeId();
+  public com.thingclips.smart.android.blemesh.builder.ThingSigMeshActivatorBuilder setHomeId(long);
+  public int getTimeOut();
+  public com.thingclips.smart.android.blemesh.builder.ThingSigMeshActivatorBuilder setTimeOut(int);
+  public com.thingclips.smart.android.blemesh.api.IThingBlueMeshActivatorListener getThingBlueMeshActivatorListener();
+  public com.thingclips.smart.android.blemesh.builder.ThingSigMeshActivatorBuilder setThingBlueMeshActivatorListener(com.thingclips.smart.android.blemesh.api.IThingBlueMeshActivatorListener);
+  public java.util.List<com.thingclips.smart.android.blemesh.bean.SearchDeviceBean> getSearchDeviceBeans();
+  public com.thingclips.smart.android.blemesh.builder.ThingSigMeshActivatorBuilder setSearchDeviceBeans(java.util.List<com.thingclips.smart.android.blemesh.bean.SearchDeviceBean>);
+}
+=== com.thingclips.smart.android.camera.api.IThingHomeCamera (thingsmart-camera-api-7.11.1.jar)
+Compiled from "IThingHomeCamera.java"
+public interface com.thingclips.smart.android.camera.api.IThingHomeCamera {
+  public abstract void registerCameraPushListener(com.thingclips.smart.sdk.api.IThingGetBeanCallback<com.thingclips.smart.android.camera.api.bean.CameraPushDataBean>);
+  public abstract void unRegisterCameraPushListener(com.thingclips.smart.sdk.api.IThingGetBeanCallback<com.thingclips.smart.android.camera.api.bean.CameraPushDataBean>);
+  public abstract void registerCameraP2P302Listener(com.thingclips.smart.sdk.api.IThingGetBeanCallback<java.lang.String>);
+  public abstract void unRegisterCameraP2P302Listener(com.thingclips.smart.sdk.api.IThingGetBeanCallback<java.lang.String>);
+  public abstract void registerHardwareP2P302Listener(com.thingclips.smart.sdk.api.IThingGetBeanCallback<java.lang.String>);
+  public abstract void unregisterHardwareP2P302Listener(com.thingclips.smart.sdk.api.IThingGetBeanCallback<java.lang.String>);
+  public abstract void registerCamera308Listener(com.thingclips.smart.sdk.api.IThingGetBeanCallback<java.lang.String>);
+  public abstract void unRegisterCamera308Listener(com.thingclips.smart.sdk.api.IThingGetBeanCallback<java.lang.String>);
+  public abstract void publishWirelessWake(java.lang.String, byte[]);
+  public abstract void publish(java.lang.String, java.lang.String, java.lang.String, java.lang.Object, int);
+  public abstract void publish(java.lang.String, java.lang.String, java.lang.String, java.lang.Object, int, com.thingclips.smart.sdk.api.IResultCallback);
+  public abstract void publish(java.lang.String, java.lang.String, java.lang.String, java.lang.Object, int, com.thingclips.smart.interior.mqtt.PublishAndDeliveryCallback, com.thingclips.smart.sdk.api.IResultCallback);
+  public abstract void lan302Publish(java.lang.String, com.alibaba.fastjson.JSONObject, com.thingclips.smart.sdk.api.IResultCallback);
+  public abstract boolean isMqttRealConnect();
+}
+=== com.thingclips.smart.android.device.bean.ArraySchemaBean (thingsmart-device-api-7.11.0.jar)
+Compiled from "ArraySchemaBean.java"
+public class com.thingclips.smart.android.device.bean.ArraySchemaBean implements java.io.Serializable {
+  public static final java.lang.String type;
+  public com.thingclips.smart.android.device.bean.ArraySchemaBean();
+  public int getMaxSize();
+  public void setMaxSize(int);
+  public java.lang.Object getElementTypeSpec();
+  public void setElementTypeSpec(java.lang.Object);
+}
+=== com.thingclips.smart.android.device.bean.BitmapSchemaBean (thingsmart-device-api-7.11.0.jar)
+Compiled from "BitmapSchemaBean.java"
+public class com.thingclips.smart.android.device.bean.BitmapSchemaBean implements java.io.Serializable {
+  public static final java.lang.String type;
+  public com.thingclips.smart.android.device.bean.BitmapSchemaBean();
+  public java.util.List<java.lang.Object> getLabel();
+  public void setLabel(java.util.List<java.lang.Object>);
+  public int getMaxlen();
+  public void setMaxlen(int);
+}
+=== com.thingclips.smart.android.device.bean.BoolSchemaBean (thingsmart-device-api-7.11.0.jar)
+Compiled from "BoolSchemaBean.java"
+public class com.thingclips.smart.android.device.bean.BoolSchemaBean implements java.io.Serializable {
+  public static final java.lang.String type;
+  public com.thingclips.smart.android.device.bean.BoolSchemaBean();
+}
+=== com.thingclips.smart.android.device.bean.DateSchemaBean (thingsmart-device-api-7.11.0.jar)
+Compiled from "DateSchemaBean.java"
+public class com.thingclips.smart.android.device.bean.DateSchemaBean implements java.io.Serializable {
+  public static final java.lang.String type;
+  public static final int MIN_LEN;
+  public static final int MAX_LEN;
+  public com.thingclips.smart.android.device.bean.DateSchemaBean();
+  public int getMaxlen();
+  public int getMinLen();
+}
+=== com.thingclips.smart.android.device.bean.EnumSchemaBean (thingsmart-device-api-7.11.0.jar)
+Compiled from "EnumSchemaBean.java"
+public class com.thingclips.smart.android.device.bean.EnumSchemaBean implements java.io.Serializable {
+  public static final java.lang.String type;
+  public java.util.Set<java.lang.String> range;
+  public com.thingclips.smart.android.device.bean.EnumSchemaBean();
+  public java.util.Set<java.lang.String> getRange();
+  public void setRange(java.util.Set<java.lang.String>);
+}
+=== com.thingclips.smart.android.device.bean.SchemaBean (thingsmart-device-api-7.11.0.jar)
+Compiled from "SchemaBean.java"
+public class com.thingclips.smart.android.device.bean.SchemaBean implements java.io.Serializable {
+  public java.lang.String id;
+  public java.lang.String code;
+  public java.lang.String name;
+  public java.lang.String mode;
+  public java.lang.String type;
+  public java.lang.Boolean passive;
+  public java.lang.String property;
+  public java.lang.String schemaType;
+  public java.lang.String iconname;
+  public java.lang.String extContent;
+  public com.thingclips.smart.android.device.bean.SchemaBean();
+  public java.lang.String getId();
+  public void setId(java.lang.String);
+  public java.lang.String getCode();
+  public void setCode(java.lang.String);
+  public java.lang.String getName();
+  public void setName(java.lang.String);
+  public java.lang.String getMode();
+  public void setMode(java.lang.String);
+  public java.lang.String getType();
+  public void setType(java.lang.String);
+  public java.lang.String getProperty();
+  public void setProperty(java.lang.String);
+  public java.lang.String getSchemaType();
+  public void setSchemaType(java.lang.String);
+  public java.lang.Boolean getPassive();
+  public void setPassive(java.lang.Boolean);
+  public java.lang.String getIconname();
+  public void setIconname(java.lang.String);
+  public java.lang.String getExtContent();
+  public void setExtContent(java.lang.String);
+}
+=== com.thingclips.smart.android.device.bean.StringSchemaBean (thingsmart-device-api-7.11.0.jar)
+Compiled from "StringSchemaBean.java"
+public class com.thingclips.smart.android.device.bean.StringSchemaBean implements java.io.Serializable {
+  public static final java.lang.String type;
+  public int maxlen;
+  public com.thingclips.smart.android.device.bean.StringSchemaBean();
+  public int getMaxlen();
+  public void setMaxlen(int);
+}
+=== com.thingclips.smart.android.device.bean.StructSchemaBean (thingsmart-device-api-7.11.0.jar)
+Compiled from "StructSchemaBean.java"
+public class com.thingclips.smart.android.device.bean.StructSchemaBean implements java.io.Serializable {
+  public static final java.lang.String type;
+  public com.thingclips.smart.android.device.bean.StructSchemaBean();
+  public java.util.Map<java.lang.String, com.thingclips.smart.android.device.bean.StructPropertyBean> getProperties();
+  public void setProperties(java.util.Map<java.lang.String, com.thingclips.smart.android.device.bean.StructPropertyBean>);
+}
+=== com.thingclips.smart.android.device.bean.ValueSchemaBean (thingsmart-device-api-7.11.0.jar)
+Compiled from "ValueSchemaBean.java"
+public class com.thingclips.smart.android.device.bean.ValueSchemaBean implements java.io.Serializable {
+  public static final java.lang.String type;
+  public java.lang.String unit;
+  public int min;
+  public int max;
+  public int step;
+  public int scale;
+  public com.thingclips.smart.android.device.bean.ValueSchemaBean();
+  public java.lang.String getUnit();
+  public void setUnit(java.lang.String);
+  public int getMin();
+  public void setMin(int);
+  public int getMax();
+  public void setMax(int);
+  public int getStep();
+  public void setStep(int);
+  public int getScale();
+  public void setScale(int);
+}
+=== com.thingclips.smart.sdk.api.IDevListener (thingsmart-device-api-7.11.0.jar)
+Compiled from "IDevListener.java"
+public interface com.thingclips.smart.sdk.api.IDevListener {
+  public abstract void onDpUpdate(java.lang.String, java.lang.String);
+  public abstract void onRemoved(java.lang.String);
+  public abstract void onStatusChanged(java.lang.String, boolean);
+  public abstract void onNetworkStatusChanged(java.lang.String, boolean);
+  public abstract void onDevInfoUpdate(java.lang.String);
+}
+=== com.thingclips.smart.sdk.api.IThingDevice (thingsmart-device-api-7.11.0.jar)
+Compiled from "IThingDevice.java"
+public interface com.thingclips.smart.sdk.api.IThingDevice {
+  public abstract void removeDevice(com.thingclips.smart.sdk.api.IResultCallback);
+  public abstract void renameDevice(java.lang.String, com.thingclips.smart.sdk.api.IResultCallback);
+  public abstract void publishDps(java.lang.String, com.thingclips.smart.sdk.enums.ThingDevicePublishModeEnum, com.thingclips.smart.sdk.api.IResultCallback);
+  public abstract void publishDps(java.lang.String, com.thingclips.smart.sdk.api.IResultCallback);
+  public abstract void publishCommands(java.util.Map<java.lang.String, java.lang.Object>, com.thingclips.smart.sdk.api.IResultCallback);
+  public abstract void infraredPublishDps(java.lang.String, java.lang.String, java.lang.String, com.thingclips.smart.sdk.api.IResultCallback);
+  public abstract boolean isMqttConnect();
+  public abstract void registerDeviceListener(com.thingclips.smart.sdk.api.IDeviceListener);
+  public abstract void registerDevListener(com.thingclips.smart.sdk.api.IDevListener);
+  public abstract void unRegisterDevListener();
+  public abstract void getDp(java.lang.String, com.thingclips.smart.sdk.api.IResultCallback);
+  public abstract void getDpList(java.util.List<java.lang.String>, com.thingclips.smart.sdk.api.IResultCallback);
+  public abstract void resetFactory(com.thingclips.smart.sdk.api.IResultCallback);
+  public abstract void getDeviceProperty(com.thingclips.smart.android.device.api.IPropertyCallback<java.util.Map>);
+  public abstract void saveDeviceProperty(java.lang.String, java.lang.String, com.thingclips.smart.sdk.api.IResultCallback);
+  public abstract void getDataPointStat(com.thingclips.smart.android.device.enums.DataPointTypeEnum, long, int, java.lang.String, com.thingclips.smart.android.device.api.IGetDataPointStatCallback);
+  public abstract void updateIcon(java.io.File, com.thingclips.smart.sdk.api.IResultCallback);
+  public abstract void queryData(java.lang.String, com.thingclips.smart.sdk.api.IResultCallback);
+  public abstract void onDestroy();
+  public abstract void requestWifiSignal(com.thingclips.smart.sdk.api.WifiSignalListener);
+  public abstract void getInitiativeQueryDpsInfoWithDpsArray(java.util.List<java.lang.Integer>, com.thingclips.smart.sdk.api.IResultCallback);
+  public abstract void registerWarnMessageListener(com.thingclips.smart.home.sdk.api.IWarningMsgListener);
+  public abstract void registerUpgradeStatusListener(com.thingclips.smart.home.sdk.callback.IThingDeviceUpgradeStatusCallback);
+  public abstract void publishDps(java.lang.String, java.lang.String, com.thingclips.smart.sdk.api.IResultCallback);
+  public abstract void getOfflineReminderSupportStatus(java.lang.String, com.thingclips.smart.home.sdk.callback.IThingResultCallback<com.thingclips.smart.sdk.bean.IsSupportOffLineBean>);
+  public abstract void getOfflineReminderStatus(java.lang.String, com.thingclips.smart.home.sdk.callback.IThingResultCallback<java.lang.Boolean>);
+  public abstract void setOfflineReminderStatus(java.lang.String, boolean, com.thingclips.smart.sdk.api.IResultCallback);
+  public abstract void publishThingMessageWithType(com.thingclips.smart.android.device.enums.ThingSmartThingMessageType, java.lang.Object, com.thingclips.smart.sdk.api.IResultCallback);
+  public abstract void registerThingLinkMessageListener(com.thingclips.smart.sdk.api.IThingLinkDeviceListener);
+  public abstract void unRegisterThingLinkMessageListener();
+  public abstract void recordPublishDpEvent(com.thingclips.smart.sdk.enums.DPEventSrcEnum, java.lang.String);
+}
+=== com.thingclips.smart.sdk.bean.DeviceBean (thingsmart-device-api-7.11.0.jar)
+Compiled from "DeviceBean.java"
+public class com.thingclips.smart.sdk.bean.DeviceBean {
+  public static final java.lang.String UI_TYPE_RN;
+  public static final int BASE_ATTRIBUTE_THING_MATTER;
+  public static final java.lang.String MATTER_BRIDGE_GATEWAY;
+  public static final java.lang.String MATTER_BRIDGE_SUB;
+  public java.lang.String iconUrl;
+  public java.lang.String devId;
+  public java.lang.String name;
+  public java.lang.String schema;
+  public java.lang.String ui;
+  public java.lang.String verSw;
+  public java.lang.String uiType;
+  public java.lang.String productId;
+  public java.lang.String productVer;
+  public java.lang.String appRnVersion;
+  public java.lang.String uiPhase;
+  public boolean rnFind;
+  public boolean supportGroup;
+  public long time;
+  public java.lang.String pv;
+  public java.lang.String bv;
+  public java.util.Map<java.lang.String, com.thingclips.smart.android.device.bean.SchemaBean> schemaMap;
+  public java.util.Map<java.lang.String, java.lang.Object> dps;
+  public java.util.Map<java.lang.String, java.lang.Long> dpsTime;
+  public java.util.Map<java.lang.String, java.lang.Object> uiConfig;
+  public java.util.Map<java.lang.String, java.lang.Object> panelConfig;
+  public java.lang.Boolean isShare;
+  public java.lang.String runtimeEnv;
+  public java.lang.String gwType;
+  public boolean virtual;
+  public java.lang.String lon;
+  public java.lang.String lat;
+  public int ability;
+  public java.lang.String displayMsgs;
+  public java.lang.String displayDps;
+  public java.lang.String quickOpDps;
+  public long i18nTime;
+  public java.lang.String localKey;
+  public java.lang.String uuid;
+  public java.util.Map<java.lang.String, java.lang.Object> dpCodes;
+  public com.thingclips.smart.sdk.bean.DeviceBean();
+  public com.thingclips.smart.sdk.bean.DeviceBean(java.lang.Boolean);
+  public boolean isVirtualExperience();
+  public void setVirtualExperience(boolean);
+  public boolean isMatter();
+  public boolean isThingMatter();
+  public boolean isTripartiteMatter();
+  public void setAccessType(int);
+  public int getAccessType();
+  public void setThingModel(com.thingclips.smart.sdk.bean.ThingSmartThingModel);
+  public com.thingclips.smart.sdk.bean.ThingSmartThingModel getThingModel();
+  public java.lang.String getOwnerId();
+  public void setOwnerId(java.lang.String);
+  public boolean isSupportAutoUpgrade();
+  public boolean isSupportProxyAndRelay();
+  public boolean isProxyOpen();
+  public boolean isRelayOpen();
+  public boolean isOpenRelay();
+  public void setOpenRelay(boolean);
+  public boolean isOpenProxy();
+  public void setOpenProxy(boolean);
+  public void setSupportProxyAndRelay(boolean);
+  public void setSupportAutoUpgrade(boolean);
+  public java.util.List<java.lang.Integer> getOtaUpgradeModes();
+  public void setOtaUpgradeModes(java.util.List<java.lang.Integer>);
+  public java.util.Map<java.lang.String, java.lang.Long> getDpsTime();
+  public void setDpsTime(java.util.Map<java.lang.String, java.lang.Long>);
+  public long getSharedTime();
+  public void setSharedTime(long);
+  public java.lang.String getParentDevId();
+  public void setParentDevId(java.lang.String);
+  public java.lang.String getParentId();
+  public void setParentId(java.lang.String);
+  public java.lang.String getDevKey();
+  public void setDevKey(java.lang.String);
+  public java.lang.String getMac();
+  public void setMac(java.lang.String);
+  public long getDevAttribute();
+  public void setDevAttribute(long);
+  public java.util.Map<java.lang.String, java.lang.Object> getSkills();
+  public void setSkills(java.util.Map<java.lang.String, java.lang.Object>);
+  public java.lang.String getDevId();
+  public void setDevId(java.lang.String);
+  public java.lang.Boolean getIsOnline();
+  public boolean getCommunicationOnline(com.thingclips.smart.interior.device.bean.CommunicationEnum);
+  public void setIsOnline(java.lang.Boolean);
+  public java.lang.String getName();
+  public void setName(java.lang.String);
+  public java.lang.String getSchema();
+  public void setSchema(java.lang.String);
+  public java.lang.String getUi();
+  public void setUi(java.lang.String);
+  public java.lang.String getVerSw();
+  public void setVerSw(java.lang.String);
+  public java.lang.String getIconUrl();
+  public void setIconUrl(java.lang.String);
+  public java.lang.String getProductId();
+  public void setProductId(java.lang.String);
+  public java.lang.String getProductVer();
+  public void setProductVer(java.lang.String);
+  public java.lang.String getUiType();
+  public void setUiType(java.lang.String);
+  public java.lang.String getAppRnVersion();
+  public void setAppRnVersion(java.lang.String);
+  public boolean getRnFind();
+  public void setRnFind(boolean);
+  public boolean isSupportGroup();
+  public void setSupportGroup(boolean);
+  public java.lang.String getUiPhase();
+  public void setUiPhase(java.lang.String);
+  public java.util.Map<java.lang.String, java.lang.Object> getUiConfig();
+  public void setUiConfig(java.util.Map<java.lang.String, java.lang.Object>);
+  public long getTime();
+  public void setTime(long);
+  public java.lang.String getBv();
+  public void setBv(java.lang.String);
+  public java.lang.String getPv();
+  public void setPv(java.lang.String);
+  public java.util.Map<java.lang.String, com.thingclips.smart.android.device.bean.SchemaBean> getSchemaMap();
+  public void setSchemaMap(java.util.Map<java.lang.String, com.thingclips.smart.android.device.bean.SchemaBean>);
+  public java.util.Map<java.lang.String, java.lang.Object> getDps();
+  public void setDps(java.util.Map<java.lang.String, java.lang.Object>);
+  public java.lang.Boolean getIsShare();
+  public void setIsShare(java.lang.Boolean);
+  public java.lang.String getRuntimeEnv();
+  public void setRuntimeEnv(java.lang.String);
+  public java.lang.String getGwType();
+  public void setGwType(java.lang.String);
+  public java.lang.String getLon();
+  public void setLon(java.lang.String);
+  public java.lang.String getLat();
+  public void setLat(java.lang.String);
+  public java.lang.String getDisplayMsgs();
+  public void setDisplayMsgs(java.lang.String);
+  public java.lang.String getDisplayDps();
+  public void setDisplayDps(java.lang.String);
+  public java.lang.String getQuickOpDps();
+  public void setQuickOpDps(java.lang.String);
+  public int getAbility();
+  public void setAbility(int);
+  public java.lang.Boolean getIsLocalOnline();
+  public boolean isZigBeeSubDev();
+  public boolean isInfraredSubDev();
+  public boolean isInfraredWifi();
+  public boolean is433SubDev();
+  public boolean is433Wifi();
+  public boolean isThreadGwDev();
+  public boolean isThreadSubDev();
+  public void setLocalOnline(java.lang.Boolean);
+  public long getAttribute();
+  public void setAttribute(long);
+  public int getSwitchDp();
+  public void setSwitchDp(int);
+  public java.util.List<java.lang.Integer> getFaultDps();
+  public void setFaultDps(java.util.List<java.lang.Integer>);
+  public java.lang.String getSchemaExt();
+  public void setSchemaExt(java.lang.String);
+  public long getI18nTime();
+  public void setI18nTime(long);
+  public java.lang.String getUiName();
+  public void setUiName(java.lang.String);
+  public java.lang.String getLocalKey();
+  public java.lang.String getSecKey();
+  public void setSecKey(java.lang.String);
+  public int getDataModel();
+  public void setDataModel(int);
+  public long getMqttTopicAttr();
+  public void setMqttTopicAttr(long);
+  public void setLocalKey(java.lang.String);
+  public java.lang.String getUuid();
+  public void setUuid(java.lang.String);
+  public com.thingclips.smart.android.hardware.bean.HgwBean getHgwBean();
+  public void setHgwBean(com.thingclips.smart.android.hardware.bean.HgwBean);
+  public boolean isEncrypt();
+  public java.util.Map<java.lang.String, java.lang.Object> getPanelConfig();
+  public void setPanelConfig(java.util.Map<java.lang.String, java.lang.Object>);
+  public boolean isCloudOnline();
+  public com.thingclips.smart.sdk.bean.ProductBean getProductBean();
+  public void setProductBean(com.thingclips.smart.sdk.bean.ProductBean);
+  public com.thingclips.smart.home.sdk.bean.ProductRefBean getProductRefBean();
+  public void setProductRefBean(com.thingclips.smart.home.sdk.bean.ProductRefBean);
+  public com.thingclips.smart.home.sdk.bean.DeviceBizPropBean getDeviceBizPropBean();
+  public void setDeviceBizPropBean(com.thingclips.smart.home.sdk.bean.DeviceBizPropBean);
+  public java.lang.String getCategory();
+  public void setCategory(java.lang.String);
+  public java.lang.String getTimezoneId();
+  public void setTimezoneId(java.lang.String);
+  public java.lang.String getCadv();
+  public void setCadv(java.lang.String);
+  public boolean isZigBeeWifi();
+  public boolean hasZigBee();
+  public boolean isBleMeshWifi();
+  public boolean isBluetooth();
+  public boolean isBeacon();
+  public boolean isSingleBle();
+  public boolean isBleMesh();
+  public boolean isBlueMesh();
+  public boolean isSigMesh();
+  public boolean isSigMeshWifi();
+  public boolean hasConfigSigMesh();
+  public boolean hasConfigZigbee();
+  public boolean hasConfigSubpieces();
+  public boolean hasConfigBeacon();
+  public boolean isBlueMeshWifi();
+  public boolean isWifiDevice();
+  public java.lang.String getMeshId();
+  public void setMeshId(java.lang.String);
+  public java.lang.String getNodeId();
+  public void setNodeId(java.lang.String);
+  public int getDisplayOrder();
+  public void setDisplayOrder(int);
+  public int getHomeDisplayOrder();
+  public void setHomeDisplayOrder(int);
+  public long getDpMaxTime();
+  public void setDpMaxTime(long);
+  public long getErrorCode();
+  public void setErrorCode(long);
+  public boolean isVirtual();
+  public void setVirtual(boolean);
+  public java.util.Map<java.lang.String, java.lang.String> getDpName();
+  public void setDpName(java.util.Map<java.lang.String, java.lang.String>);
+  public java.util.List<com.thingclips.smart.sdk.bean.DeviceBean$DevUpgradeStatus> getDevUpgradeStatus();
+  public void setDevUpgradeStatus(java.util.List<com.thingclips.smart.sdk.bean.DeviceBean$DevUpgradeStatus>);
+  public java.lang.String getDeviceCategory();
+  public void setDeviceCategory(java.lang.String);
+  public java.lang.String getCategoryCode();
+  public void setCategoryCode(java.lang.String);
+  public java.util.Map<java.lang.String, java.lang.Object> getDpCodes();
+  public void setDpCodes(java.util.Map<java.lang.String, java.lang.Object>);
+  public java.lang.String getIp();
+  public void setIp(java.lang.String);
+  public java.lang.String getCommunicationId();
+  public void setCommunicationId(java.lang.String);
+  public boolean isHasMqttCommunication();
+  public void setHasMqttCommunication(boolean);
+  public boolean isHasLanCommunication();
+  public void setHasLanCommunication(boolean);
+  public boolean isHasBleCommunication();
+  public void setHasBleCommunication(boolean);
+  public boolean isHasSigmeshCommunication();
+  public void setHasSigmeshCommunication(boolean);
+  public boolean isHasHttpCommunication();
+  public void setHasHttpCommunication(boolean);
+  public boolean getHasThingMeshCommunication();
+  public void setHasThingMeshCommunication(boolean);
+  public long getProtocolAttribute();
+  public void setProtocolAttribute(long);
+  public long getBaseAttribute();
+  public void setBaseAttribute(long);
+  public int getWifiEnableState();
+  public void setWifiEnableState(int);
+  public int getZigBeeBleSubEnableStatus();
+  public void setZigBeeBleSubEnableStatus(int);
+  public java.util.Map<java.lang.String, java.lang.Object> getMeta();
+  public void setMeta(java.util.Map<java.lang.String, java.lang.Object>);
+  public int getConnectionStatus();
+  public void setConnectionStatus(int);
+  public com.thingclips.smart.sdk.bean.ProductStandardConfig getProductStandardConfig();
+  public void setProductStandardConfig(com.thingclips.smart.sdk.bean.ProductStandardConfig);
+  public boolean isLocalDevice();
+  public boolean isSupportThingModelDevice();
+  public boolean isSupportLowPowerWakeUp();
+  public boolean hasUniversalGatewayCapability();
+  public boolean hasUniversalSubDeviceCapability();
+  public boolean isMatterBridgeDevice();
+  public boolean isMatterBridgeSubDevice();
+  public boolean isMatterBridgeGatewayDevice();
+}
+=== com.thingclips.smart.sdk.bean.GroupDeviceBean (thingsmart-device-api-7.11.0.jar)
+Compiled from "GroupDeviceBean.java"
+public class com.thingclips.smart.sdk.bean.GroupDeviceBean {
+  public com.thingclips.smart.sdk.bean.GroupDeviceBean();
+  public boolean isOnline();
+  public void setOnline(boolean);
+  public void setChecked(boolean);
+  public void setProductId(java.lang.String);
+  public boolean isChecked();
+  public java.lang.String getProductId();
+  public com.thingclips.smart.sdk.bean.DeviceBean getDeviceBean();
+  public void setDeviceBean(com.thingclips.smart.sdk.bean.DeviceBean);
+}
+=== com.thingclips.smart.sdk.ThingSdk (thingsmart-device-core-7.11.0.jar)
+Compiled from "ThingSdk.java"
+public class com.thingclips.smart.sdk.ThingSdk {
+  public com.thingclips.smart.sdk.ThingSdk();
+  public static void init(android.app.Application, java.lang.String, java.lang.String);
+  public static void setDebugMode(boolean);
+  public static void init(android.app.Application, java.lang.String, java.lang.String, java.lang.String, java.lang.String, com.thingclips.smart.android.network.IApiUrlProvider);
+  public static void init(android.app.Application, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, com.thingclips.smart.android.network.IApiUrlProvider);
+  public static void init(android.app.Application, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, com.thingclips.smart.android.network.IApiUrlProvider, java.lang.String);
+  public static void init(android.app.Application);
+  public static synchronized android.app.Application getApplication();
+  public static void setOnNeedLoginListener(com.thingclips.smart.sdk.api.INeedLoginListener);
+  public static void setOnNeedLoginWithTypeListener(com.thingclips.smart.android.user.api.INeedLoginWithTypeListener);
+  public static void setLatAndLong(java.lang.String, java.lang.String);
+  public static java.lang.String getLatitude();
+  public static java.lang.String getLongitude();
+  public static com.thingclips.smart.android.base.event.ThingEventBus getEventBus();
+  public static boolean isForeginAccount();
+  public static boolean isForeignAccount();
+  public static com.thingclips.smart.sdk.SaasSdkType getSaasSdkType();
+  public static void setSaasSdkType(com.thingclips.smart.sdk.SaasSdkType);
+  public static com.thingclips.smart.android.config.FunCommonConfig getFunCommonConfig();
+  public static com.thingclips.smart.android.user.api.INeedLoginWithTypeListener getNeedLoginWithTypeListener();
+  public static com.thingclips.smart.sdk.api.INeedLoginListener getNeedLoginListener();
+  public static com.thingclips.smart.android.user.api.INeedLoginWithDataListener getNeedLoginWithDataListener();
+  public static void setNeedLoginWithDataListener(com.thingclips.smart.android.user.api.INeedLoginWithDataListener);
+  public static void setBaseConfig(com.thingclips.smart.android.config.api.IThingGetBaseConfig);
+  public static void clearBizConfig();
+  public static void clearBaseConfig();
+  public static void setNetworkPriority(java.util.List<java.lang.String>, java.util.List<java.lang.String>);
+}
+=== com.thingclips.sdk.config.bean.LocalDeviceBean (thingsmart-hardware-7.11.0.jar)
+Compiled from "SourceFile"
+public class com.thingclips.sdk.config.bean.LocalDeviceBean {
+  public com.thingclips.sdk.config.bean.LocalDeviceBean();
+  public int getCapability();
+  public void setCapability(int);
+  public java.util.List<java.util.List<java.lang.Long>> getDstIntervals();
+  public void setDstIntervals(java.util.List<java.util.List<java.lang.Long>>);
+  public boolean isResetFactory();
+  public void setResetFactory(boolean);
+  public com.thingclips.smart.sdk.bean.ProductBean$SchemaInfo getSchemaInfo();
+  public void setSchemaInfo(com.thingclips.smart.sdk.bean.ProductBean$SchemaInfo);
+  public long getActiveTime();
+  public void setActiveTime(long);
+  public java.lang.String getDevId();
+  public void setDevId(java.lang.String);
+  public java.lang.String getGroupId();
+  public void setGroupId(java.lang.String);
+  public java.lang.String getGroupType();
+  public void setGroupType(java.lang.String);
+  public java.lang.String getHotspotName();
+  public void setHotspotName(java.lang.String);
+  public java.lang.String getIconUrl();
+  public void setIconUrl(java.lang.String);
+  public java.lang.String getId();
+  public void setId(java.lang.String);
+  public java.lang.String getLang();
+  public void setLang(java.lang.String);
+  public java.lang.String getLocalKey();
+  public void setLocalKey(java.lang.String);
+  public java.lang.String getName();
+  public void setName(java.lang.String);
+  public java.lang.String getProductId();
+  public void setProductId(java.lang.String);
+  public java.lang.String getRuntimeEnv();
+  public void setRuntimeEnv(java.lang.String);
+  public java.lang.String getSecKey();
+  public void setSecKey(java.lang.String);
+  public int getStatus();
+  public void setStatus(int);
+  public java.lang.String getStdTimeZone();
+  public void setStdTimeZone(java.lang.String);
+  public java.lang.String getTimeZone();
+  public void setTimeZone(java.lang.String);
+  public java.lang.String getTimeZoneId();
+  public void setTimeZoneId(java.lang.String);
+  public java.lang.String getUid();
+  public void setUid(java.lang.String);
+  public java.lang.String getUuid();
+  public void setUuid(java.lang.String);
+  public long getGmtCreate();
+  public void setGmtCreate(long);
+  public long getGmtModified();
+  public void setGmtModified(long);
+  public java.lang.String getSchemaId();
+  public void setSchemaId(java.lang.String);
+  public boolean isFastActive();
+  public void setFastActive(boolean);
+  public java.lang.String toString();
+}
+=== com.thingclips.smart.home.sdk.bean.ActiveDmDeviceBean (thingsmart-hardware-api-7.11.0.jar)
+Compiled from "ActiveDmDeviceBean.java"
+public class com.thingclips.smart.home.sdk.bean.ActiveDmDeviceBean {
+  public com.thingclips.smart.home.sdk.bean.ActiveDmDeviceBean();
+  public java.lang.String getUuid();
+  public void setUuid(java.lang.String);
+  public java.lang.String getIconUrl();
+  public void setIconUrl(java.lang.String);
+  public java.lang.String getName();
+  public void setName(java.lang.String);
+  public java.lang.String getErrorCode();
+  public void setErrorCode(java.lang.String);
+  public java.lang.String getErrorMsg();
+  public void setErrorMsg(java.lang.String);
+  public boolean isRelyCloud();
+  public void setRelyCloud(boolean);
+  public java.lang.String getSchema();
+  public void setSchema(java.lang.String);
+  public java.lang.String getDevId();
+  public void setDevId(java.lang.String);
+  public int getCapability();
+  public void setCapability(int);
+  public boolean getResetFactory();
+  public void setResetFactory(boolean);
+  public java.lang.String getSecKey();
+  public void setSecKey(java.lang.String);
+  public java.lang.String getStdTimeZone();
+  public void setStdTimeZone(java.lang.String);
+  public java.lang.String getSchemaId();
+  public void setSchemaId(java.lang.String);
+  public java.lang.String getTimeZone();
+  public void setTimeZone(java.lang.String);
+  public java.lang.String getDstIntervals();
+  public void setDstIntervals(java.lang.String);
+  public java.lang.String getLocalKey();
+  public void setLocalKey(java.lang.String);
+  public java.lang.String getResultCode();
+  public void setResultCode(java.lang.String);
+}
+=== com.thingclips.smart.sdk.api.IThingActivatorGetToken (thingsmart-hardware-api-7.11.0.jar)
+Compiled from "IThingActivatorGetToken.java"
+public interface com.thingclips.smart.sdk.api.IThingActivatorGetToken {
+  public abstract void onSuccess(java.lang.String);
+  public abstract void onFailure(java.lang.String, java.lang.String);
+}
+=== com.thingclips.smart.sdk.api.IThingCameraDevActivator (thingsmart-hardware-api-7.11.0.jar)
+Compiled from "IThingCameraDevActivator.java"
+public interface com.thingclips.smart.sdk.api.IThingCameraDevActivator {
+  public abstract void createQRCode();
+  public abstract void start();
+  public abstract void stop();
+  public abstract void onDestroy();
+}
+=== com.thingclips.smart.sdk.enums.ActivatorModelEnum (thingsmart-hardware-api-7.11.0.jar)
+Compiled from "ActivatorModelEnum.java"
+public final class com.thingclips.smart.sdk.enums.ActivatorModelEnum extends java.lang.Enum<com.thingclips.smart.sdk.enums.ActivatorModelEnum> {
+  public static final com.thingclips.smart.sdk.enums.ActivatorModelEnum THING_AP;
+  public static final com.thingclips.smart.sdk.enums.ActivatorModelEnum THING_EZ;
+  public static final com.thingclips.smart.sdk.enums.ActivatorModelEnum THING_4G_GATEWAY;
+  public static final com.thingclips.smart.sdk.enums.ActivatorModelEnum THING_STATIC_IP;
+  public static final com.thingclips.smart.sdk.enums.ActivatorModelEnum THING_QR;
+  public static com.thingclips.smart.sdk.enums.ActivatorModelEnum[] values();
+  public static com.thingclips.smart.sdk.enums.ActivatorModelEnum valueOf(java.lang.String);
+}
+=== com.thingclips.smart.home.sdk.api.IThingDeviceActivator (thingsmart-hardware-business-api-7.11.0.jar)
+Compiled from "IThingDeviceActivator.java"
+public interface com.thingclips.smart.home.sdk.api.IThingDeviceActivator {
+  public abstract com.thingclips.smart.sdk.api.IThingActivator newActivator(com.thingclips.smart.home.sdk.builder.ActivatorBuilder);
+  public abstract com.thingclips.smart.sdk.api.IThingActivator newMultiActivator(com.thingclips.smart.home.sdk.builder.ActivatorBuilder);
+  public abstract void getMeshToken(long, java.lang.String, com.thingclips.smart.sdk.api.IThingActivatorGetToken);
+  public abstract void getActivatorDeviceInfo(java.lang.String, java.lang.String, java.lang.String, com.thingclips.smart.sdk.api.IThingDataCallback<com.thingclips.smart.home.sdk.bean.ConfigProductInfoBean>);
+  public abstract void getDeviceBindLastInfoBatch(java.lang.String, java.lang.String, com.thingclips.smart.sdk.api.IThingDataCallback<com.thingclips.smart.home.sdk.bean.DeviceBindLastInfoBean>);
+  public abstract void checkPidRelation(java.lang.String, java.lang.String, com.thingclips.smart.sdk.api.IThingDataCallback<java.lang.Boolean>);
+  public abstract void queryProductRefBean(java.util.List<java.lang.String>, com.thingclips.smart.home.sdk.callback.IThingResultCallback<java.util.List<com.thingclips.smart.home.sdk.bean.ProductRefBean>>);
+  public abstract void getActivatorToken(long, com.thingclips.smart.sdk.api.IThingActivatorGetToken);
+  public abstract void getActivatorToken(long, java.lang.String, java.lang.String, com.thingclips.smart.sdk.api.IThingActivatorGetToken);
+  public abstract void getActivatorToken(long, java.lang.String, com.thingclips.smart.sdk.api.IThingActivatorGetToken);
+  public abstract void deviceQrCodeParse(java.lang.String, com.thingclips.smart.sdk.api.IThingDataCallback<com.thingclips.smart.sdk.bean.QrScanBean>);
+  public abstract void refreshActivatorToken(java.lang.String, com.thingclips.smart.sdk.api.IThingDataCallback<java.lang.Boolean>);
+  public abstract com.thingclips.smart.home.sdk.api.IThingGwActivator newThingGwActivator();
+  public abstract com.thingclips.smart.sdk.api.IThingActivator newGwActivator(com.thingclips.smart.home.sdk.builder.ThingGwActivatorBuilder);
+  public abstract com.thingclips.smart.sdk.api.IThingActivator newGwSubDevActivator(com.thingclips.smart.home.sdk.builder.ThingGwSubDevActivatorBuilder);
+  public abstract com.thingclips.smart.sdk.api.IThingActivator newGwThreadSubDevActivator(com.thingclips.smart.home.sdk.builder.ThingGwSubDevActivatorBuilder);
+  public abstract com.thingclips.smart.sdk.api.IThingActivator newQRCodeDevActivator(com.thingclips.smart.home.sdk.builder.ThingQRCodeActivatorBuilder);
+  public abstract com.thingclips.smart.sdk.api.IThingCameraDevActivator newCameraDevActivator(com.thingclips.smart.home.sdk.builder.ThingCameraActivatorBuilder);
+  public abstract com.thingclips.smart.sdk.api.IThingActivator newAutoConfigDevActivator(com.thingclips.smart.home.sdk.builder.ThingAutoConfigActivatorBuilder);
+  public abstract void getActivatorToken(com.thingclips.smart.sdk.api.IThingActivatorCreateToken);
+  public abstract void resumeTokenWhenExit(java.lang.String);
+  public abstract com.thingclips.smart.sdk.api.IThingActivator newGatewayRouterDevActivator(com.thingclips.smart.home.sdk.builder.ThingAutoConfigActivatorBuilder);
+  public abstract com.thingclips.smart.sdk.api.IThingActivator newEZWifiConfigDevActivator(com.thingclips.smart.home.sdk.builder.ActivatorBuilder);
+  public abstract com.thingclips.smart.home.sdk.api.IThingLightningActivator newLightningActivator();
+  public abstract java.util.List<java.lang.String> getSupportLightningActiveDevices(long);
+  public abstract com.thingclips.smart.sdk.api.IThingActivator newDirectlyConnectedDeviceActivator(com.thingclips.smart.home.sdk.builder.ThingDirectlyConnectedActivatorBuilder);
+  public abstract com.thingclips.smart.sdk.api.IThingDirectActivator newDirectlyDeviceActivator(com.thingclips.smart.home.sdk.builder.ThingDirectlyDeviceActivatorBuilder);
+  public abstract void deviceCloudActivate(java.lang.String, java.lang.String, long, java.lang.String, com.thingclips.smart.home.sdk.callback.IThingResultCallback<com.thingclips.smart.sdk.bean.DeviceBean>);
+  public abstract void deviceCloudActivateWithPin(java.lang.String, java.lang.String, long, java.lang.String, java.lang.String, java.lang.String, java.lang.String, com.thingclips.smart.home.sdk.callback.IThingResultCallback<com.thingclips.smart.sdk.bean.DeviceBean>);
+  public abstract com.thingclips.smart.sdk.api.IThingActivator newApContinueConfig(com.thingclips.smart.home.sdk.builder.APSLActivatorBuilder);
+  public abstract com.thingclips.smart.sdk.api.IThingSmartBroadbandActivator newBroadbandActivator();
+  public abstract void bindThingLinkDeviceWithQRCode(long, java.lang.String, com.thingclips.smart.sdk.api.IThingDevActivatorListener);
+  public abstract void bindNbDeviceWithQRCode(long, java.lang.String, java.lang.String, com.thingclips.smart.sdk.api.IThingDevActivatorListener);
+  public abstract void getDeviceSecurityConfigs(com.thingclips.smart.sdk.api.IThingDataCallback<java.lang.String>);
+  public abstract com.thingclips.smart.sdk.api.IThingOptimizedActivator newOptimizedActivator(com.thingclips.smart.home.sdk.builder.ThingApActivatorBuilder);
+  public abstract com.thingclips.smart.sdk.api.IThingSelfActivator newThingSelfActivator();
+}
+=== com.thingclips.smart.home.sdk.builder.APSLActivatorBuilder (thingsmart-hardware-business-api-7.11.0.jar)
+Compiled from "APSLActivatorBuilder.java"
+public class com.thingclips.smart.home.sdk.builder.APSLActivatorBuilder extends com.thingclips.smart.home.sdk.builder.ActivatorBuilder {
+  public com.thingclips.smart.home.sdk.builder.APSLActivatorBuilder();
+  public int getSl();
+  public void setSl(int);
+  public java.lang.String getUuid();
+  public void setUuid(java.lang.String);
+}
+=== com.thingclips.smart.home.sdk.builder.ActivatorBuilder (thingsmart-hardware-business-api-7.11.0.jar)
+Compiled from "ActivatorBuilder.java"
+public class com.thingclips.smart.home.sdk.builder.ActivatorBuilder {
+  public com.thingclips.smart.home.sdk.builder.ActivatorBuilder();
+  public java.lang.String getIp();
+  public com.thingclips.smart.home.sdk.builder.ActivatorBuilder setIp(java.lang.String);
+  public java.lang.String getSubnetMask();
+  public com.thingclips.smart.home.sdk.builder.ActivatorBuilder setSubnetMask(java.lang.String);
+  public java.lang.String getDns();
+  public com.thingclips.smart.home.sdk.builder.ActivatorBuilder setDns(java.lang.String);
+  public java.lang.String getGateway();
+  public com.thingclips.smart.home.sdk.builder.ActivatorBuilder setgateway(java.lang.String);
+  public com.thingclips.smart.home.sdk.builder.ActivatorBuilder setDeviceConfig(com.thingclips.smart.interior.hardware.DeviceConfig);
+  public java.lang.String getOper();
+  public com.thingclips.smart.home.sdk.builder.ActivatorBuilder setOper(java.lang.String);
+  public java.lang.String getApn();
+  public com.thingclips.smart.home.sdk.builder.ActivatorBuilder setApn(java.lang.String);
+  public java.lang.String getUsername();
+  public com.thingclips.smart.home.sdk.builder.ActivatorBuilder setUsername(java.lang.String);
+  public java.lang.String getHotspotSsid();
+  public com.thingclips.smart.home.sdk.builder.ActivatorBuilder setHotspotSsid(java.lang.String);
+  public java.lang.String getSsid();
+  public com.thingclips.smart.home.sdk.builder.ActivatorBuilder setSsid(java.lang.String);
+  public java.lang.String getPassword();
+  public com.thingclips.smart.home.sdk.builder.ActivatorBuilder setPassword(java.lang.String);
+  public android.content.Context getContext();
+  public com.thingclips.smart.home.sdk.builder.ActivatorBuilder setContext(android.content.Context);
+  public com.thingclips.smart.sdk.api.IThingSmartActivatorListener getListener();
+  public com.thingclips.smart.home.sdk.builder.ActivatorBuilder setListener(com.thingclips.smart.sdk.api.IThingSmartActivatorListener);
+  public com.thingclips.smart.sdk.enums.ActivatorModelEnum getActivatorModel();
+  public com.thingclips.smart.home.sdk.builder.ActivatorBuilder setActivatorModel(com.thingclips.smart.sdk.enums.ActivatorModelEnum);
+  public long getTimeOut();
+  public com.thingclips.smart.home.sdk.builder.ActivatorBuilder setTimeOut(long);
+  public java.lang.String getToken();
+  public com.thingclips.smart.home.sdk.builder.ActivatorBuilder setToken(java.lang.String);
+  public com.thingclips.smart.home.sdk.builder.ActivatorBuilder setSecurityConfig(java.lang.String);
+  public java.lang.String getSecurityConfig();
+  public java.util.Map<java.lang.String, java.lang.Object> getExtendsData();
+  public com.thingclips.smart.home.sdk.builder.ActivatorBuilder setExtendsData(java.util.Map<java.lang.String, java.lang.Object>);
+}
+=== com.thingclips.smart.home.sdk.builder.ThingApActivatorBuilder (thingsmart-hardware-business-api-7.11.0.jar)
+Compiled from "ThingApActivatorBuilder.java"
+public class com.thingclips.smart.home.sdk.builder.ThingApActivatorBuilder {
+  public com.thingclips.smart.home.sdk.builder.ThingApActivatorBuilder();
+  public android.content.Context getContext();
+  public com.thingclips.smart.home.sdk.builder.ThingApActivatorBuilder setContext(android.content.Context);
+}
+=== com.thingclips.smart.home.sdk.builder.ThingAutoConfigActivatorBuilder (thingsmart-hardware-business-api-7.11.0.jar)
+Compiled from "ThingAutoConfigActivatorBuilder.java"
+public class com.thingclips.smart.home.sdk.builder.ThingAutoConfigActivatorBuilder {
+  public com.thingclips.smart.home.sdk.builder.ThingAutoConfigActivatorBuilder();
+  public android.content.Context getContext();
+  public com.thingclips.smart.home.sdk.builder.ThingAutoConfigActivatorBuilder setContext(android.content.Context);
+  public com.thingclips.smart.sdk.api.IThingSmartActivatorListener getListener();
+  public com.thingclips.smart.home.sdk.builder.ThingAutoConfigActivatorBuilder setListener(com.thingclips.smart.sdk.api.IThingSmartActivatorListener);
+  public java.lang.String getToken();
+  public com.thingclips.smart.home.sdk.builder.ThingAutoConfigActivatorBuilder setToken(java.lang.String);
+  public long getTimeOut();
+  public com.thingclips.smart.home.sdk.builder.ThingAutoConfigActivatorBuilder setTimeOut(long);
+  public java.util.List<java.lang.String> getDevIds();
+  public com.thingclips.smart.home.sdk.builder.ThingAutoConfigActivatorBuilder setDevIds(java.util.List<java.lang.String>);
+}
+=== com.thingclips.smart.home.sdk.builder.ThingBroadbandActivatorBuilder (thingsmart-hardware-business-api-7.11.0.jar)
+Compiled from "ThingBroadbandActivatorBuilder.java"
+public class com.thingclips.smart.home.sdk.builder.ThingBroadbandActivatorBuilder {
+  public com.thingclips.smart.home.sdk.builder.ThingBroadbandActivatorBuilder();
+  public com.thingclips.smart.sdk.api.IThingSmartActivatorListener getListener();
+  public com.thingclips.smart.home.sdk.builder.ThingBroadbandActivatorBuilder setListener(com.thingclips.smart.sdk.api.IThingSmartActivatorListener);
+  public java.lang.String getToken();
+  public com.thingclips.smart.home.sdk.builder.ThingBroadbandActivatorBuilder setToken(java.lang.String);
+  public android.content.Context getContext();
+  public com.thingclips.smart.home.sdk.builder.ThingBroadbandActivatorBuilder setContext(android.content.Context);
+  public long getTimeOut();
+  public com.thingclips.smart.home.sdk.builder.ThingBroadbandActivatorBuilder setTimeOut(long);
+  public com.thingclips.smart.android.hardware.bean.HgwBean getHgwBean();
+  public void setHgwBean(com.thingclips.smart.android.hardware.bean.HgwBean);
+}
+=== com.thingclips.smart.home.sdk.builder.ThingCameraActivatorBuilder (thingsmart-hardware-business-api-7.11.0.jar)
+Compiled from "ThingCameraActivatorBuilder.java"
+public class com.thingclips.smart.home.sdk.builder.ThingCameraActivatorBuilder {
+  public com.thingclips.smart.home.sdk.builder.ThingCameraActivatorBuilder();
+  public java.util.Map<java.lang.String, java.lang.Object> getExtendsData();
+  public com.thingclips.smart.home.sdk.builder.ThingCameraActivatorBuilder setExtendsData(java.util.Map<java.lang.String, java.lang.Object>);
+  public java.lang.String getSsid();
+  public com.thingclips.smart.home.sdk.builder.ThingCameraActivatorBuilder setSsid(java.lang.String);
+  public java.lang.String getPassword();
+  public com.thingclips.smart.home.sdk.builder.ThingCameraActivatorBuilder setPassword(java.lang.String);
+  public android.content.Context getContext();
+  public com.thingclips.smart.home.sdk.builder.ThingCameraActivatorBuilder setContext(android.content.Context);
+  public com.thingclips.smart.sdk.api.IThingSmartCameraActivatorListener getListener();
+  public com.thingclips.smart.home.sdk.builder.ThingCameraActivatorBuilder setListener(com.thingclips.smart.sdk.api.IThingSmartCameraActivatorListener);
+  public long getTimeOut();
+  public com.thingclips.smart.home.sdk.builder.ThingCameraActivatorBuilder setTimeOut(long);
+  public java.lang.String getToken();
+  public com.thingclips.smart.home.sdk.builder.ThingCameraActivatorBuilder setToken(java.lang.String);
+}
+=== com.thingclips.smart.home.sdk.builder.ThingDirectlyConnectedActivatorBuilder (thingsmart-hardware-business-api-7.11.0.jar)
+Compiled from "ThingDirectlyConnectedActivatorBuilder.java"
+public class com.thingclips.smart.home.sdk.builder.ThingDirectlyConnectedActivatorBuilder {
+  public com.thingclips.smart.home.sdk.builder.ThingDirectlyConnectedActivatorBuilder();
+  public java.lang.String getDeviceId();
+  public com.thingclips.smart.home.sdk.builder.ThingDirectlyConnectedActivatorBuilder setDeviceId(java.lang.String);
+  public android.content.Context getContext();
+  public com.thingclips.smart.home.sdk.builder.ThingDirectlyConnectedActivatorBuilder setContext(android.content.Context);
+  public com.thingclips.smart.sdk.api.IThingDevDirectActivatorListener getListener();
+  public com.thingclips.smart.home.sdk.builder.ThingDirectlyConnectedActivatorBuilder setListener(com.thingclips.smart.sdk.api.IThingDevDirectActivatorListener);
+  public com.thingclips.smart.home.sdk.builder.ThingDirectlyConnectedActivatorBuilder setTimeOut(long);
+  public long getTimeOut();
+}
+=== com.thingclips.smart.home.sdk.builder.ThingDirectlyDeviceActivatorBuilder (thingsmart-hardware-business-api-7.11.0.jar)
+Compiled from "ThingDirectlyDeviceActivatorBuilder.java"
+public class com.thingclips.smart.home.sdk.builder.ThingDirectlyDeviceActivatorBuilder {
+  public com.thingclips.smart.home.sdk.builder.ThingDirectlyDeviceActivatorBuilder();
+  public java.lang.String getDeviceId();
+  public com.thingclips.smart.home.sdk.builder.ThingDirectlyDeviceActivatorBuilder setDeviceId(java.lang.String);
+  public android.content.Context getContext();
+  public com.thingclips.smart.home.sdk.builder.ThingDirectlyDeviceActivatorBuilder setContext(android.content.Context);
+  public com.thingclips.smart.sdk.api.IThingDirectlyDeviceActivatorListener getListener();
+  public com.thingclips.smart.home.sdk.builder.ThingDirectlyDeviceActivatorBuilder setListener(com.thingclips.smart.sdk.api.IThingDirectlyDeviceActivatorListener);
+  public com.thingclips.smart.home.sdk.builder.ThingDirectlyDeviceActivatorBuilder setTimeOut(long);
+  public long getTimeOut();
+}
+=== com.thingclips.smart.home.sdk.builder.ThingGwActivatorBuilder (thingsmart-hardware-business-api-7.11.0.jar)
+Compiled from "ThingGwActivatorBuilder.java"
+public class com.thingclips.smart.home.sdk.builder.ThingGwActivatorBuilder {
+  public com.thingclips.smart.home.sdk.builder.ThingGwActivatorBuilder();
+  public com.thingclips.smart.android.hardware.bean.HgwBean getHgwBean();
+  public com.thingclips.smart.home.sdk.builder.ThingGwActivatorBuilder setHgwBean(com.thingclips.smart.android.hardware.bean.HgwBean);
+  public android.content.Context getContext();
+  public com.thingclips.smart.home.sdk.builder.ThingGwActivatorBuilder setContext(android.content.Context);
+  public com.thingclips.smart.sdk.api.IThingSmartActivatorListener getListener();
+  public com.thingclips.smart.home.sdk.builder.ThingGwActivatorBuilder setListener(com.thingclips.smart.sdk.api.IThingSmartActivatorListener);
+  public long getTimeOut();
+  public com.thingclips.smart.home.sdk.builder.ThingGwActivatorBuilder setTimeOut(long);
+  public java.lang.String getToken();
+  public com.thingclips.smart.home.sdk.builder.ThingGwActivatorBuilder setToken(java.lang.String);
+}
+=== com.thingclips.smart.home.sdk.builder.ThingGwSubDevActivatorBuilder (thingsmart-hardware-business-api-7.11.0.jar)
+Compiled from "ThingGwSubDevActivatorBuilder.java"
+public class com.thingclips.smart.home.sdk.builder.ThingGwSubDevActivatorBuilder {
+  public com.thingclips.smart.home.sdk.builder.ThingGwSubDevActivatorBuilder();
+  public java.util.Map<java.lang.String, java.lang.Object> getExtensions();
+  public com.thingclips.smart.home.sdk.builder.ThingGwSubDevActivatorBuilder setExtensions(java.util.Map<java.lang.String, java.lang.Object>);
+  public java.lang.String getReqType();
+  public void setReqType(java.lang.String);
+  public java.util.List<com.thingclips.smart.sdk.bean.SubDevInstallBean> getSubInstallCodes();
+  public void setSubInstallCodes(java.util.List<com.thingclips.smart.sdk.bean.SubDevInstallBean>);
+  public com.thingclips.smart.sdk.api.IThingSmartActivatorListener getListener();
+  public com.thingclips.smart.home.sdk.builder.ThingGwSubDevActivatorBuilder setListener(com.thingclips.smart.sdk.api.IThingSmartActivatorListener);
+  public long getTimeOut();
+  public com.thingclips.smart.home.sdk.builder.ThingGwSubDevActivatorBuilder setTimeOut(long);
+  public java.lang.String getDevId();
+  public com.thingclips.smart.home.sdk.builder.ThingGwSubDevActivatorBuilder setDevId(java.lang.String);
+  public java.lang.String getSubDevMac();
+  public com.thingclips.smart.home.sdk.builder.ThingGwSubDevActivatorBuilder setSubDevMac(java.lang.String);
+  public java.lang.String getInstallCode();
+  public com.thingclips.smart.home.sdk.builder.ThingGwSubDevActivatorBuilder setInstallCode(java.lang.String);
+  public com.thingclips.smart.home.sdk.builder.ThingGwSubDevActivatorBuilder setType(int);
+  public int getType();
+}
+=== com.thingclips.smart.home.sdk.builder.ThingLightningDevActivatorBuilder (thingsmart-hardware-business-api-7.11.0.jar)
+Compiled from "ThingLightningDevActivatorBuilder.java"
+public class com.thingclips.smart.home.sdk.builder.ThingLightningDevActivatorBuilder {
+  public com.thingclips.smart.home.sdk.builder.ThingLightningDevActivatorBuilder();
+  public java.lang.String getToken();
+  public com.thingclips.smart.home.sdk.builder.ThingLightningDevActivatorBuilder setToken(java.lang.String);
+  public java.util.List<com.thingclips.smart.home.sdk.bean.LightningSearchBean> getLightningSearchBeanList();
+  public com.thingclips.smart.home.sdk.builder.ThingLightningDevActivatorBuilder setLightningSearchBeanList(java.util.List<com.thingclips.smart.home.sdk.bean.LightningSearchBean>);
+  public long getTimeOut();
+  public com.thingclips.smart.home.sdk.builder.ThingLightningDevActivatorBuilder setTimeOut(long);
+  public com.thingclips.smart.sdk.api.IThingDevActivatorListener getListener();
+  public com.thingclips.smart.home.sdk.builder.ThingLightningDevActivatorBuilder setListener(com.thingclips.smart.sdk.api.IThingDevActivatorListener);
+}
+=== com.thingclips.smart.home.sdk.builder.ThingQRCodeActivatorBuilder (thingsmart-hardware-business-api-7.11.0.jar)
+Compiled from "ThingQRCodeActivatorBuilder.java"
+public class com.thingclips.smart.home.sdk.builder.ThingQRCodeActivatorBuilder {
+  public com.thingclips.smart.home.sdk.builder.ThingQRCodeActivatorBuilder();
+  public java.lang.String getUuid();
+  public com.thingclips.smart.home.sdk.builder.ThingQRCodeActivatorBuilder setUuid(java.lang.String);
+  public long getHomeId();
+  public com.thingclips.smart.home.sdk.builder.ThingQRCodeActivatorBuilder setHomeId(long);
+  public android.content.Context getContext();
+  public com.thingclips.smart.home.sdk.builder.ThingQRCodeActivatorBuilder setContext(android.content.Context);
+  public com.thingclips.smart.sdk.api.IThingSmartActivatorListener getListener();
+  public com.thingclips.smart.home.sdk.builder.ThingQRCodeActivatorBuilder setListener(com.thingclips.smart.sdk.api.IThingSmartActivatorListener);
+  public long getTimeOut();
+  public com.thingclips.smart.home.sdk.builder.ThingQRCodeActivatorBuilder setTimeOut(long);
+}
+=== com.thingclips.smart.sdk.api.IThingActivator (thingsmart-hardware-business-api-7.11.0.jar)
+Compiled from "IThingActivator.java"
+public interface com.thingclips.smart.sdk.api.IThingActivator {
+  public abstract void start();
+  public abstract void stop();
+  public abstract void onDestroy();
+  public default int resumeAPConfigWifi(com.thingclips.smart.home.sdk.bean.ApHandlerBean);
+  public default void queryWifiList(com.thingclips.smart.home.sdk.bean.ApHandlerBean, com.thingclips.smart.home.sdk.callback.IThingResultCallback<java.util.List<com.thingclips.smart.home.sdk.bean.WiFiInfoBean>>);
+  public default void fetchDeviceLog(com.thingclips.smart.home.sdk.bean.ApHandlerBean, com.thingclips.smart.home.sdk.callback.IThingResultCallback<com.thingclips.smart.home.sdk.bean.DeviceLogBean>);
+  public default void reconnectTcp(com.thingclips.smart.sdk.api.IResultCallback);
+}
+=== com.thingclips.smart.sdk.api.IThingSmartActivatorListener (thingsmart-hardware-business-api-7.11.0.jar)
+Compiled from "IThingSmartActivatorListener.java"
+public interface com.thingclips.smart.sdk.api.IThingSmartActivatorListener {
+  public abstract void onError(java.lang.String, java.lang.String);
+  public abstract void onActiveSuccess(com.thingclips.smart.sdk.bean.DeviceBean);
+  public abstract void onStep(java.lang.String, java.lang.Object);
+  public default void onActivatorStatePauseCallback(com.thingclips.smart.sdk.bean.PauseStateData);
+}
+=== com.thingclips.smart.sdk.api.IThingSmartCameraActivatorListener (thingsmart-hardware-business-api-7.11.0.jar)
+Compiled from "IThingSmartCameraActivatorListener.java"
+public interface com.thingclips.smart.sdk.api.IThingSmartCameraActivatorListener {
+  public abstract void onQRCodeSuccess(java.lang.String);
+  public abstract void onError(java.lang.String, java.lang.String);
+  public abstract void onActiveSuccess(com.thingclips.smart.sdk.bean.DeviceBean);
+}
+=== com.thingclips.smart.sdk.bean.ApActivatorBuilder (thingsmart-hardware-business-api-7.11.0.jar)
+Compiled from "ApActivatorBuilder.java"
+public class com.thingclips.smart.sdk.bean.ApActivatorBuilder {
+  public com.thingclips.smart.sdk.bean.ApActivatorBuilder();
+  public java.lang.String getCcode();
+  public java.lang.String getSsid();
+  public java.lang.String getPwd();
+  public java.lang.String getToken();
+  public long getTimeout();
+  public java.lang.String getSecurityConfig();
+  public com.thingclips.smart.sdk.api.IThingSmartActivatorListener getListener();
+}
+=== com.thingclips.smart.sdk.bean.MultiModeActivatorBuilder (thingsmart-hardware-business-api-7.11.0.jar)
+Compiled from "MultiModeActivatorBuilder.java"
+public class com.thingclips.smart.sdk.bean.MultiModeActivatorBuilder {
+  public com.thingclips.smart.sdk.bean.MultiModeActivatorBuilder();
+  public java.lang.String getCcode();
+  public void setCcode(java.lang.String);
+  public java.lang.String getUuid();
+  public java.lang.String getSsid();
+  public java.lang.String getPwd();
+  public java.lang.String getToken();
+  public long getTimeout();
+  public long getPhase1Timeout();
+  public com.thingclips.smart.sdk.enums.MultiModeNetType getNetLinkType();
+}
+=== com.thingclips.smart.sdk.bean.QrScanBean (thingsmart-hardware-business-api-7.11.0.jar)
+Compiled from "QrScanBean.java"
+public class com.thingclips.smart.sdk.bean.QrScanBean {
+  public com.thingclips.smart.sdk.bean.QrScanBean();
+  public java.lang.Object getActionData();
+  public void setActionData(java.lang.Object);
+  public java.lang.String getActionName();
+  public void setActionName(java.lang.String);
+}
+=== com.thingclips.smart.home.sdk.api.IThingHome (thingsmart-homelib-api-7.11.0.jar)
+Compiled from "IThingHome.java"
+public interface com.thingclips.smart.home.sdk.api.IThingHome {
+  public abstract void getHomeDetail(com.thingclips.smart.home.sdk.callback.IThingHomeResultCallback);
+  public abstract void getHomeLocalCache(com.thingclips.smart.home.sdk.callback.IThingHomeResultCallback);
+  public abstract com.thingclips.smart.home.sdk.bean.HomeBean getHomeLocalCacheSync();
+  public abstract void updateHome(java.lang.String, double, double, java.lang.String, com.thingclips.smart.sdk.api.IResultCallback);
+  public abstract void updateHome(java.lang.String, double, double, java.lang.String, java.util.List<java.lang.String>, boolean, com.thingclips.smart.sdk.api.IResultCallback);
+  public abstract void dismissHome(com.thingclips.smart.sdk.api.IResultCallback);
+  public abstract void sortHome(java.util.List<java.lang.Long>, com.thingclips.smart.sdk.api.IResultCallback);
+  public abstract void addRoom(java.lang.String, com.thingclips.smart.home.sdk.callback.IThingRoomResultCallback);
+  public abstract void removeRoom(long, com.thingclips.smart.sdk.api.IResultCallback);
+  public abstract void sortRoom(java.util.List<java.lang.Long>, com.thingclips.smart.sdk.api.IResultCallback);
+  public abstract void queryRoomList(com.thingclips.smart.home.sdk.callback.IThingGetRoomListCallback);
+  public abstract com.thingclips.smart.home.sdk.bean.HomeBean getHomeBean();
+  public abstract void createGroup(java.lang.String, java.lang.String, java.util.List<java.lang.String>, com.thingclips.smart.home.sdk.callback.IThingResultCallback<java.lang.Long>);
+  public abstract void createCommonGroup(com.thingclips.smart.home.sdk.builder.GroupCreateBuilder, com.thingclips.smart.home.sdk.callback.IThingResultCallback<java.lang.Long>);
+  public abstract java.util.List<com.thingclips.smart.home.sdk.bean.RoomBean> queryRoomInfoByDevice(java.util.List<com.thingclips.smart.sdk.bean.DeviceBean>);
+  public abstract void registerHomeStatusListener(com.thingclips.smart.home.sdk.api.IThingHomeStatusListener);
+  public abstract void unRegisterHomeStatusListener(com.thingclips.smart.home.sdk.api.IThingHomeStatusListener);
+  public abstract void registerHomeDeviceStatusListener(com.thingclips.smart.home.sdk.api.IThingHomeDeviceStatusListener);
+  public abstract void unRegisterHomeDeviceStatusListener(com.thingclips.smart.home.sdk.api.IThingHomeDeviceStatusListener);
+  public abstract void registerHomeDeviceRoomInfoListener(com.thingclips.smart.home.sdk.api.IThingHomeRoomInfoChangeListener);
+  public abstract void unRegisterHomeDeviceRoomInfoListener(com.thingclips.smart.home.sdk.api.IThingHomeRoomInfoChangeListener);
+  public abstract void createBlueMesh(java.lang.String, com.thingclips.smart.home.sdk.callback.IThingResultCallback<com.thingclips.smart.sdk.bean.BlueMeshBean>);
+  public abstract void createSigMesh(com.thingclips.smart.home.sdk.callback.IThingResultCallback<com.thingclips.smart.sdk.bean.SigMeshBean>);
+  public abstract void queryDeviceListToAddGroup(long, java.lang.String, com.thingclips.smart.home.sdk.callback.IThingResultCallback<java.util.List<com.thingclips.smart.sdk.bean.GroupDeviceBean>>);
+  public abstract void queryZigbeeDeviceListToAddGroup(long, java.lang.String, java.lang.String, com.thingclips.smart.home.sdk.callback.IThingResultCallback<java.util.List<com.thingclips.smart.sdk.bean.GroupDeviceBean>>);
+  public abstract void onDestroy();
+  public abstract void createZigbeeGroup(java.lang.String, java.lang.String, int, java.lang.String, com.thingclips.smart.home.sdk.callback.IThingResultCallback<com.thingclips.smart.sdk.bean.CloudZigbeeGroupCreateBean>);
+  public abstract void createZigbeeGroup(java.lang.String, java.lang.String, java.lang.String, com.thingclips.smart.home.sdk.callback.IThingResultCallback<com.thingclips.smart.sdk.bean.CloudZigbeeGroupCreateBean>);
+  public abstract java.util.List<com.thingclips.smart.home.sdk.bean.RoomBean> queryRoomInfoByGroup(java.util.List<com.thingclips.smart.sdk.bean.GroupBean>);
+  public abstract void bindNewConfigDevs(java.util.List<java.lang.String>, com.thingclips.smart.sdk.api.IResultCallback);
+  public abstract void registerProductWarnListener(com.thingclips.smart.home.sdk.api.IWarningMsgListener);
+  public abstract void unRegisterProductWarnListener(com.thingclips.smart.home.sdk.api.IWarningMsgListener);
+  public abstract void sortDevInHome(java.lang.String, java.util.List<com.thingclips.smart.home.sdk.bean.DeviceAndGroupInHomeBean>, com.thingclips.smart.sdk.api.IResultCallback);
+  public abstract void unSubscribeTopics(java.util.List<java.lang.String>);
+  public abstract void registerUpgradeStatusListener(com.thingclips.smart.home.sdk.callback.IThingDeviceUpgradeStatusCallback);
+  public abstract void getHomeWeatherDetail(int, java.util.Map<java.lang.String, java.lang.Object>, com.thingclips.smart.home.sdk.callback.IGetHomeWetherCallBack);
+  public abstract void getHomeWeatherSketch(double, double, com.thingclips.smart.home.sdk.callback.IIGetHomeWetherSketchCallBack);
+  public abstract void registerHomeRelationUpdateListener(com.thingclips.smart.home.sdk.api.IThingHomeRelationUpdateListener);
+  public abstract void unRegisterHomeRelationUpdateListener(com.thingclips.smart.home.sdk.api.IThingHomeRelationUpdateListener);
+  public abstract void organizeRelation(com.thingclips.smart.home.sdk.api.IThingHomeRelationUpdateListener);
+  public abstract void createThreadGroup(java.lang.String, java.lang.String, java.util.List<java.lang.String>, java.lang.String, com.thingclips.smart.home.sdk.callback.IThingResultCallback<com.thingclips.smart.interior.device.bean.GroupRespBean>);
+  public abstract void queryThreadGroupDeviceList(long, java.lang.String, java.lang.String, com.thingclips.smart.home.sdk.callback.IThingResultCallback<java.util.List<com.thingclips.smart.sdk.bean.GroupDeviceBean>>);
+  public abstract void queryHidedDeviceGroupList(com.thingclips.smart.home.sdk.callback.IThingResultCallback<java.util.ArrayList<com.thingclips.smart.home.sdk.bean.DeviceAndGroupInHomeBean>>);
+  public abstract void hideDeviceGroup(java.util.List<com.thingclips.smart.home.sdk.bean.DeviceAndGroupInHomeBean>, com.thingclips.smart.home.sdk.callback.IThingResultCallback<java.lang.Boolean>);
+  public abstract void showDeviceGroup(java.util.List<com.thingclips.smart.home.sdk.bean.DeviceAndGroupInHomeBean>, com.thingclips.smart.home.sdk.callback.IThingResultCallback<java.lang.Boolean>);
+  public abstract void queryRoomDevSceneList(long, com.thingclips.smart.home.sdk.callback.IThingResultCallback<com.thingclips.smart.home.sdk.bean.RoomInfoBean>);
+}
+=== com.thingclips.smart.home.sdk.api.IThingHomeDataManager (thingsmart-homelib-api-7.11.0.jar)
+Compiled from "IThingHomeDataManager.java"
+public interface com.thingclips.smart.home.sdk.api.IThingHomeDataManager {
+  public abstract java.util.List<com.thingclips.smart.home.sdk.bean.RoomBean> getHomeRoomList(long);
+  public abstract java.util.List<com.thingclips.smart.sdk.bean.GroupBean> getHomeGroupList(long);
+  public abstract java.util.List<com.thingclips.smart.sdk.bean.DeviceBean> getHomeDeviceList(long);
+  public abstract java.util.List<com.thingclips.smart.sdk.bean.BlueMeshBean> getHomeMeshList(long);
+  public abstract java.util.List<com.thingclips.smart.sdk.bean.SigMeshBean> getHomeSigMeshList(long);
+  public abstract java.util.List<com.thingclips.smart.sdk.bean.BleMeshBean> getHomeBleMeshList(long);
+  public abstract java.util.List<com.thingclips.smart.sdk.bean.DeviceBean> getHomeShareDeviceList(long);
+  public abstract java.util.List<com.thingclips.smart.sdk.bean.GroupBean> getHomeShareGroupList(long);
+  public abstract com.thingclips.smart.sdk.bean.GroupBean getGroupBean(long);
+  public abstract com.thingclips.smart.sdk.bean.DeviceBean getDeviceBean(java.lang.String);
+  public abstract com.thingclips.smart.home.sdk.bean.RoomBean getGroupRoomBean(long);
+  public abstract com.thingclips.smart.home.sdk.bean.RoomBean getRoomBean(long);
+  public abstract com.thingclips.smart.home.sdk.bean.RoomBean getDeviceRoomBean(java.lang.String);
+  public abstract com.thingclips.smart.home.sdk.bean.RoomBean getRoomBeanByHomeInDevice(long, java.lang.String);
+  public abstract java.util.List<com.thingclips.smart.sdk.bean.DeviceBean> getGroupDeviceList(long);
+  public abstract java.util.List<com.thingclips.smart.sdk.bean.GroupBean> getMeshGroupList(java.lang.String);
+  public abstract java.util.List<com.thingclips.smart.sdk.bean.DeviceBean> getMeshDeviceList(java.lang.String);
+  public abstract java.util.List<com.thingclips.smart.sdk.bean.DeviceBean> getRoomDeviceList(long);
+  public abstract java.util.List<com.thingclips.smart.sdk.bean.GroupBean> getRoomGroupList(long);
+  public abstract com.thingclips.smart.home.sdk.bean.HomeBean getHomeBean(long);
+  public abstract java.util.List<com.thingclips.smart.sdk.bean.DeviceBean> getSubDeviceBean(java.lang.String);
+  public abstract com.thingclips.smart.sdk.bean.DeviceBean getSubDeviceBeanByNodeId(java.lang.String, java.lang.String);
+  public abstract com.thingclips.smart.sdk.bean.ProductBean getProductBean(java.lang.String);
+  public abstract com.thingclips.smart.sdk.bean.ProductBean getProductBeanByVer(java.lang.String, java.lang.String);
+  public abstract void getPanelInfoBean(java.lang.String, com.thingclips.smart.sdk.api.IThingDataCallback<com.thingclips.smart.sdk.bean.ProductPanelInfoBean>);
+  public abstract void getPanelInfoBean(java.lang.String, java.lang.String, com.thingclips.smart.sdk.api.IThingDataCallback<com.thingclips.smart.sdk.bean.ProductPanelInfoBean>);
+  public abstract java.util.ArrayList<com.thingclips.smart.home.sdk.bean.DeviceAndGroupInHomeBean> getHidedDeviceGroupListCache(java.lang.Long);
+  public abstract java.lang.Object getDp(java.lang.String, java.lang.String);
+  public abstract java.util.Map<java.lang.String, java.lang.Object> getDps(java.lang.String);
+  public abstract java.util.Map<java.lang.String, com.thingclips.smart.android.device.bean.SchemaBean> getSchema(java.lang.String);
+  public abstract com.thingclips.smart.interior.device.bean.DeviceRespBean getDevRespBean(java.lang.String);
+  public abstract com.thingclips.smart.interior.device.bean.DeviceRespBean getSubDevRespBean(java.lang.String, java.lang.String);
+  public abstract java.util.List<com.thingclips.smart.interior.device.bean.DeviceRespBean> getDevRespBeanList();
+  public abstract java.util.HashMap<java.lang.String, com.thingclips.smart.home.sdk.bean.ProductRefBean> getProductRefList();
+  public abstract void getProductRefList(long, com.thingclips.smart.sdk.api.IThingDataCallback<java.util.ArrayList<com.thingclips.smart.home.sdk.bean.ProductRefBean>>);
+  public abstract com.thingclips.smart.home.sdk.bean.ProductRefBean getProductRefBean(java.lang.String);
+  public abstract void getProductRefBean(java.lang.String, long, com.thingclips.smart.sdk.api.IThingDataCallback<com.thingclips.smart.home.sdk.bean.ProductRefBean>);
+  public abstract void addDevRespList(java.util.List<com.thingclips.smart.interior.device.bean.DeviceRespBean>);
+  public abstract void addProductList(java.util.List<com.thingclips.smart.sdk.bean.ProductBean>);
+  public abstract void queryDev(java.lang.String, com.thingclips.smart.sdk.api.IThingDataCallback<com.thingclips.smart.sdk.bean.DeviceBean>);
+  public abstract void queryDev(long, java.lang.String, com.thingclips.smart.sdk.api.IThingDataCallback<com.thingclips.smart.sdk.bean.DeviceBean>);
+  public abstract void queryGroup(long, com.thingclips.smart.sdk.api.IThingDataCallback<com.thingclips.smart.sdk.bean.GroupBean>);
+  public abstract void querySubDev(java.lang.String, java.lang.String, com.thingclips.smart.sdk.api.IThingDataCallback<com.thingclips.smart.sdk.bean.DeviceBean>);
+  public abstract void getSubDevList(java.lang.String, com.thingclips.smart.sdk.api.IThingDataCallback<java.util.List<com.thingclips.smart.sdk.bean.DeviceBean>>);
+  public abstract void discoveredLanDevice(com.thingclips.smart.sdk.api.IThingSearchDeviceListener);
+  public abstract void unRegisterDiscoveredLanDeviceListener(com.thingclips.smart.sdk.api.IThingSearchDeviceListener);
+  public abstract com.thingclips.smart.sdk.bean.ProductStandardConfig getStandardProductConfig(java.lang.String);
+  public abstract boolean isStandardProduct(java.lang.String);
+  public abstract com.thingclips.smart.sdk.api.IStandardConverter getStandardConverter();
+  public abstract void getStandardProductConfig(java.lang.String, com.thingclips.smart.sdk.api.IThingDataCallback<com.thingclips.smart.sdk.bean.ProductStandardConfig>);
+  public abstract void getStandardProductConfigList(long, com.thingclips.smart.sdk.api.IThingDataCallback<java.util.ArrayList<com.thingclips.smart.sdk.bean.ProductStandardConfig>>);
+  public abstract boolean hasHomeCacheData(long);
+  public abstract boolean isHomeAdmin(long);
+  public abstract int getHomeRole(long);
+  public abstract void setAutoLoadPanelInfo(boolean);
+  public abstract boolean shouldAutoLoadPanelInfo();
+}
+=== com.thingclips.smart.home.sdk.api.IThingHomeManager (thingsmart-homelib-api-7.11.0.jar)
+Compiled from "IThingHomeManager.java"
+public interface com.thingclips.smart.home.sdk.api.IThingHomeManager {
+  public abstract void queryHomeList(com.thingclips.smart.home.sdk.callback.IThingGetHomeListCallback);
+  public abstract void queryHomeInfo(long, com.thingclips.smart.home.sdk.callback.IThingHomeResultCallback);
+  public abstract void createHome(java.lang.String, double, double, java.lang.String, java.util.List<java.lang.String>, com.thingclips.smart.home.sdk.callback.IThingHomeResultCallback);
+  public abstract void registerThingHomeChangeListener(com.thingclips.smart.home.sdk.api.IThingHomeChangeListener);
+  public abstract void unRegisterThingHomeChangeListener(com.thingclips.smart.home.sdk.api.IThingHomeChangeListener);
+  public abstract void onDestroy();
+  public abstract void joinHomeByInviteCode(java.lang.String, com.thingclips.smart.sdk.api.IResultCallback);
+}
+=== com.thingclips.smart.home.sdk.bean.DeviceAndGroupInHomeBean (thingsmart-homelib-api-7.11.0.jar)
+Compiled from "DeviceAndGroupInHomeBean.java"
+public class com.thingclips.smart.home.sdk.bean.DeviceAndGroupInHomeBean implements java.io.Serializable {
+  public com.thingclips.smart.home.sdk.bean.DeviceAndGroupInHomeBean();
+  public java.lang.String getBizId();
+  public void setBizId(java.lang.String);
+  public int getBizType();
+  public void setBizType(int);
+  public boolean equals(java.lang.Object);
+  public int hashCode();
+}
+=== com.thingclips.smart.home.sdk.bean.HomeBean (thingsmart-homelib-api-7.11.0.jar)
+Compiled from "HomeBean.java"
+public class com.thingclips.smart.home.sdk.bean.HomeBean {
+  public com.thingclips.smart.home.sdk.bean.HomeBean();
+  public int getHomeMode();
+  public void setHomeMode(int);
+  public boolean managmentStatus();
+  public void setManagmentStatus(boolean);
+  public int getRole();
+  public void setRole(int);
+  public java.lang.String getInviteName();
+  public void setInviteName(java.lang.String);
+  public java.lang.String getName();
+  public void setName(java.lang.String);
+  public java.lang.String getBackground();
+  public void setBackground(java.lang.String);
+  public double getLon();
+  public void setLon(double);
+  public double getLat();
+  public void setLat(double);
+  public java.lang.String getGeoName();
+  public void setGeoName(java.lang.String);
+  public java.util.List<com.thingclips.smart.home.sdk.bean.RoomBean> getRooms();
+  public void setRooms(java.util.List<com.thingclips.smart.home.sdk.bean.RoomBean>);
+  public long getHomeId();
+  public void setHomeId(long);
+  public java.util.List<com.thingclips.smart.sdk.bean.DeviceBean> getDeviceList();
+  public void setDeviceList(java.util.List<com.thingclips.smart.sdk.bean.DeviceBean>);
+  public java.util.List<com.thingclips.smart.sdk.bean.GroupBean> getGroupList();
+  public void setGroupList(java.util.List<com.thingclips.smart.sdk.bean.GroupBean>);
+  public java.util.List<com.thingclips.smart.sdk.bean.BlueMeshBean> getMeshList();
+  public void setMeshList(java.util.List<com.thingclips.smart.sdk.bean.BlueMeshBean>);
+  public java.util.List<com.thingclips.smart.sdk.bean.SigMeshBean> getSigMeshList();
+  public void setSigMeshList(java.util.List<com.thingclips.smart.sdk.bean.SigMeshBean>);
+  public void setSharedDeviceList(java.util.List<com.thingclips.smart.sdk.bean.DeviceBean>);
+  public java.util.List<com.thingclips.smart.sdk.bean.DeviceBean> getSharedDeviceList();
+  public java.util.List<com.thingclips.smart.sdk.bean.GroupBean> getSharedGroupList();
+  public void setSharedGroupList(java.util.List<com.thingclips.smart.sdk.bean.GroupBean>);
+  public boolean isAdmin();
+  public void setAdmin(boolean);
+  public int getHomeStatus();
+  public void setHomeStatus(int);
+  public com.thingclips.smart.home.sdk.bean.CustomRoleBean getCustomRole();
+  public void setCustomRole(com.thingclips.smart.home.sdk.bean.CustomRoleBean);
+  public java.lang.String toString();
+}
+=== com.thingclips.smart.home.sdk.callback.IThingGetHomeListCallback (thingsmart-homelib-api-7.11.0.jar)
+Compiled from "IThingGetHomeListCallback.java"
+public interface com.thingclips.smart.home.sdk.callback.IThingGetHomeListCallback {
+  public abstract void onSuccess(java.util.List<com.thingclips.smart.home.sdk.bean.HomeBean>);
+  public abstract void onError(java.lang.String, java.lang.String);
+}
+=== com.thingclips.smart.home.sdk.callback.IThingHomeResultCallback (thingsmart-homelib-api-7.11.0.jar)
+Compiled from "IThingHomeResultCallback.java"
+public interface com.thingclips.smart.home.sdk.callback.IThingHomeResultCallback {
+  public abstract void onSuccess(com.thingclips.smart.home.sdk.bean.HomeBean);
+  public abstract void onError(java.lang.String, java.lang.String);
+}
+=== com.thingclips.smart.camera.middleware.widget.AbsVideoViewCallback (thingsmart-ipc-camera-sdk-7.11.1.jar)
+Compiled from "AbsVideoViewCallback.java"
+public abstract class com.thingclips.smart.camera.middleware.widget.AbsVideoViewCallback implements com.thingclips.smart.camera.middleware.widget.ThingCameraView$CreateVideoViewCallback {
+  public com.thingclips.smart.camera.middleware.widget.AbsVideoViewCallback();
+  public void onCreated(java.lang.Object);
+  public void videoViewClick();
+  public void startCameraMove(int);
+  public void onActionUP();
+}
+=== com.thingclips.smart.camera.middleware.widget.ThingCameraView (thingsmart-ipc-camera-sdk-7.11.1.jar)
+Compiled from "ThingCameraView.java"
+public class com.thingclips.smart.camera.middleware.widget.ThingCameraView extends android.widget.RelativeLayout {
+  public com.thingclips.smart.camera.middleware.widget.ThingCameraView(android.content.Context);
+  public com.thingclips.smart.camera.middleware.widget.ThingCameraView(android.content.Context, android.util.AttributeSet);
+  public com.thingclips.smart.camera.middleware.widget.ThingCameraView(android.content.Context, android.util.AttributeSet, int);
+  public static boolean access$000(com.thingclips.smart.camera.middleware.widget.ThingCameraView);
+  public static com.thingclips.smart.camera.middleware.pdqdbdd access$100(com.thingclips.smart.camera.middleware.widget.ThingCameraView);
+  public static com.thingclips.smart.camera.ipccamerasdk.monitor.AbsMonitorViewProxy access$200(com.thingclips.smart.camera.middleware.widget.ThingCameraView);
+  public void onLayout(boolean, int, int, int, int);
+  public void createVideoView(java.lang.String);
+  public void createVideoView(int);
+  public void setType(int);
+  public void setIndex(int);
+  public void setOnRenderDirectionCallback(com.thingclips.smart.camera.camerasdk.thingplayer.callback.OnRenderDirectionCallback);
+  public void supportRenderDirection(com.thingclips.smart.camera.camerasdk.thingplayer.callback.OnRenderDirectionCallback);
+  public void supportRenderDirection(com.thingclips.smart.camera.ipccamerasdk.monitor.AbsMonitorViewProxy, com.thingclips.smart.camera.camerasdk.thingplayer.callback.OnRenderDirectionCallback);
+  public void onPause();
+  public void onResume();
+  public java.lang.Object createdView();
+  public void setEapilViewMode(int);
+  public void setEapilViewTemple(java.lang.String, int);
+  public void setEapilRenderType(int);
+  public void setAutoRotation(boolean);
+  public void supportPTZ();
+  public void setCameraViewCallback(com.thingclips.smart.camera.middleware.widget.ThingCameraView$CreateVideoViewCallback);
+  public void setViewCallback(com.thingclips.smart.camera.middleware.widget.AbsVideoViewCallback);
+  public void setTrackingStatus(boolean);
+  public void setZoomPipVisible(boolean);
+  public void setPipRect(float, float, float, float);
+  public void setScalable(boolean);
+  public void setPTZControllable(boolean);
+  public void setCoverImage(java.lang.String, java.lang.String);
+  public void isShowCover(boolean);
+  public void setMonitorFullScale();
+  public void setZoomListener(com.thingclips.smart.camera.camerasdk.thingplayer.callback.OnRenderZoomListener);
+  public void setMonitorScaleMode(int);
+  public void setMonitorScaleMultiple(float);
+  public void setExactScaleFactor(float);
+  public void setOrientationChangeIgnore(boolean);
+  public void setMaxScaleFactor(float);
+  public float getMaxScaleFactor();
+  public void setAvailableRockerDirection(boolean, boolean, boolean, boolean);
+  public void setRockerEnabled(boolean);
+  public void setRockerArrowIndicatorVisibility(boolean);
+  public void requestLayout();
+  public void setCameraViewDoubleClickEnable(boolean);
+  public void setRotateAngle(float);
+  public void setSupportPositioningFrame(com.thingclips.smart.camera.ipccamerasdk.monitor.Monitor);
+}
+=== com.thingclips.smart.android.camera.sdk.ThingIPCSdk (thingsmart-ipc-camera-sdk-api-7.11.1.jar)
+Compiled from "ThingIPCSdk.java"
+public class com.thingclips.smart.android.camera.sdk.ThingIPCSdk {
+  public com.thingclips.smart.android.camera.sdk.ThingIPCSdk();
+  public static com.thingclips.smart.android.camera.sdk.api.IThingIPCCore getCameraInstance();
+  public static com.thingclips.smart.android.camera.sdk.api.IThingIPCDoorbell getDoorbell();
+  public static com.thingclips.smart.android.camera.sdk.api.IThingIPCCloud getCloud();
+  public static com.thingclips.smart.android.camera.sdk.api.IThingIPCMsg getMessage();
+  public static com.thingclips.smart.p2p.api.IThingP2P getP2P();
+  public static com.thingclips.smart.p2p.toolkit.api.IBuilder P2PBuilder();
+  public static com.thingclips.smart.android.camera.sdk.api.IThingIPCTool getTool();
+  public static com.thingclips.smart.android.camera.sdk.api.IThingIPCHomeProxy getHomeProxy();
+  public static com.thingclips.smart.android.camera.sdk.api.IThingIPCPTZ getPTZInstance(java.lang.String);
+  public static com.thingclips.smart.android.camera.sdk.api.IThingIPCDpHelper createIPCDpHelper(java.lang.String);
+  public static com.thingclips.smart.call.module.api.IThingCallModule getVideoCall();
+  public static com.thingclips.smart.android.camera.sdk.api.IThingIPCVAS getIPCVAS();
+  public static com.thingclips.smart.android.camera.sdk.api.IThingIPCBird getIPCBirdInstance();
+}
+=== com.thingclips.smart.android.camera.sdk.api.IThingCameraMessage (thingsmart-ipc-camera-sdk-api-7.11.1.jar)
+Compiled from "IThingCameraMessage.java"
+public interface com.thingclips.smart.android.camera.sdk.api.IThingCameraMessage {
+  public abstract void getEventFileList(java.lang.String, java.lang.Long, com.thingclips.smart.home.sdk.callback.IThingResultCallback<java.util.ArrayList<com.thingclips.smart.ipc.messagecenter.bean.CameraMessageFileBean>>);
+  public abstract void getLatestMessageImage(java.lang.String, com.thingclips.smart.home.sdk.callback.IThingResultCallback<java.lang.String>);
+  public abstract void getAlarmDetectionMessageList(java.lang.String, int, int, java.lang.String[], int, int, com.thingclips.smart.home.sdk.callback.IThingResultCallback<java.util.List<com.thingclips.smart.ipc.messagecenter.bean.CameraMessageBean>>);
+  public abstract void getAlarmDetectionMessageList(java.lang.String, int, int, java.lang.String[], java.lang.String[], int, int, com.thingclips.smart.home.sdk.callback.IThingResultCallback<java.util.List<com.thingclips.smart.ipc.messagecenter.bean.CameraMessageBean>>);
+  public abstract void getAlarmDetectionMessageList(java.lang.String, int, int, java.lang.String[], int, int, int, boolean, com.thingclips.smart.home.sdk.callback.IThingResultCallback<java.util.List<com.thingclips.smart.ipc.messagecenter.bean.CameraMessageBean>>);
+  public abstract void queryMotionDaysByMonth(java.lang.String, int, int, com.thingclips.smart.home.sdk.callback.IThingResultCallback<java.util.List<java.lang.String>>);
+  public abstract void queryMotionDaysByMonth(java.lang.String, int, int, java.lang.String, java.lang.String, com.thingclips.smart.home.sdk.callback.IThingResultCallback<java.util.List<java.lang.String>>);
+  public abstract void queryMotionDaysByMonth(java.lang.String, int, int, java.lang.String, com.thingclips.smart.home.sdk.callback.IThingResultCallback<java.util.List<java.lang.String>>);
+  public abstract void queryAlarmDetectionClassify(java.lang.String, com.thingclips.smart.home.sdk.callback.IThingResultCallback<java.util.List<com.thingclips.smart.ipc.messagecenter.bean.CameraMessageClassifyBean>>);
+  public abstract void deleteMotionMessageList(java.util.List<java.lang.String>, com.thingclips.smart.home.sdk.callback.IThingResultCallback<java.lang.Boolean>);
+  public abstract void getMessageAITags(java.lang.String, com.thingclips.smart.home.sdk.callback.IThingResultCallback<java.util.List<com.thingclips.smart.ipc.messagecenter.bean.AITagBean>>);
+  public abstract void getVideoCheckServiceUrl(com.thingclips.smart.android.network.Business$ResultListener<com.alibaba.fastjson.JSONObject>);
+  public abstract void queryMessageClassifyTypes(java.lang.String, com.thingclips.smart.home.sdk.callback.IThingResultCallback<java.util.List<com.thingclips.smart.ipc.messagecenter.bean.NmcClassifyTypeBean>>);
+  public abstract void destroy();
+}
+=== com.thingclips.smart.android.camera.sdk.api.IThingIPCCore (thingsmart-ipc-camera-sdk-api-7.11.1.jar)
+Compiled from "IThingIPCCore.java"
+public interface com.thingclips.smart.android.camera.sdk.api.IThingIPCCore {
+  public abstract boolean isIPCDevice(java.lang.String);
+  public abstract int getP2PType(java.lang.String);
+  public abstract boolean isLowPowerDevice(java.lang.String);
+  public abstract boolean isDashboardCamera(java.lang.String);
+  public abstract com.thingclips.smart.android.camera.sdk.api.ICameraConfigInfo getCameraConfig(java.lang.String);
+  public abstract void getMultiCameraLensNames(java.lang.String, com.thingclips.smart.home.sdk.callback.IThingResultCallback<java.util.List<com.thingclips.smart.camera.camerasdk.bean.ThingLensNameBean>>);
+  public abstract com.thingclips.smart.camera.middleware.p2p.IThingSmartCameraP2P createCameraP2P(java.lang.String);
+  public abstract void setLogEnabled(boolean);
+  public abstract com.thingclips.smart.camera.middleware.p2p.IThingSmartNvrP2P createNvrP2P(java.lang.String);
+  public abstract void destroyNvrP2P(java.lang.String);
+  public abstract com.thingclips.smart.android.camera.sdk.api.ICameraBuilder getBuilderInstance();
+  public abstract void deInit();
+}
+=== com.thingclips.smart.android.camera.sdk.api.IThingIPCDoorBellManager (thingsmart-ipc-camera-sdk-api-7.11.1.jar)
+Compiled from "IThingIPCDoorBellManager.java"
+public interface com.thingclips.smart.android.camera.sdk.api.IThingIPCDoorBellManager {
+  public static final int ThingDoorBellError_NoError;
+  public static final int ThingDoorBellError_CallProcessingFailed;
+  public static final int ThingDoorBellError_AnsweredByOther;
+  public static final int ThingDoorBellError_DidCanceled;
+  public static final int ThingDoorBellError_TimeOut;
+  public static final int ThingDoorBellError_DidAnswered;
+  public static final int ThingDoorBellError_NotAnswered;
+  public static final int ThingDoorBellError_NotSupport;
+  public abstract void setIgnoreWhenCalling(boolean);
+  public abstract void setDoorbellRingTimeOut(int);
+  public abstract void setConfigDataSource(com.thingclips.smart.android.camera.sdk.callback.IDoorBellConfigDataSource);
+  public abstract com.thingclips.smart.android.camera.sdk.bean.ThingDoorBellCallModel getCallModelByMessageId(java.lang.String);
+  public abstract java.util.List<com.thingclips.smart.android.camera.sdk.callback.ThingSmartDoorBellObserver> getAllObservers();
+  public abstract void addObserver(com.thingclips.smart.android.camera.sdk.callback.ThingSmartDoorBellObserver);
+  public abstract void removeObserver(com.thingclips.smart.android.camera.sdk.callback.ThingSmartDoorBellObserver);
+  public abstract void removeAllObservers();
+  public abstract int answerDoorBellCall(java.lang.String);
+  public abstract void refuseDoorBellCall(java.lang.String);
+  public abstract int hangupDoorBellCall(java.lang.String);
+  public abstract void generateCallModel(java.lang.String, java.lang.String, java.lang.String, long);
+  public abstract void generateCallModel(java.lang.String, java.lang.String, java.lang.String, long, java.lang.String);
+  public abstract void generateCallModel(java.lang.String, java.lang.String, java.lang.String, long, java.lang.String, java.util.Map<java.lang.String, java.lang.Object>);
+  public abstract void set43MsgIntercept(com.thingclips.smart.android.camera.sdk.api.IThingIPCDoorBellMsgIntercept);
+}
+=== com.thingclips.smart.android.camera.sdk.api.IThingIPCDpHelper (thingsmart-ipc-camera-sdk-api-7.11.1.jar)
+Compiled from "IThingIPCDpHelper.java"
+public interface com.thingclips.smart.android.camera.sdk.api.IThingIPCDpHelper {
+  public abstract void addDevListener(com.thingclips.smart.android.camera.sdk.callback.OnDeviceChangedListener);
+  public abstract void removeDevListener(com.thingclips.smart.android.camera.sdk.callback.OnDeviceChangedListener);
+  public abstract boolean querySupportByDPCode(java.lang.String);
+  public abstract boolean querySupportByDPCodes(java.lang.String...);
+  public abstract java.lang.String getDPCodeById(java.lang.String);
+  public abstract java.lang.String getDPIdByCode(java.lang.String);
+  public abstract <T> T getCurrentValue(java.lang.String, java.lang.Class<T>);
+  public abstract void getCurrentValueFromDevice(java.lang.String);
+  public abstract <T> void queryDpValueFromRemote(java.lang.String, com.thingclips.smart.android.camera.sdk.callback.IQueryDpsCallback<T>, java.lang.Class<T>);
+  public abstract <T> void queryDpValueFromRemote(java.lang.String, long, com.thingclips.smart.android.camera.sdk.callback.IQueryDpsCallback<T>, java.lang.Class<T>);
+  public abstract <T> T parseObject(java.lang.String, java.lang.Object, java.lang.Class<T>);
+  public abstract <T> T getSchemaProperty(java.lang.String, java.lang.Class<T>);
+  public abstract java.lang.String generatePublishDps(java.lang.String, java.lang.Object);
+  public abstract void publishDps(java.lang.String, java.lang.Object, com.thingclips.smart.sdk.api.IResultCallback);
+  public abstract int getDpLimitValue(java.lang.String, boolean);
+  public abstract int getDpStep(java.lang.String);
+  public abstract java.lang.String getDpUnit(java.lang.String, java.lang.String);
+  public abstract int getDPScale(java.lang.String);
+  public abstract boolean isSupportDPOffline();
+  public abstract void publishDPForOfflineDp(java.lang.String, com.thingclips.smart.sdk.api.IResultCallback);
+  public abstract void onDestroy();
+  public abstract void addWeakRefDevListener(com.thingclips.smart.sdk.api.IDevListener);
+  public abstract void removeWeakRefDevListener(com.thingclips.smart.sdk.api.IDevListener);
+}
+=== com.thingclips.smart.camera.camerasdk.thingplayer.callback.AbsConnectCallBack (thingsmart-ipc-camera-sdk-api-7.11.1.jar)
+Compiled from "AbsConnectCallBack.java"
+public abstract class com.thingclips.smart.camera.camerasdk.thingplayer.callback.AbsConnectCallBack implements com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack {
+  public com.thingclips.smart.camera.camerasdk.thingplayer.callback.AbsConnectCallBack();
+  public boolean isIntercept();
+}
+=== com.thingclips.smart.camera.camerasdk.thingplayer.callback.AbsP2pCameraListener (thingsmart-ipc-camera-sdk-api-7.11.1.jar)
+Compiled from "AbsP2pCameraListener.java"
+public abstract class com.thingclips.smart.camera.camerasdk.thingplayer.callback.AbsP2pCameraListener implements com.thingclips.smart.camera.camerasdk.thingplayer.callback.OnP2PCameraListener {
+  public com.thingclips.smart.camera.camerasdk.thingplayer.callback.AbsP2pCameraListener();
+  public void receiveFrameDataForMediaCodec(int, byte[], int, int, byte[], boolean, int);
+  public void onReceiveAudioBufferData(int, int, int, long, long, long);
+  public void onReceiveAudioBufferData(com.thingclips.smart.camera.camerasdk.bean.ThingAudioFrameInfo);
+  public void onReceiveFrameYUVData(int, java.nio.ByteBuffer, java.nio.ByteBuffer, java.nio.ByteBuffer, com.thingclips.smart.camera.camerasdk.bean.ThingVideoFrameInfo, java.lang.Object);
+  public void onReceiveFrameYUVData(int, java.nio.ByteBuffer, java.nio.ByteBuffer, java.nio.ByteBuffer, int, int, int, int, long, long, long, java.lang.Object);
+  public void onSessionStatusChanged(java.lang.Object, int, int);
+  public void onReceiveSpeakerEchoData(java.nio.ByteBuffer, int);
+}
+=== com.thingclips.smart.camera.camerasdk.thingplayer.callback.OnP2PCameraListener (thingsmart-ipc-camera-sdk-api-7.11.1.jar)
+Compiled from "OnP2PCameraListener.java"
+public interface com.thingclips.smart.camera.camerasdk.thingplayer.callback.OnP2PCameraListener {
+  public abstract void receiveFrameDataForMediaCodec(int, byte[], int, int, byte[], boolean, int);
+  public abstract void onReceiveFrameYUVData(int, java.nio.ByteBuffer, java.nio.ByteBuffer, java.nio.ByteBuffer, int, int, int, int, long, long, long, java.lang.Object);
+  public abstract void onReceiveFrameYUVData(int, java.nio.ByteBuffer, java.nio.ByteBuffer, java.nio.ByteBuffer, com.thingclips.smart.camera.camerasdk.bean.ThingVideoFrameInfo, java.lang.Object);
+  public default void onReceiveVideoFrameData(int, java.nio.ByteBuffer, java.nio.ByteBuffer, java.nio.ByteBuffer, com.thingclips.smart.camera.camerasdk.bean.ThingVideoFrameInfo, java.lang.Object);
+  public abstract void onSessionStatusChanged(java.lang.Object, int, int);
+  public abstract void onReceiveAudioBufferData(int, int, int, long, long, long);
+  public abstract void onReceiveAudioBufferData(com.thingclips.smart.camera.camerasdk.bean.ThingAudioFrameInfo);
+  public abstract void onReceiveSpeakerEchoData(java.nio.ByteBuffer, int);
+  public default void onEventInfoReceived(int, int, long, java.lang.String);
+  public default void onLocalVideoFrameRecved(int, java.nio.ByteBuffer, java.nio.ByteBuffer, java.nio.ByteBuffer, int, int, boolean);
+}
+=== com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack (thingsmart-ipc-camera-sdk-api-7.11.1.jar)
+Compiled from "OperationDelegateCallBack.java"
+public interface com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack {
+  public abstract void onSuccess(int, int, java.lang.String);
+  public abstract void onFailure(int, int, int);
+}
+=== com.thingclips.smart.camera.ipccamerasdk.p2p.ICameraP2P (thingsmart-ipc-camera-sdk-api-7.11.1.jar)
+Compiled from "ICameraP2P.java"
+public interface com.thingclips.smart.camera.ipccamerasdk.p2p.ICameraP2P<T> {
+  public static final com.thingclips.smart.camera.ipccamerasdk.p2p.ICameraP2P$TagBean tag;
+  public static final int UN_KNOW;
+  public static final int PLAY_BACK_STARTING;
+  public static final int PLAY_BACK_RESUME;
+  public static final int PLAY_BACK_PAUSE;
+  public static final int PLAY_BACK_STOP;
+  public static final int P2P_CONNECT_FAILURE;
+  public static final int P2P_CONNECT_SUC;
+  public static final int NO_CONNECTED;
+  public static final int MUTE;
+  public static final int UNMUTE;
+  public static final int HD;
+  public static final int STANDEND;
+  public static final int UHD;
+  public static final int AUDIO_ONLY;
+  public default void setConnectExtConfig(java.util.Map<java.lang.String, java.lang.Object>);
+  public abstract void createDevice(com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack, int, java.lang.String...);
+  public abstract void createDevice(com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack, com.thingclips.smart.camera.ipccamerasdk.bean.ConfigCameraBean);
+  public abstract void registorOnP2PCameraListener(com.thingclips.smart.camera.camerasdk.thingplayer.callback.OnP2PCameraListener);
+  public abstract void registerP2PCameraListener(com.thingclips.smart.camera.camerasdk.thingplayer.callback.AbsP2pCameraListener);
+  public abstract void removeOnP2PCameraListener();
+  public abstract void removeOnP2PCameraListener(com.thingclips.smart.camera.camerasdk.thingplayer.callback.AbsP2pCameraListener);
+  public abstract void generateCameraView(T);
+  public abstract void registerSpeakerEchoProcessor(com.thingclips.smart.camera.camerasdk.thingplayer.callback.ISpeakerEchoProcessor);
+  public abstract void unregisterSpeakerEchoProcessor();
+  public abstract void destroyCameraView();
+  public abstract void connect(com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack, java.lang.String...);
+  public abstract void connect(com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract void connect2(com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract void connectPlayback();
+  public abstract boolean isConnecting();
+  public abstract int getCurrentConnectionType();
+  public abstract void disconnect(com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract void disconnect(boolean, com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract void startPreview(com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract void startPreview(int, com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract int stopPreview(com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract int snapshot(java.lang.String, android.content.Context, com.thingclips.smart.camera.ipccamerasdk.p2p.ICameraP2P$PLAYMODE, com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract int snapshot(java.lang.String, android.content.Context, com.thingclips.smart.camera.ipccamerasdk.p2p.ICameraP2P$PLAYMODE, int, com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract int snapshotWithConfig(android.content.Context, com.thingclips.smart.android.camera.sdk.bean.IPCSnapshotConfig, com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public default void snapshotFromNextFrame(android.content.Context, com.thingclips.smart.android.camera.sdk.bean.IPCSnapshotConfig, com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract int snapshotSilence(java.lang.String, java.lang.String);
+  public default int snapshotSilenceWithWH(java.lang.String, java.lang.String, int, int);
+  public abstract int snapshot(java.lang.String, java.lang.String, android.content.Context, com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract int startRecordLocalMp4(java.lang.String, java.lang.String, android.content.Context, com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract int startRecordLocalMp4(java.lang.String, java.lang.String, android.content.Context, int, com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public default int startRecordLocalMp4(com.thingclips.smart.camera.ipccamerasdk.bean.P2PRecordStartConfig, com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract int startRecordWithFilePath(java.lang.String, java.lang.String, com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract int startRecordLocalMp4WithoutAudio(java.lang.String, java.lang.String, android.content.Context);
+  public abstract int stopRecordLocalMp4(com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract boolean isRecording();
+  public abstract void startAudioTalk(com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract void setAudioEffect(int);
+  public abstract boolean isTalking();
+  public abstract int stopAudioTalk(com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract void getVideoClarity(com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract void setVideoClarity(int, com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public default int getVideoResolution();
+  public abstract int getMute(com.thingclips.smart.camera.ipccamerasdk.p2p.ICameraP2P$PLAYMODE);
+  public abstract void setMute(com.thingclips.smart.camera.ipccamerasdk.p2p.ICameraP2P$PLAYMODE, int, com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract java.lang.String getMonthKey();
+  public abstract java.lang.String getDayKey();
+  public abstract void setRecordMute(com.thingclips.smart.camera.ipccamerasdk.p2p.ICameraP2P$PLAYMODE);
+  public abstract void startPlayBack(int, int, int, com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack, com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract void startPlayBackWithEncryption(int, int, int, com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack, com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract void startPlayBack(int, int, java.lang.String, boolean, com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack, com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract void setSupportAov(boolean);
+  public default int setAovPlayMode(int);
+  public abstract void registerSlicePlayStartListener(com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract void unRegisterSlicePlayStartListener();
+  public abstract void pausePlayBack(com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract void resumePlayBack(com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract void stopPlayBack(com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract void queryRecordDaysByMonth(int, int, com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract void queryRecordTimeSliceByDay(int, int, int, com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract void queryRecordTimeSliceByDayWithEncryption(int, int, int, com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract void queryRecordTimeSliceByDayV3(int, int, int, boolean, com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract void queryRecordTimeSliceByDay(int, int, int, int, com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract void queryEventRecordTimeSliceByDay(int, int, int, int, com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public default void queryEventRecordTimeSliceByDayV2(int, int, int, int, com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract void destroyP2P();
+  public abstract void deAllModules();
+  public abstract double getVideoBitRateKbps();
+  public abstract void setEnableIVA(boolean);
+  public abstract void isEchoData(boolean);
+  public abstract void setEchoData(boolean);
+  public abstract void sendAudioTalkData(byte[], int);
+  public abstract void setPlayBackSpeed(int, com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract void startPlayBackDownload(com.thingclips.smart.camera.ipccamerasdk.bean.PlayBackDownloadParam);
+  public abstract void pausePlayBackDownload(com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract void resumePlayBackDownload(com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract void stopPlayBackDownload(com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract void deletePlaybackDataByDay(java.lang.String, com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack, com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract void downloadPlaybackEventImage(int, int, java.lang.String, java.lang.String, com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract void downloadPlaybackEventImageV2(int, int, int, java.lang.String, java.lang.String, com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract void deletePlaybackDataByFragments(java.lang.String, com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack, com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract void setLoudSpeakerStatus(boolean);
+  public abstract void queryAlbumFileIndex(java.lang.String, com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract void startPlayAlbumFile(int, java.lang.String, java.lang.String, boolean, com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack, com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract void stopPlayAlbumFile(com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract void pausePlayAlbumFile(com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract void resumePlayAlbumFile(com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract void startDownloadAlbumFile(java.lang.String, java.lang.String, java.lang.String, boolean, com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack, com.thingclips.smart.camera.camerasdk.thingplayer.callback.ProgressCallBack, com.thingclips.smart.camera.camerasdk.thingplayer.callback.FileDownLoadProgressCallBack, com.thingclips.smart.camera.camerasdk.thingplayer.callback.FileDownloadFinishCallBack);
+  public abstract void cancelDownloadAlbumFile(com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract void deleteAlbumFile(java.lang.String, java.lang.String, com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack, com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract void switchChannel(int, com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract void setHttpProxy(com.thingclips.smart.camera.ipccamerasdk.http.IHttpProxy);
+  public abstract void setDeviceFeatures(java.lang.String);
+  public abstract void setSmartRectFeatures(java.lang.String);
+  public default void setAIFrameFeature(java.lang.String);
+  public default int handleImageWithAIModel(java.lang.String, java.lang.String);
+  public abstract java.util.concurrent.Executor getExecutor();
+  public abstract void enableAudioNS(boolean, com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract void enableAudioAGC(boolean, com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract void enableAudioAEC(boolean, com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract void linkToNvr(java.lang.String, java.lang.String, int, int, java.lang.String, java.lang.String, com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract boolean getLinkedToNvr();
+  public abstract void unLinkToNvr();
+  public abstract void startVideoTalk(com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract void stopVideoTalk(com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract void resumeVideoTalk(com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract void pauseVideoTalk(com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract int startVideoCapture(int, int, int);
+  public abstract int switchCamera();
+  public abstract int setGestureType(int);
+  public abstract int setStickerInfo(java.lang.String);
+  public abstract int setPersonSegmentModel(java.nio.ByteBuffer, int);
+  public abstract void setPersonSegmentEnabled(boolean);
+  public abstract boolean isPersonSegmentEnabled();
+  public default void setOnAppAITraceId(java.lang.String);
+  public default void getPersonSegmentTiming(com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract int setVideoEnhanceEnabled(boolean);
+  public abstract boolean getVideoEnhanceEnabled();
+  public abstract int setVideoTalkEnhanceEnabled(boolean);
+  public abstract boolean getVideoTalkEnhanceEnabled();
+  public abstract int stopVideoCapture();
+  public abstract void openOTAClearConfigInfoCache(boolean);
+  public default void setWaterMarkInfo(java.lang.String);
+}
+=== com.thingclips.smart.camera.middleware.p2p.IThingSmartCameraP2P (thingsmart-ipc-camera-sdk-api-7.11.1.jar)
+Compiled from "IThingSmartCameraP2P.java"
+public interface com.thingclips.smart.camera.middleware.p2p.IThingSmartCameraP2P<T> {
+  public static final int CONNECT_MODE_AUTO;
+  public static final int CONNECT_MODE_FROM_INTERNET;
+  public static final int CONNECT_MODE_FROM_LOCAL;
+  public static final int ThingCameraConnectionTypeUnknown;
+  public static final int ThingCameraConnectionTypeP2P;
+  public static final int ThingCameraConnectionTypeRelay;
+  public abstract void setCameraTag(java.lang.Object);
+  public abstract java.lang.Object getCameraTag();
+  public abstract void setConnectExtConfig(java.util.Map<java.lang.String, java.lang.Object>);
+  public abstract boolean checkNetWorkChangeRun(boolean);
+  public abstract void setSync(java.util.concurrent.Executor);
+  public abstract void cancelBusiness();
+  public abstract void bizSkillQuery(com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract void bizActionControl(java.lang.String, com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack, com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract void bizActionCancel(int, com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract void requestCameraInfo(java.lang.String, com.thingclips.smart.camera.middleware.p2p.ICameraConfig);
+  public abstract void registorOnP2PCameraListener(com.thingclips.smart.camera.camerasdk.thingplayer.callback.OnP2PCameraListener);
+  public abstract void registerP2PCameraListener(com.thingclips.smart.camera.camerasdk.thingplayer.callback.AbsP2pCameraListener);
+  public abstract void removeOnP2PCameraListener();
+  public abstract void removeOnP2PCameraListener(com.thingclips.smart.camera.camerasdk.thingplayer.callback.AbsP2pCameraListener);
+  public abstract void generateCameraView(T);
+  public abstract void clearReferenceCount();
+  public abstract void connect(java.lang.String, com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract void connect(java.lang.String, int, com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract void connectWithDevId(java.lang.String, com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract void connect(java.lang.String, boolean, com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract void connect(java.lang.String, com.thingclips.smart.camera.ipccamerasdk.bean.CameraInfoBean, com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract int getCurrentConnectionType();
+  public abstract void startPreview(com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract void startPreview(int, com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract void stopPreview(com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract void getVideoClarity(com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract void setVideoClarity(int, com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract int getMute(com.thingclips.smart.camera.ipccamerasdk.p2p.ICameraP2P$PLAYMODE);
+  public abstract void setMute(com.thingclips.smart.camera.ipccamerasdk.p2p.ICameraP2P$PLAYMODE, int, com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract int getMute();
+  public abstract void setMute(int, com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract void setRecordMute(com.thingclips.smart.camera.ipccamerasdk.p2p.ICameraP2P$PLAYMODE);
+  public abstract java.lang.String getMonthKey();
+  public abstract java.lang.String getDayKey();
+  public abstract void setPlayBackEncryption(boolean);
+  public abstract void startPlayBack(int, int, int, com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack, com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract void startPlayBack(int, int, java.lang.String, com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack, com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract void setSupportAov(boolean);
+  public abstract void registerSlicePlayStartListener(com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract void unRegisterSlicePlayStartListener();
+  public abstract void pausePlayBack(com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract void resumePlayBack(com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract void stopPlayBack(com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract void snapshot(java.lang.String, android.content.Context, com.thingclips.smart.camera.ipccamerasdk.p2p.ICameraP2P$PLAYMODE, com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract void snapshot(java.lang.String, android.content.Context, com.thingclips.smart.camera.ipccamerasdk.p2p.ICameraP2P$PLAYMODE, int, com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract void snapshot(java.lang.String, android.content.Context, com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract void snapshotSilence(java.lang.String, java.lang.String);
+  public abstract int snapshotSilenceV2(java.lang.String, java.lang.String);
+  public abstract void snapshot(java.lang.String, java.lang.String, android.content.Context, com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract void snapshotWithConfig(android.content.Context, com.thingclips.smart.android.camera.sdk.bean.IPCSnapshotConfig, com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public default void snapshotFromNextFrame(android.content.Context, com.thingclips.smart.android.camera.sdk.bean.IPCSnapshotConfig, com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract void queryRecordDaysByMonth(int, int, com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract void queryRecordTimeSliceByDay(int, int, int, com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract void queryRecordTimeSliceByDayNoEncryption(int, int, int, com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract void queryRecordTimeSliceByDayV3(int, int, int, com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract void queryRecordTimeSliceByDay(int, int, int, int, com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract void queryEventRecordTimeSliceByDay(int, int, int, int, com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public default void queryEventRecordTimeSliceByDayV2(int, int, int, int, com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract void startAudioTalk(com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract void stopAudioTalk(com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract void startRecordLocalMp4(java.lang.String, android.content.Context, com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract void startRecordLocalMp4(java.lang.String, android.content.Context, int, com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract void startRecordLocalMp4(java.lang.String, java.lang.String, android.content.Context, com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public default int startRecordLocalMp4(com.thingclips.smart.camera.ipccamerasdk.bean.P2PRecordStartConfig, com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract void stopRecordLocalMp4(com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract void stopRecordLocalMp4(com.thingclips.smart.android.camera.sdk.bean.IPCRecordConfig, com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract boolean isConnecting();
+  public abstract void isConnecting(com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract boolean isTalking();
+  public abstract boolean isRecording();
+  public abstract void disconnect(com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract void disconnect(boolean, com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract void disconnectDirect(com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract void disconnect(boolean, boolean, com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract void connectPlayback();
+  public abstract void destroyCameraBusiness();
+  public abstract void destroyP2P();
+  public abstract double getVideoBitRateKbps();
+  public abstract void setEnableIVA(boolean);
+  public abstract void registerSpeakerEchoProcessor(com.thingclips.smart.camera.camerasdk.thingplayer.callback.ISpeakerEchoProcessor);
+  public abstract void unregisterSpeakerEchoProcessor();
+  public abstract void sendAudioTalkData(byte[], int);
+  public abstract void deletePlaybackDataByDay(java.lang.String, com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack, com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract void deletePlaybackDataByFragment(java.lang.String, com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack, com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract void setPlayBackSpeed(int, com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract void startPlayBackDownload(int, int, java.lang.String, java.lang.String, com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack, com.thingclips.smart.camera.camerasdk.thingplayer.callback.ProgressCallBack, com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract void startPlayBackDownloadNoEncryption(int, int, java.lang.String, java.lang.String, com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack, com.thingclips.smart.camera.camerasdk.thingplayer.callback.ProgressCallBack, com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public default void startPlayBackDownload(com.thingclips.smart.camera.ipccamerasdk.bean.PlayBackDownloadParam);
+  public abstract void pausePlayBackDownload(com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract void resumePlayBackDownload(com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract void stopPlayBackDownload(com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract void downloadPlaybackEventImage(int, int, int, java.lang.String, java.lang.String, com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract void setLoudSpeakerStatus(boolean);
+  public abstract void requestCameraInfo(java.lang.String, com.thingclips.smart.android.network.Business$ResultListener);
+  public abstract void queryAlbumFileIndex(java.lang.String, com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract void startPlayAlbumFile(int, java.lang.String, java.lang.String, boolean, com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack, com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract void stopPlayAlbumFile(com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract void pausePlayAlbumFile(com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract void resumePlayAlbumFile(com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract void startDownloadAlbumFile(java.lang.String, java.lang.String, java.lang.String, boolean, com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack, com.thingclips.smart.camera.camerasdk.thingplayer.callback.ProgressCallBack, com.thingclips.smart.camera.camerasdk.thingplayer.callback.FileDownLoadProgressCallBack, com.thingclips.smart.camera.camerasdk.thingplayer.callback.FileDownloadFinishCallBack);
+  public abstract void cancelDownloadAlbumFile(com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract void deleteAlbumFile(java.lang.String, java.lang.String, com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack, com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract void switchChannel(int, com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract void setHttpProxy(com.thingclips.smart.camera.ipccamerasdk.http.IHttpProxy);
+  public abstract void setIgnoreAwaking(boolean);
+  public abstract void setAudioEffect(int);
+  public abstract com.thingclips.smart.android.camera.sdk.bean.CameraStatus getCameraStatus();
+  public abstract void enableAudioNS(boolean, com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract void enableAudioAGC(boolean, com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract void enableAudioAEC(boolean, com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract void setCameraStatusUpdateCallback(com.thingclips.smart.android.camera.sdk.api.ICameraStatusUpdateCallback);
+  public abstract java.util.concurrent.Executor getExecutor();
+  public abstract void setDeviceFeatures(java.lang.String);
+  public abstract void setSmartRectFeatures(java.lang.String);
+  public abstract void startVideoTalk(com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract void stopVideoTalk(com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract boolean startVideoCapture(int, int, int);
+  public abstract boolean startVideoCapture();
+  public abstract boolean switchCamera();
+  public abstract void stopVideoCapture();
+  public abstract void resumeVideoTalk(com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract void pauseVideoTalk(com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract void openOTAClearConfigInfoCache(boolean);
+  public abstract int setGestureType(int);
+  public abstract int setStickerInfo(java.lang.String);
+  public abstract int setPersonSegmentModel(java.nio.ByteBuffer, int);
+  public abstract void setPersonSegmentEnabled(boolean);
+  public abstract boolean isPersonSegmentEnabled();
+  public default void setOnAppAITraceId(java.lang.String);
+  public default void getPersonSegmentTiming(com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack);
+  public abstract int setVideoEnhanceEnabled(boolean);
+  public abstract boolean getVideoEnhanceEnabled();
+  public abstract int setVideoTalkEnhanceEnabled(boolean);
+  public abstract boolean getVideoTalkEnhanceEnabled();
+  public abstract void setAIFrameFeature(java.lang.String);
+  public abstract int handleImageWithAIModel(java.lang.String, java.lang.String);
+}
+=== com.thingclips.smart.sdk.bean.ThingMatterDeviceBean (thingsmart-matterlib-api-7.11.0.jar)
+Compiled from "ThingMatterDeviceBean.java"
+public class com.thingclips.smart.sdk.bean.ThingMatterDeviceBean implements java.io.Serializable {
+  public com.thingclips.smart.sdk.bean.ThingMatterDeviceBean();
+  public boolean isCloudOnline();
+  public void setCloudOnline(boolean);
+  public long getFabricId();
+  public void setFabricId(long);
+  public boolean isThingMatter();
+  public com.thingclips.smart.sdk.enums.MatterDeviceTypeEnum getDeviceTypeEnum();
+  public void setDeviceTypeEnum(com.thingclips.smart.sdk.enums.MatterDeviceTypeEnum);
+  public long getNodeId();
+  public void setNodeId(long);
+  public int getAccessType();
+  public void setAccessType(int);
+  public java.lang.String getDevId();
+  public void setDevId(java.lang.String);
+  public java.lang.String getThingProductId();
+  public void setThingProductId(java.lang.String);
+  public java.lang.String getMatterDevUuid();
+  public void setMatterDevUuid(java.lang.String);
+  public java.lang.String getParentDevId();
+  public void setParentDevId(java.lang.String);
+  public boolean isControl();
+  public void setControl(boolean);
+  public boolean isBelongGateway();
+  public void setBelongGateway(boolean);
+  public java.lang.String toString();
+}
+=== com.thingclips.smart.scene.api.IResultCallback (thingsmart-scene-lib-api-7.11.0.jar)
+Compiled from "IResultCallback.kt"
+public interface com.thingclips.smart.scene.api.IResultCallback<T> {
+  public abstract void onSuccess(T);
+  public abstract void onError(java.lang.String, java.lang.String);
+}
+=== com.thingclips.smart.sdk.api.INeedLoginListener (thingsmart-sdk-api-7.11.0.jar)
+Compiled from "INeedLoginListener.java"
+public interface com.thingclips.smart.sdk.api.INeedLoginListener {
+  public abstract void onNeedLogin(android.content.Context);
+}
+=== com.thingclips.smart.sdk.api.IThingDataCallback (thingsmart-sdk-api-7.11.0.jar)
+Compiled from "IThingDataCallback.java"
+public interface com.thingclips.smart.sdk.api.IThingDataCallback<T> {
+  public abstract void onSuccess(T);
+  public abstract void onError(java.lang.String, java.lang.String);
+}
+=== com.thingclips.sdk.os.ThingOSUser (thingsmart-user-7.11.0.jar)
+Compiled from "ThingOSUser.java"
+public class com.thingclips.sdk.os.ThingOSUser {
+  public com.thingclips.sdk.os.ThingOSUser();
+  public static com.thingclips.smart.sdk.api.IThingUser getUserInstance();
+}
+=== com.thingclips.smart.android.user.api.ILoginCallback (thingsmart-user-api-7.11.0.jar)
+Compiled from "ILoginCallback.java"
+public interface com.thingclips.smart.android.user.api.ILoginCallback {
+  public abstract void onSuccess(com.thingclips.smart.android.user.bean.User);
+  public abstract void onError(java.lang.String, java.lang.String);
+}
+=== com.thingclips.smart.android.user.api.IRegisterCallback (thingsmart-user-api-7.11.0.jar)
+Compiled from "IRegisterCallback.java"
+public interface com.thingclips.smart.android.user.api.IRegisterCallback {
+  public abstract void onSuccess(com.thingclips.smart.android.user.bean.User);
+  public abstract void onError(java.lang.String, java.lang.String);
+}
+=== com.thingclips.smart.sdk.api.IThingUser (thingsmart-user-api-7.11.0.jar)
+Compiled from "IThingUser.java"
+public interface com.thingclips.smart.sdk.api.IThingUser extends com.thingclips.smart.interior.api.IUserCommonPlugin,com.thingclips.smart.interior.api.IUserRegionPlugin,com.thingclips.smart.interior.api.IUserDomainPlugin,com.thingclips.sdk.user.model.IUser,com.thingclips.smart.interior.api.IUserGeneralBusiness,com.thingclips.smart.interior.api.IUserHighwayPlugin {
+  public abstract void loginWithPhone(java.lang.String, java.lang.String, java.lang.String, com.thingclips.smart.android.user.api.ILoginCallback);
+  public abstract void loginWithEmail(java.lang.String, java.lang.String, java.lang.String, com.thingclips.smart.android.user.api.ILoginCallback);
+  public abstract void loginWithPhonePassword(java.lang.String, java.lang.String, java.lang.String, com.thingclips.smart.android.user.api.ILoginCallback);
+  public abstract void getEmailValidateCode(java.lang.String, java.lang.String, com.thingclips.smart.android.user.api.IValidateCallback);
+  public abstract void registerAccountWithEmail(java.lang.String, java.lang.String, java.lang.String, com.thingclips.smart.android.user.api.IRegisterCallback);
+  public abstract void registerAccountWithPhone(java.lang.String, java.lang.String, java.lang.String, java.lang.String, com.thingclips.smart.android.user.api.IRegisterCallback);
+  public abstract void resetEmailPassword(java.lang.String, java.lang.String, java.lang.String, java.lang.String, com.thingclips.smart.android.user.api.IResetPasswordCallback);
+  public abstract void resetPhonePassword(java.lang.String, java.lang.String, java.lang.String, java.lang.String, com.thingclips.smart.android.user.api.IResetPasswordCallback);
+  public abstract void logout(com.thingclips.smart.android.user.api.ILogoutCallback);
+  public abstract void getValidateCode(java.lang.String, java.lang.String, com.thingclips.smart.android.user.api.IValidateCallback);
+  public abstract void getRegisterEmailValidateCode(java.lang.String, java.lang.String, com.thingclips.smart.sdk.api.IResultCallback);
+  public abstract void registerAccountWithEmail(java.lang.String, java.lang.String, java.lang.String, java.lang.String, com.thingclips.smart.android.user.api.IRegisterCallback);
+  public abstract void reRickName(java.lang.String, com.thingclips.smart.android.user.api.IReNickNameCallback);
+  public abstract void updateNickName(java.lang.String, com.thingclips.smart.android.user.api.IReNickNameCallback);
+  public abstract void loginByTwitter(java.lang.String, java.lang.String, java.lang.String, com.thingclips.smart.android.user.api.ILoginCallback);
+  public abstract void loginByQQ(java.lang.String, java.lang.String, java.lang.String, com.thingclips.smart.android.user.api.ILoginCallback);
+  public abstract void loginByWechat(java.lang.String, java.lang.String, com.thingclips.smart.android.user.api.ILoginCallback);
+  public abstract void loginByFacebook(java.lang.String, java.lang.String, com.thingclips.smart.android.user.api.ILoginCallback);
+  public abstract void checkPhoneCode(java.lang.String, java.lang.String, java.lang.String, com.thingclips.smart.android.user.api.ICheckAccountCallback);
+  public abstract void checkEmailPassword(java.lang.String, com.thingclips.smart.android.user.api.ICheckAccountCallback);
+  public abstract void loginWithUid(java.lang.String, java.lang.String, java.lang.String, com.thingclips.smart.android.user.api.ILoginCallback);
+  public abstract void loginOrRegisterWithUid(java.lang.String, java.lang.String, java.lang.String, com.thingclips.smart.android.user.api.ILoginCallback);
+  public abstract void loginOrRegisterWithUid(java.lang.String, java.lang.String, java.lang.String, boolean, com.thingclips.smart.android.user.api.IUidLoginCallback);
+  public abstract void registerAccountWithUid(java.lang.String, java.lang.String, java.lang.String, com.thingclips.smart.android.user.api.IRegisterCallback);
+  public abstract void sendBindVerifyCode(java.lang.String, java.lang.String, com.thingclips.smart.sdk.api.IResultCallback);
+  public abstract void sendBindVerifyCodeByTicket(java.lang.String, java.lang.String, java.util.Map<java.lang.String, java.lang.String>, com.thingclips.smart.sdk.api.IResultCallback);
+  public abstract void sendBindVerifyCodeWithEmail(java.lang.String, java.lang.String, com.thingclips.smart.sdk.api.IResultCallback);
+  public abstract void sendBindVerifyCodeWithEmailByTicket(java.lang.String, java.lang.String, java.util.Map<java.lang.String, java.lang.String>, com.thingclips.smart.sdk.api.IResultCallback);
+  public abstract void bindEmail(java.lang.String, java.lang.String, java.lang.String, java.lang.String, com.thingclips.smart.sdk.api.IResultCallback);
+  public abstract void setTempUnit(com.thingclips.smart.sdk.enums.TempUnitEnum, com.thingclips.smart.sdk.api.IResultCallback);
+  public abstract void uploadUserAvatar(java.io.File, com.thingclips.smart.android.user.api.IBooleanCallback);
+  public abstract void updateAvatarWithImageUrl(java.lang.String, com.thingclips.smart.android.user.api.IBooleanCallback);
+  public abstract boolean checkVersionUpgrade();
+  public abstract void upgradeVersion(com.thingclips.smart.sdk.api.IResultCallback);
+  public abstract void cancelAccount(com.thingclips.smart.sdk.api.IResultCallback);
+  public abstract void cancelAccount(java.lang.String, java.lang.String, java.lang.String, com.thingclips.smart.sdk.api.IResultCallback);
+  public abstract void onDestroy();
+  public abstract void switchUserRegion(java.lang.String, com.thingclips.smart.android.user.api.ILoginCallback);
+  public abstract void sendVerifyCodeWithUserName(java.lang.String, java.lang.String, java.lang.String, int, com.thingclips.smart.sdk.api.IResultCallback);
+  public abstract void sendVerifyCodeWithUserNameByTicket(java.lang.String, java.lang.String, java.lang.String, int, java.util.Map<java.lang.String, java.lang.String>, com.thingclips.smart.sdk.api.IResultCallback);
+  public abstract void bindMobileSendCodeForVas(java.lang.String, java.lang.String, com.thingclips.smart.sdk.api.IResultCallback);
+  public abstract void bindMobileSendCodeForVasByTicket(java.lang.String, java.lang.String, java.util.Map<java.lang.String, java.lang.String>, com.thingclips.smart.sdk.api.IResultCallback);
+  public abstract void checkCodeWithUserName(java.lang.String, java.lang.String, java.lang.String, java.lang.String, int, com.thingclips.smart.sdk.api.IResultCallback);
+  public abstract void registerWithUserName(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, com.thingclips.smart.android.user.api.IRegisterCallback);
+  public abstract void thirdLogin(java.lang.String, java.lang.String, java.lang.String, com.thingclips.smart.android.user.api.ILoginCallback);
+  public abstract void thirdLogin(java.lang.String, java.lang.String, java.lang.String, java.lang.String, com.thingclips.smart.android.user.api.ILoginCallback);
+  public abstract void bindThirdPlatform(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, com.thingclips.smart.android.user.api.IThirdBindCallback);
+  public abstract void loginSuccess(com.thingclips.smart.android.user.bean.User);
+  public abstract void updateUserInfo(com.thingclips.smart.sdk.api.IResultCallback);
+  public abstract void getQRCodeToken(java.lang.String, com.thingclips.smart.android.user.api.IGetQRCodeTokenCallback);
+  public abstract void QRCodeLogin(java.lang.String, java.lang.String, com.thingclips.smart.android.user.api.ILoginCallback);
+  public abstract void QRcodeAuth(java.lang.String, long, java.lang.String, com.thingclips.smart.android.user.api.IBooleanCallback);
+  public abstract void QRHAcodeAuth(java.lang.String, long, java.lang.String, com.thingclips.smart.android.user.api.IHACallback);
+  public abstract void QRHAcodeAuthForCube(java.lang.String, long, java.lang.String, com.thingclips.smart.android.user.api.IHACallback);
+  public abstract void getQRDeviceAppInfo(java.lang.String, java.lang.String, com.thingclips.smart.android.user.api.IGetQRDeviceInfoCallBack);
+  public abstract void getQRDeviceAppInfoForCube(java.lang.String, java.lang.String, com.thingclips.smart.android.user.api.IGetQRDeviceInfoCallBack);
+  public abstract void touristRegisterAndLogin(java.lang.String, java.lang.String, com.thingclips.smart.android.user.api.IRegisterCallback);
+  public abstract void touristRegisterAndLogin(java.lang.String, com.thingclips.smart.android.user.api.IRegisterCallback);
+  public abstract void touristLogOut(com.thingclips.smart.android.user.api.ILogoutCallback);
+  public abstract void getDeviceCount(com.thingclips.smart.android.user.api.IUserBusinessCallback<com.thingclips.smart.android.user.bean.DeviceCountResult>);
+  public abstract void touristBindWithUserName(java.lang.String, java.lang.String, java.lang.String, java.lang.String, com.thingclips.smart.android.user.api.IBooleanCallback);
+  public abstract void getWhiteListWhoCanSendMobileCodeSuccess(com.thingclips.smart.android.user.api.IWhiteListCallback);
+  public abstract void ticketGetUserInfo(java.lang.String, com.thingclips.smart.android.user.api.ILoginCallback);
+  public abstract void loginWithTicket(java.lang.String, com.thingclips.smart.android.user.api.ILoginCallback);
+  public abstract void changeUserName(java.lang.String, java.lang.String, java.lang.String, java.lang.String, com.thingclips.smart.sdk.api.IResultCallback);
+  public abstract void loginWithEmailCode(java.lang.String, java.lang.String, java.lang.String, com.thingclips.smart.android.user.api.ILoginCallback);
+  public abstract void upgradeAlreadyOnlineUser(java.lang.String, java.lang.String, java.lang.String, java.lang.String, com.thingclips.smart.sdk.api.IResultCallback);
+  public abstract void getUserLoginMultiTerminal(com.thingclips.smart.android.user.api.IUserBusinessCallback<com.thingclips.smart.android.user.bean.UserLoginMultiterminalVO>);
+  public abstract void getLogoutDeviceVerifyToken(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.Boolean, java.lang.Integer, java.lang.Integer, com.thingclips.smart.android.user.api.IUserBusinessCallback<com.thingclips.smart.android.user.bean.MultiTerminalBean>);
+  public abstract void getMultiTerminalLogoutCode(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.Boolean, java.lang.Integer, java.lang.Integer, com.thingclips.smart.android.user.api.IUserBusinessCallback<com.thingclips.smart.android.user.bean.MultiTerminalBean>);
+  public abstract void logoutMultiTerminal(java.lang.String, java.lang.String, com.thingclips.smart.android.user.api.IBooleanCallback);
+  public abstract void exportUserDeviceListInfo(java.util.List<java.lang.String>, com.thingclips.smart.android.user.api.IUserDeviceInfoCallback);
+}
+=== com.thingclips.sdk.user.model.IUser (thingsmart-user-base-api-7.11.0.jar)
+Compiled from "IUser.java"
+public interface com.thingclips.sdk.user.model.IUser {
+  public abstract com.thingclips.smart.android.user.bean.User getUser();
+  public abstract boolean saveUser(com.thingclips.smart.android.user.bean.User);
+  public abstract boolean removeUser();
+  public abstract boolean isLogin();
+}
+=== com.thingclips.smart.android.user.api.ILogoutCallback (thingsmart-user-base-api-7.11.0.jar)
+Compiled from "ILogoutCallback.java"
+public interface com.thingclips.smart.android.user.api.ILogoutCallback {
+  public abstract void onSuccess();
+  public abstract void onError(java.lang.String, java.lang.String);
+}
+=== com.thingclips.smart.android.user.bean.User (thingsmart-user-base-api-7.11.0.jar)
+Compiled from "User.java"
+public class com.thingclips.smart.android.user.bean.User implements android.os.Parcelable,java.lang.Cloneable {
+  public static final android.os.Parcelable$Creator<com.thingclips.smart.android.user.bean.User> CREATOR;
+  public com.thingclips.smart.android.user.bean.User getPublicUser() throws com.alibaba.fastjson.JSONException;
+  public void setPublicUser(com.thingclips.smart.android.user.bean.User);
+  public java.lang.String getPublicSession();
+  public void setPublicSession(java.lang.String);
+  public com.thingclips.smart.android.user.bean.User();
+  public java.lang.Object clone();
+  public com.thingclips.smart.android.user.bean.UserToB getUserToB();
+  public void setUserToB(com.thingclips.smart.android.user.bean.UserToB);
+  public int getRegFrom();
+  public void setRegFrom(int);
+  public java.lang.String getUsername();
+  public void setUsername(java.lang.String);
+  public java.lang.String getSid();
+  public void setSid(java.lang.String);
+  public java.lang.String getUid();
+  public void setUid(java.lang.String);
+  public java.lang.String getService();
+  public void setService(java.lang.String);
+  public java.lang.String getEcode();
+  public void setEcode(java.lang.String);
+  public java.lang.String getNickName();
+  public void setNickName(java.lang.String);
+  public java.lang.String getPhoneCode();
+  public void setPhoneCode(java.lang.String);
+  public java.lang.String getPartnerIdentity();
+  public void setPartnerIdentity(java.lang.String);
+  public java.lang.String getMobile();
+  public void setMobile(java.lang.String);
+  public int getUserType();
+  public void setUserType(int);
+  public int getProductCount();
+  public void setProductCount(int);
+  public com.thingclips.smart.android.user.bean.Domain getDomain();
+  public void setDomain(com.thingclips.smart.android.user.bean.Domain);
+  public java.lang.String getEmail();
+  public void setEmail(java.lang.String);
+  public java.lang.String getHeadPic();
+  public void setHeadPic(java.lang.String);
+  public java.lang.String getTimezoneId();
+  public void setTimezoneId(java.lang.String);
+  public int getDataVersion();
+  public void setDataVersion(int);
+  public int getTempUnit();
+  public void setTempUnit(int);
+  public java.lang.String getSnsNickname();
+  public void setSnsNickname(java.lang.String);
+  public java.util.Map<java.lang.String, java.lang.Object> getExtras();
+  public void setExtras(java.util.Map<java.lang.String, java.lang.Object>);
+  public java.lang.String getUserAlias();
+  public void setUserAlias(java.lang.String);
+  public int describeContents();
+  public void writeToParcel(android.os.Parcel, int);
+}
+=== com.thingclips.smart.interior.api.IUserCommonPlugin (thingsmart-user-base-api-7.11.0.jar)
+Compiled from "IUserCommonPlugin.java"
+public interface com.thingclips.smart.interior.api.IUserCommonPlugin {
+  public abstract void getCommonServices(com.thingclips.smart.android.user.api.ICommonConfigCallback);
+  public abstract void updateTimeZone(java.lang.String, com.thingclips.smart.sdk.api.IResultCallback);
+}
