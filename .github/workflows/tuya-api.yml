@@ -28,7 +28,7 @@ jobs:
           ls -la > ../../../api/jars.txt
           for j in *.jar; do unzip -Z1 "$j" | grep '\.class$' | sed "s#^#$j: #" ; done > ../../../api/classes.txt
           cd ../../..
-          PATTERN='(ThingHomeSdk|ThingIPCSdk|IThingSmartCameraP2P|ThingCameraView|OperationDelegateCallBack|ILoginCallback|ILogoutCallback|IThingUser|IThingHomeManager|IThingGetHomeListCallback|IThingHome|IThingHomeResultCallback|HomeBean|DeviceBean|SchemaBean|IThingDevice|IDevListener|IResultCallback|AbsP2pCameraListener|IThingIPCCore|ICameraP2P|IRegisterCallback|IThingCameraMessage|IThingIPCDoorBellManager|DoorBell|IThingIPCDpHelper|IThingCameraView|AbsConnectCallBack|ThingSmartSdk|ThingSdk)\.class$'
+          PATTERN='(ThingHomeSdk|ThingIPCSdk|IThingSmartCameraP2P|ThingCameraView|OperationDelegateCallBack|ILoginCallback|ILogoutCallback|IThingUser|IThingHomeManager|IThingGetHomeListCallback|IThingHome|IThingHomeResultCallback|HomeBean|DeviceBean|SchemaBean|IThingDevice|IDevListener|IResultCallback|AbsP2pCameraListener|IThingIPCCore|ICameraP2P|IRegisterCallback|IThingCameraMessage|IThingIPCDoorBellManager|DoorBell|IThingIPCDpHelper|IThingCameraView|AbsConnectCallBack|ThingSmartSdk|ThingSdk|AbsVideoViewCallback|INeedLoginListener|IThingHomeDataManager|IUserCommonPlugin|IUser|OnP2PCameraListener|User)\.class$'
           grep -E "$PATTERN" api/classes.txt | grep -v '\$' > api/selected.txt || true
           : > api/javap.txt
           while IFS= read -r line; do
