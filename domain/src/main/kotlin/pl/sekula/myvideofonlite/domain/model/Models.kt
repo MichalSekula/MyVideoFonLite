@@ -29,10 +29,14 @@ data class DoorbellEvent(
 /** Źródło danych aplikacji: tryb demo (symulator) albo oficjalne SDK Tuya. */
 enum class BackendMode { DEMO, TUYA }
 
+/** Motyw interfejsu wybrany przez użytkownika. */
+enum class ThemeMode { SYSTEM, LIGHT, DARK }
+
 data class AppSettings(
     val backendMode: BackendMode = BackendMode.DEMO,
     val selectedDeviceId: String? = null,
     val requireBiometricForGate: Boolean = true,
+    val themeMode: ThemeMode = ThemeMode.SYSTEM,
 )
 
 /** Błędy rozróżniane w UI (spec. rozdz. 9). */

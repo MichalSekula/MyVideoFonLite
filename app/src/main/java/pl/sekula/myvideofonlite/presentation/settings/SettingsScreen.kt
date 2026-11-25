@@ -13,7 +13,7 @@ import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
-import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.Icon
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
@@ -36,11 +36,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import pl.sekula.myvideofonlite.R
+import pl.sekula.myvideofonlite.presentation.common.SectionCard
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import org.koin.androidx.compose.koinViewModel
 import pl.sekula.myvideofonlite.domain.model.AuthState
 import pl.sekula.myvideofonlite.domain.model.BackendMode
+import pl.sekula.myvideofonlite.domain.model.ThemeMode
 import pl.sekula.myvideofonlite.presentation.common.AppTopBar
 
 @Composable
@@ -61,6 +65,7 @@ fun SettingsScreen(onBack: () -> Unit, viewModel: SettingsViewModel = koinViewMo
     }
 
     Scaffold(
+        containerColor = MaterialTheme.colorScheme.background,
         topBar = { AppTopBar(title = "Ustawienia", onBack = onBack) },
         snackbarHost = { SnackbarHost(snackbar) },
     ) { padding ->
@@ -69,54 +74,71 @@ fun SettingsScreen(onBack: () -> Unit, viewModel: SettingsViewModel = koinViewMo
                 .fillMaxSize()
                 .padding(padding)
                 .verticalScroll(rememberScrollState())
-                .padding(16.dp),
-            verticalArrangement = Arrangement.spacedBy(12.dp),
+                .padding(horizontal = 16.dp, vertical = 8.dp),
+            verticalArrangement = Arrangement.spacedBy(16.dp),
         ) {
             if (busy) LinearProgressIndicator(Modifier.fillMaxWidth())
 
-            SectionTitle("Źródło danych")
-            RadioRow("Demo (symulowany wideodomofon)", settings.backendMode == BackendMode.DEMO) {
-                viewModel.setMode(BackendMode.DEMO)
-            }
-            RadioRow("Tuya (SmartLife App SDK + IPC SDK)", settings.backendMode == BackendMode.TUYA) {
-                viewModel.setMode(BackendMode.TUYA)
+            SectionCard("Źródło danych") {
+                RadioRow("Demo (symulowany wideodomofon)", settings.backendMode == BackendMode.DEMO) {
+                    viewModel.setMode(BackendMode.DEMO)
+                }
+                RadioRow("Tuya (SmartLife App SDK + IPC SDK)", settings.backendMode == BackendMode.TUYA) {
+                    viewModel.setMode(BackendMode.TUYA)
+                }
             }
 
             if (settings.backendMode == BackendMode.TUYA) {
-                TuyaAccountSection(
-                    auth = auth,
-                    onSignIn = viewModel::signIn,
-                    onSignOut = viewModel::signOut,
+                SectionCard("Konto Tuya") {
+                    TuyaAccountSection(
+                        auth = auth,
+                        onSignIn = viewModel::signIn,
+                        onSignOut = viewModel::signOut,
+                    )
+                }
+            }
+
+            SectionCard("Urządzenie") {
+                if (devices.isEmpty()) {
+                    Text(
+                        "Brak urządzeń na liście.",
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    )
+                }
+                devices.forEach { d ->
+                    RadioRow(d.name, settings.selectedDeviceId == d.id) { viewModel.selectDevice(d.id) }
+                }
+                OutlinedButton(onClick = viewModel::loadDevices) { Text("Pobierz listę urządzeń") }
+            }
+
+            SectionCard("Bezpieczeństwo") {
+                SwitchRow(
+                    label = "Wymagaj odcisku palca / PIN-u przy otwieraniu furtki",
+                    checked = settings.requireBiometricForGate,
+                    onChange = viewModel::setRequireBiometric,
                 )
             }
 
-            HorizontalDivider()
-            SectionTitle("Urządzenie")
-            if (devices.isEmpty()) {
-                Text("Brak urządzeń na liście.", style = MaterialTheme.typography.bodyMedium)
+            SectionCard("Wygląd") {
+                RadioRow("Jak w systemie", settings.themeMode == ThemeMode.SYSTEM) { viewModel.setThemeMode(ThemeMode.SYSTEM) }
+                RadioRow("Jasny", settings.themeMode == ThemeMode.LIGHT) { viewModel.setThemeMode(ThemeMode.LIGHT) }
+                RadioRow("Ciemny", settings.themeMode == ThemeMode.DARK) { viewModel.setThemeMode(ThemeMode.DARK) }
             }
-            devices.forEach { d ->
-                RadioRow(d.name, settings.selectedDeviceId == d.id) { viewModel.selectDevice(d.id) }
-            }
-            OutlinedButton(onClick = viewModel::loadDevices) { Text("Pobierz listę urządzeń") }
-
-            HorizontalDivider()
-            SectionTitle("Bezpieczeństwo")
-            SwitchRow(
-                label = "Wymagaj odcisku palca / PIN-u przy otwieraniu furtki",
-                checked = settings.requireBiometricForGate,
-                onChange = viewModel::setRequireBiometric,
-            )
 
             if (settings.backendMode == BackendMode.DEMO) {
-                HorizontalDivider()
-                SectionTitle("Narzędzia demo")
-                Button(onClick = viewModel::simulateRing) { Text("Symuluj dzwonek") }
-                SwitchRow(
-                    label = "Symuluj brak połączenia z urządzeniem",
-                    checked = demoOffline,
-                    onChange = viewModel::setDemoOffline,
-                )
+                SectionCard("Narzędzia demo") {
+                    Button(onClick = viewModel::simulateRing) {
+                        Icon(painterResource(R.drawable.ic_doorbell), contentDescription = null)
+                        Spacer(Modifier.width(8.dp))
+                        Text("Symuluj dzwonek")
+                    }
+                    SwitchRow(
+                        label = "Symuluj brak połączenia z urządzeniem",
+                        checked = demoOffline,
+                        onChange = viewModel::setDemoOffline,
+                    )
+                }
             }
         }
     }
@@ -181,11 +203,6 @@ private fun TuyaAccountSection(
             ) { Text("Zaloguj") }
         }
     }
-}
-
-@Composable
-private fun SectionTitle(text: String) {
-    Text(text, style = MaterialTheme.typography.titleMedium)
 }
 
 @Composable

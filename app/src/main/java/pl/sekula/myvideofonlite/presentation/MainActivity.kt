@@ -6,7 +6,15 @@ import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import androidx.activity.compose.setContent
+import androidx.activity.SystemBarStyle
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.getValue
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import org.koin.android.ext.android.inject
+import pl.sekula.myvideofonlite.domain.model.ThemeMode
+import pl.sekula.myvideofonlite.domain.repository.SettingsRepository
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.FragmentActivity
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -14,6 +22,8 @@ import pl.sekula.myvideofonlite.presentation.theme.MyVideoFonTheme
 
 /** FragmentActivity – wymagana przez BiometricPrompt; Compose działa bez zmian. */
 class MainActivity : FragmentActivity() {
+
+    private val settingsRepository: SettingsRepository by inject()
 
     private val pendingAction = MutableStateFlow<String?>(null)
 
@@ -28,7 +38,20 @@ class MainActivity : FragmentActivity() {
             notificationPermission.launch(Manifest.permission.POST_NOTIFICATIONS)
         }
         setContent {
-            MyVideoFonTheme {
+            val appSettings by settingsRepository.settings.collectAsStateWithLifecycle(initialValue = null)
+            val systemDark = isSystemInDarkTheme()
+            val dark = when (appSettings?.themeMode) {
+                ThemeMode.DARK -> true
+                ThemeMode.LIGHT -> false
+                else -> systemDark
+            }
+            DisposableEffect(dark) {
+                val transparent = android.graphics.Color.TRANSPARENT
+                val style = if (dark) SystemBarStyle.dark(transparent) else SystemBarStyle.light(transparent, transparent)
+                enableEdgeToEdge(statusBarStyle = style, navigationBarStyle = style)
+                onDispose { }
+            }
+            MyVideoFonTheme(darkTheme = dark) {
                 AppNavHost(
                     pendingAction = pendingAction,
                     onActionConsumed = { pendingAction.value = null },

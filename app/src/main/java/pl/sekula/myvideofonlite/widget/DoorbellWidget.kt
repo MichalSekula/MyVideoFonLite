@@ -7,9 +7,9 @@ import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.glance.Button
+import androidx.glance.ButtonDefaults
 import androidx.glance.GlanceId
 import androidx.glance.GlanceModifier
-import androidx.glance.GlanceTheme
 import androidx.glance.LocalContext
 import androidx.glance.LocalSize
 import androidx.glance.action.clickable
@@ -55,9 +55,7 @@ class DoorbellWidget : GlanceAppWidget(), KoinComponent {
     override suspend fun provideGlance(context: Context, id: GlanceId) {
         val snapshot = store.widgetSnapshot.first()
         provideContent {
-            GlanceTheme {
-                WidgetContent(snapshot)
-            }
+            WidgetContent(snapshot)
         }
     }
 
@@ -73,9 +71,9 @@ class DoorbellWidget : GlanceAppWidget(), KoinComponent {
         Column(
             modifier = GlanceModifier
                 .fillMaxSize()
-                .background(GlanceTheme.colors.widgetBackground)
-                .cornerRadius(16.dp)
-                .padding(12.dp)
+                .background(ColorProvider(WidgetBg))
+                .cornerRadius(24.dp)
+                .padding(14.dp)
                 .clickable(openApp),
         ) {
             Text(
@@ -83,14 +81,14 @@ class DoorbellWidget : GlanceAppWidget(), KoinComponent {
                 maxLines = 1,
                 style = TextStyle(
                     fontWeight = FontWeight.Bold,
-                    fontSize = 14.sp,
-                    color = GlanceTheme.colors.onSurface,
+                    fontSize = 15.sp,
+                    color = ColorProvider(Color.White),
                 ),
             )
             if (!snapshot.configured) {
                 Text(
                     text = "Nie skonfigurowano – dotknij, aby ustawić",
-                    style = TextStyle(fontSize = 12.sp, color = GlanceTheme.colors.onSurfaceVariant),
+                    style = TextStyle(fontSize = 12.sp, color = ColorProvider(WidgetMuted)),
                 )
                 return@Column
             }
@@ -103,20 +101,34 @@ class DoorbellWidget : GlanceAppWidget(), KoinComponent {
                     text = statusLabel(snapshot.status) +
                         (snapshot.statusUpdatedAt?.let { " (stan z ${formatTime(it)})" } ?: ""),
                     maxLines = 1,
-                    style = TextStyle(fontSize = 12.sp, color = GlanceTheme.colors.onSurface),
+                    style = TextStyle(fontSize = 12.sp, color = ColorProvider(Color.White)),
                 )
             }
             Text(
                 text = "Ostatni dzwonek: " + (snapshot.lastRingAt?.let { formatDateTime(it) } ?: "brak"),
                 maxLines = 2,
-                style = TextStyle(fontSize = 12.sp, color = GlanceTheme.colors.onSurfaceVariant),
+                style = TextStyle(fontSize = 12.sp, color = ColorProvider(WidgetMuted)),
             )
             Spacer(GlanceModifier.height(8.dp))
             Row(modifier = GlanceModifier.fillMaxWidth()) {
-                Button(text = "Podgląd", onClick = openLive)
+                Button(
+                    text = "Podgląd",
+                    onClick = openLive,
+                    colors = ButtonDefaults.buttonColors(
+                        backgroundColor = ColorProvider(WidgetAccent),
+                        contentColor = ColorProvider(WidgetBg),
+                    ),
+                )
                 if (wide && snapshot.gateAvailable) {
                     Spacer(GlanceModifier.width(8.dp))
-                    Button(text = "Furtka", onClick = openGate)
+                    Button(
+                        text = "Furtka",
+                        onClick = openGate,
+                        colors = ButtonDefaults.buttonColors(
+                            backgroundColor = ColorProvider(WidgetGate),
+                            contentColor = ColorProvider(WidgetBg),
+                        ),
+                    )
                 }
             }
         }
@@ -129,13 +141,17 @@ class DoorbellWidget : GlanceAppWidget(), KoinComponent {
     }
 
     private fun statusColor(status: DeviceStatus) = when (status) {
-        DeviceStatus.ONLINE -> Color(0xFF2E7D32)
-        DeviceStatus.OFFLINE -> Color(0xFFC62828)
-        DeviceStatus.UNKNOWN -> Color(0xFF9E9E9E)
+        DeviceStatus.ONLINE -> Color(0xFF22C55E)
+        DeviceStatus.OFFLINE -> Color(0xFFEF4444)
+        DeviceStatus.UNKNOWN -> Color(0xFF94A3B8)
     }
 
     companion object {
         private val SMALL = DpSize(110.dp, 110.dp)
         private val WIDE = DpSize(250.dp, 110.dp)
+        private val WidgetBg = Color(0xFF111A2E)
+        private val WidgetMuted = Color(0xFF94A3B8)
+        private val WidgetAccent = Color(0xFF2DD4BF)
+        private val WidgetGate = Color(0xFFFBBF24)
     }
 }

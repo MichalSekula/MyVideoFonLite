@@ -5,6 +5,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.uiautomator.By
 import androidx.test.uiautomator.BySelector
+import androidx.test.uiautomator.Direction
 import androidx.test.uiautomator.UiDevice
 import androidx.test.uiautomator.Until
 import org.junit.Assert.assertTrue
@@ -23,12 +24,13 @@ class ScreenshotTour {
     private val instrumentation = InstrumentationRegistry.getInstrumentation()
     private val device = UiDevice.getInstance(instrumentation)
     private val context = instrumentation.targetContext
+    private val prefix = InstrumentationRegistry.getArguments().getString("prefix", "")
     private val outDir = File(context.getExternalFilesDir(null), "screenshots").apply { mkdirs() }
 
     private fun shot(name: String) {
         device.waitForIdle()
         Thread.sleep(800)
-        device.takeScreenshot(File(outDir, "$name.png"))
+        device.takeScreenshot(File(outDir, "$prefix$name.png"))
     }
 
     private fun waitFor(selector: BySelector, timeoutMs: Long = 10_000) {
@@ -59,6 +61,13 @@ class ScreenshotTour {
         shot("01_start_nieskonfigurowane")
 
         click(By.text("Przejdź do ustawień"))
+        if (prefix.startsWith("ciemny")) {
+            waitFor(By.scrollable(true))
+            device.findObject(By.scrollable(true)).fling(Direction.DOWN)
+            click(By.text("Ciemny"))
+            Thread.sleep(1_000)
+            device.findObject(By.scrollable(true)).fling(Direction.UP)
+        }
         click(By.textContains("wejście (demo)"))
         waitFor(By.textContains("Wybrano"), 5_000)
         Thread.sleep(5_000) // snackbar znika

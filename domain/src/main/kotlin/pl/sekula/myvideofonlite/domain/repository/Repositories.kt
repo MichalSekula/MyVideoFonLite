@@ -10,6 +10,7 @@ import pl.sekula.myvideofonlite.domain.model.DoorbellDevice
 import pl.sekula.myvideofonlite.domain.model.DoorbellEvent
 import pl.sekula.myvideofonlite.domain.model.LiveViewState
 import pl.sekula.myvideofonlite.domain.model.Outcome
+import pl.sekula.myvideofonlite.domain.model.ThemeMode
 
 /** Interfejsy niezależne od SDK (spec. 6.3 – Domain). */
 interface DoorbellRepository {
@@ -50,4 +51,5 @@ interface SettingsRepository {
     suspend fun setBackendMode(mode: BackendMode)
     suspend fun setSelectedDevice(deviceId: String?)
     suspend fun setRequireBiometricForGate(required: Boolean)
+    suspend fun setThemeMode(mode: ThemeMode)
 }

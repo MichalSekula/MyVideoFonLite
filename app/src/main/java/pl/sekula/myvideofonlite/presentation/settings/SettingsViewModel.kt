@@ -14,6 +14,7 @@ import pl.sekula.myvideofonlite.domain.model.AuthState
 import pl.sekula.myvideofonlite.domain.model.BackendMode
 import pl.sekula.myvideofonlite.domain.model.DeviceSummary
 import pl.sekula.myvideofonlite.domain.model.Outcome
+import pl.sekula.myvideofonlite.domain.model.ThemeMode
 import pl.sekula.myvideofonlite.domain.model.defaultMessage
 import pl.sekula.myvideofonlite.domain.repository.DoorbellRepository
 import pl.sekula.myvideofonlite.domain.repository.SettingsRepository
@@ -90,6 +91,10 @@ class SettingsViewModel(
 
     fun setRequireBiometric(required: Boolean) {
         viewModelScope.launch { settingsRepository.setRequireBiometricForGate(required) }
+    }
+
+    fun setThemeMode(mode: ThemeMode) {
+        viewModelScope.launch { settingsRepository.setThemeMode(mode) }
     }
 
     fun simulateRing() {
