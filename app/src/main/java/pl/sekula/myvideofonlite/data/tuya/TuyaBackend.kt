@@ -98,7 +98,8 @@ class TuyaBackend(context: Context) : DoorbellBackend {
     override suspend fun requestRegistrationCode(countryCode: String, email: String): Outcome<Unit> {
         ready()?.let { return it }
         return suspendCancellableCoroutine { cont ->
-            ThingHomeSdk.getUserInstance().getRegisterEmailValidateCode(country(countryCode), email.trim(), object : IResultCallback {
+            // Aktualna metoda SDK (typ 1 = rejestracja); region pusty = wynikający z kodu kraju.
+            ThingHomeSdk.getUserInstance().sendVerifyCodeWithUserName(email.trim(), "", country(countryCode), 1, object : IResultCallback {
                 override fun onSuccess() { if (cont.isActive) cont.resume(Outcome.Success(Unit)) }
                 override fun onError(code: String?, error: String?) {
                     if (cont.isActive) cont.resume(
