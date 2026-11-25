@@ -156,8 +156,7 @@ private fun TuyaAccountSection(
     var password by remember { mutableStateOf("") }
 
     Text(
-        "Integracja Tuya wymaga wcześniejszej weryfikacji urządzenia i kluczy SDK (Etap 0). " +
-            "Szczegóły: docs/TUYA_INTEGRATION.md w repozytorium.",
+        "Zaloguj się tym samym kontem, którego używasz w aplikacji Tuya Smart / Smart Life.",
         style = MaterialTheme.typography.bodySmall,
     )
     when (auth) {

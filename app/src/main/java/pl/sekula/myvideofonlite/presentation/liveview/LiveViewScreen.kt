@@ -1,6 +1,11 @@
 package pl.sekula.myvideofonlite.presentation.liveview
 
+import android.Manifest
 import android.app.Activity
+import android.content.pm.PackageManager
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContextCompat
 import android.content.pm.ActivityInfo
 import android.widget.FrameLayout
 import androidx.activity.compose.BackHandler
@@ -78,6 +83,10 @@ fun LiveViewScreen(onBack: () -> Unit, viewModel: LiveViewViewModel = koinViewMo
     val message by viewModel.message.collectAsStateWithLifecycle()
     var fullscreen by rememberSaveable { mutableStateOf(false) }
     var showGateDialog by remember { mutableStateOf(false) }
+    val context = LocalContext.current
+    val micPermission = rememberLauncherForActivityResult(ActivityResultContracts.RequestPermission()) { granted ->
+        if (granted) viewModel.setTalking(true) else viewModel.showMessage("Bez dostępu do mikrofonu rozmowa nie jest możliwa.")
+    }
     val snackbar = remember { SnackbarHostState() }
 
     FullscreenEffect(fullscreen)
@@ -163,7 +172,11 @@ fun LiveViewScreen(onBack: () -> Unit, viewModel: LiveViewViewModel = koinViewMo
                 gateSupported = device?.supports(Capability.GATE_UNLOCK) == true,
                 gateEnabled = device?.status == DeviceStatus.ONLINE,
                 onAudio = viewModel::setAudio,
-                onTalk = viewModel::setTalking,
+                onTalk = { talk ->
+                    val granted = ContextCompat.checkSelfPermission(context, Manifest.permission.RECORD_AUDIO) ==
+                        PackageManager.PERMISSION_GRANTED
+                    if (!talk || granted) viewModel.setTalking(talk) else micPermission.launch(Manifest.permission.RECORD_AUDIO)
+                },
                 onGate = { showGateDialog = true },
                 onReconnect = viewModel::connect,
                 onDisconnect = viewModel::disconnect,
