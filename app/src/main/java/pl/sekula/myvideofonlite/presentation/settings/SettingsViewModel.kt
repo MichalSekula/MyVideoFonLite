@@ -1,5 +1,6 @@
 package pl.sekula.myvideofonlite.presentation.settings
 
+import pl.sekula.myvideofonlite.BuildConfig
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -95,7 +96,8 @@ class SettingsViewModel(
     fun requestRegistrationCode(countryCode: String, email: String) = launchBusy {
         _dialog.value = when (val r = repository.requestRegistrationCode(countryCode, email)) {
             is Outcome.Success -> "Tuya przyjęła prośbę i wysyła kod na $email. Mail może przyjść po kilku minutach – sprawdź też Spam i Oferty."
-            is Outcome.Failure -> "Nie wysłano kodu.\n\n" + (r.message ?: r.error.defaultMessage())
+            is Outcome.Failure -> "Nie wysłano kodu.\n\n" + (r.message ?: r.error.defaultMessage()) +
+                "\n\n(build ${BuildConfig.BUILD_ID})"
         }
     }
 

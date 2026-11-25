@@ -39,6 +39,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import pl.sekula.myvideofonlite.BuildConfig
 import pl.sekula.myvideofonlite.R
 import pl.sekula.myvideofonlite.presentation.common.SectionCard
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -139,6 +140,12 @@ fun SettingsScreen(
                     onChange = viewModel::setRequireBiometric,
                 )
             }
+
+            Text(
+                "Wersja: build ${BuildConfig.BUILD_ID}",
+                style = MaterialTheme.typography.labelSmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
 
             SectionCard("Wygląd") {
                 RadioRow("Jak w systemie", settings.themeMode == ThemeMode.SYSTEM) { viewModel.setThemeMode(ThemeMode.SYSTEM) }

@@ -28,6 +28,8 @@ android {
         versionName = "0.1.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
+        // Numer builda z GitHub Actions – widoczny w Ustawieniach, żeby odróżnić wersje APK.
+        buildConfigField("String", "BUILD_ID", "\"${System.getenv("GITHUB_RUN_NUMBER") ?: "lokalny"}\"")
         buildConfigField("String", "TUYA_APP_KEY", "\"${localProps.getProperty("tuya.appKey", "")}\"")
         buildConfigField("String", "TUYA_APP_SECRET", "\"${localProps.getProperty("tuya.appSecret", "")}\"")
     }

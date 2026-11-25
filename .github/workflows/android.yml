@@ -80,5 +80,5 @@ jobs:
 
       - uses: actions/upload-artifact@v5
         with:
-          name: MyVideoFonLite-debug-apk
+          name: MyVideoFonLite-build-${{ github.run_number }}
           path: app/build/outputs/apk/debug/*.apk
