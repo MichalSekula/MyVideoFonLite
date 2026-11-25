@@ -21,7 +21,7 @@ android {
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "pl.sekula.myvideofonlite"
+        applicationId = "pl.gbc.myvideofonlite" // zgodnie z rejestracją aplikacji w panelu Tuya
         minSdk = 26
         targetSdk = 35
         versionCode = 1
